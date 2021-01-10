@@ -1,0 +1,7 @@
+Toute nouvelle unite doit implémenter :
+  static int prix;
+  static int att;
+  static std::pair<int,int> portee; //(portee min, portee max)
+
+  void afficheCarac();
+  void afficheEtat();
