@@ -22,8 +22,8 @@ template <class U>
 void Case::set(U &u){
   std::cout << "inSet" << '\n';
 
-
-  destruct();
+  contenue=&u;
+  //destruct();
   //contenue= Unite::copy(u);
   u=u;
   std::cout << "outSet" << '\n';

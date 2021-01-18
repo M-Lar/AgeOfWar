@@ -19,7 +19,7 @@ Terrain::~Terrain(){
 }
 
 void Terrain::affiche(){
-  std::cout << "inAfficheT" << '\n';
+  std::cout << "inAffiche" << '\n';
   for(int i=0; i<taille; i++){
     cases[i].affiche();
   }
