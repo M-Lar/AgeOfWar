@@ -11,6 +11,7 @@ protected:
 
   int pos;
   bool isCampA;
+  bool asAction1=false;
 
 protected:
   //il faut lister les fonction que réalise les unités
@@ -32,6 +33,17 @@ public:
   virtual void affiche() =0;
 
   virtual void print() =0;
+/*
+  template <class U>
+  virtual bool Attaquer(U* enemie, int att);
+  virtual void Avancer();
+
+  virtual void Action1() =0;
+  virtual void Action2() =0;
+  virtual void Action3() =0;
+*/
+  virtual bool loselife(int att);
+
 
 };
 

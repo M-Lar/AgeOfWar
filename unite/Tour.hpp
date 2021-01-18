@@ -21,7 +21,11 @@ public:
   void affiche();
 
   void print();
-
+/*
+  void Action1();
+  void Action2();
+  void Action3();
+*/
 };
 int Tour::prix = 0;
 int Tour::att = 0;

@@ -14,7 +14,7 @@ void Case::affiche() const{
   if(contenue!=nullptr) {
     contenue -> print();
   } else {
-    std::cout<<"_";
+    std::cout<<" _ ";
   }
 }
 

@@ -28,3 +28,14 @@ void Tour::affiche(){
 void Tour::print(){
   std::cout<<"T";
 }
+/*
+void Tour::Action1(){
+  asAction1=Attaquer(portee);
+}
+void Tour::Action2(){}
+void Tour::Action3(){
+  if(asAction1){
+
+  }
+}
+*/

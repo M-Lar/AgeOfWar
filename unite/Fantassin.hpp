@@ -26,9 +26,11 @@ public:
   void affiche();
 
   void print();
-
-
-
+/*
+  void Action1();
+  void Action2();
+  void Action3();
+*/
 };
 int Fantassin::prix = 10;
 int Fantassin::att = 4;
