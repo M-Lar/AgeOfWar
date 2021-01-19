@@ -15,8 +15,12 @@ public:
   ~Case();
   void affiche() const;
 
-  template <class U>
-  void set(U &u);
+  void set(Unite *u);
+  Unite* get();
+
+  //void tour();
+
+
 };
 
 

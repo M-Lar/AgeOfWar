@@ -29,16 +29,3 @@ void Fantassin::affiche(){
 void Fantassin::print(){
   std::cout<<"F";
 }
-
-/*
-void Fantassin::Action1(){
-  asAction1=Attaquer();
-}
-void Fantassin::Action2(){}
-void Fantassin::Action3(){
-  if(asAction1){
-
-  }
-  asAction1=false;
-}
-*/

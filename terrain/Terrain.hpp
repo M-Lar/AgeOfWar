@@ -1,28 +1,45 @@
 #include <iostream>
 #include <cstdlib>
 #include "Case.hpp"
+#include "../unite/Tour.hpp"
+#include <vector>
 
 #ifndef terrain
 #define terrain
 class Terrain{
 private:
-  Case *cases;
+  //Case *cases;
+  std::vector<Case> cases;
   /*
   int taille;
   int vieBg;
   int vieBd;*/
-  int taille = 12;
-  int vieBg = 100; /* a voir si je laisse la decl comme ça*/
-  int vieBd = 100;
+  int taille= 12;
+  Tour TourA= Tour(true,0);
+  Tour TourB= Tour(true,taille-1, 100);
 
 public:
   Terrain();
   ~Terrain();
 
+  int getTaille(){return taille;}
+
   void affiche();
-  //void tourAB();
-  //void tourBA();
-  void avancer();
+
+//protected:
+  void addFantassin(bool isTourA);
+
+  void tourAB();
+  void tourBA();
+
+  void Action1();
+  void Action2();
+  void Action3();
+
+
+  //void avancer();
+
+
 
 };
 

@@ -4,9 +4,12 @@
 #ifndef unite
 #define unite
 
+//enum uniteType { Tour = 1, Fantassin, Archer, Catapulte, Super-soldat};
+
 class Unite{
 //private:
 protected:
+
   int pv;
 
   int pos;
@@ -33,15 +36,11 @@ public:
   virtual void affiche() =0;
 
   virtual void print() =0;
-/*
-  template <class U>
-  virtual bool Attaquer(U* enemie, int att);
-  virtual void Avancer();
 
-  virtual void Action1() =0;
-  virtual void Action2() =0;
-  virtual void Action3() =0;
-*/
+  //template <class U>
+  virtual bool Attaquer(Unite* enemie, int att);
+  virtual bool Avancer();
+
   virtual bool loselife(int att);
 
 
