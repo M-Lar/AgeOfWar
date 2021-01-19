@@ -30,6 +30,6 @@ setup.log
 _opam/
 
 # Project Specifics
-principal/main
-principal/main.o
+principal\main
+principal\main.o
 ProjetArchives
