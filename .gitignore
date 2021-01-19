@@ -32,4 +32,5 @@ _opam/
 # Project Specifics
 ProjetArchives
 principal/main.o
-principal/main.o
+principal/main
+*.o
