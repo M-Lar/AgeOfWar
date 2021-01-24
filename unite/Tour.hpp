@@ -20,7 +20,11 @@ public:
   void afficheEtat();
   void affiche();
 
-  void print();
+  std::string print(int i);
+
+  std::pair<int,int> getPortee(){return portee;}//portee;}
+
+  bool Attaquer(Unite* enemie){return (Unite::Attaquer(enemie, att));}
 
 };
 int Tour::prix = 0;

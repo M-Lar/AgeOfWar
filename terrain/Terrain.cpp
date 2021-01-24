@@ -4,96 +4,112 @@
 #include "Terrain.hpp"
 
 
-Terrain::Terrain(){
-    //if(taille>4) cases=new Case[taille];
-    cases.resize(taille);
-
-}
-Terrain::~Terrain(){
-  //delete [] cases;
-}
+Terrain::Terrain(){ cases.resize(taille); }
+Terrain::~Terrain(){}
 
 void Terrain::affiche(){
-  std::cout << "inAffiche" << '\n';
-  for(int i=0; i<taille; i++){
+  //std::cout << "inAffiche" << '\n';
+  for(int li=4; li>=0; li--){
     //cases[i].affiche();
-    cases.at(i).affiche();
+    for(int i=0; i<taille; i++){
+      std::cout<<cases.at(i).print(li);
+    }
+    std::cout<<std::endl;
   }
-  std::cout<<std::endl;
-  std::cout << "outAffiche" << '\n';
+
+  //std::cout << "outAffiche" << '\n';
 }
 
 
 
 void Terrain::addFantassin(bool isTourA){
+  int dep;
+  if(isTourA) dep=0;
+  else dep=taille-1;
 
   Fantassin* fant= new Fantassin(isTourA, (isTourA?3:taille-1));
-  cases[0].set(fant);
+  cases[dep].set(fant);
   //fant.affiche();
-  cases.at(0).get()->affiche();
-  cases.at(0).get()->print(); std::cout << '\n';
+  //cases.at(dep).get()->affiche();
+  //scases.at(dep).get()->print(); std::cout << '\n';
 }
 
 
 void Terrain::tourAB(){
+  //std::cout << "ab" << '\n';
   Action1(true);
-  //Action2(true);
-  //Action3(true);
+  Action2(true);
+  Action3(true);
 }
 void Terrain::tourBA(){
-
+  Action1(false);
+  Action2(false);
+  Action3(false);
 }
 
 void Terrain::Action1(bool sensAB){
-  int dep, arriv;
-  if(sensAB){dep=0;arriv=taille-1;}
-  else{dep=taille-1;arriv=0;}
 
-  Unite * uTemp;
-  for(int i=dep; i<=arriv; i++){
-    uTemp= cases.at(i).get();
-    //auto
+  if(sensAB){
+    for(int i=0; i<taille; i++){
+      auto uTemp= cases.at(i).get();
+      auto portee= uTemp->getPortee();
 
+      if(uTemp!=nullptr && uTemp->getIsCampA()){
+        for(int j=i; j<i+portee.first; j++){
+          auto cible=cases.at(j).get();
+          if(cible!=nullptr){
 
+            if(uTemp->Attaquer(cible)){
+              uTemp->setAsAction1(true);
+              if(instanceof<Catapulte> (uTemp)){ std::cout << "cata" << '\n'; }
+            }
 
-    if(instanceof<Catapulte> (uTemp)){
-      std::cout << "cata" << '\n';
+          }
+        }
+      }
     }
-    //if(){}
-    //uTemp->Attaquer();
   }
+
 }
 void Terrain::Action2(bool sensAB){
-  int dep, arriv;
-  if(sensAB){dep=0;arriv=taille-1;}
-  else{dep=taille-1;arriv=0;}
 
+  if(sensAB){
+    for(int i=taille-3; i>=0; i--){
 
-  Unite * uTemp;
-  for(int i=0; i<taille; i++){
-    uTemp= cases.at(i).get();
-    if(uTemp!=nullptr) {
-      if(instanceof<Fantassin> (uTemp)){
-        std::cout << "fant" << '\n';
-      }//(uTemp instanceof Fantassin){}
-      if(instanceof<Tour> (uTemp)){
-        std::cout << "tour" << '\n';
+      auto uTemp= cases.at(i).get();
+
+      auto suiv=cases.at(i+1).get();
+      if(uTemp!=nullptr && uTemp->getIsCampA())
+      if(suiv==nullptr && !instanceof<Catapulte> (uTemp)){ //(std::is_base_of<Catapulte, typeid(uTemp).name()>::value)
+        uTemp->Avancer();
+        cases.at(i+1) =cases.at(i);
+        cases.at(i)   =Case();
       }
-      std::cout << "tre" << '\n';
     }
+  } else {
+    for(int i=3; i<taille; i++){
+      auto uTemp= cases.at(i).get();
 
+      auto suiv=cases.at(i-1).get();
+      if(uTemp!=nullptr && !uTemp->getIsCampA())
+      if(suiv==nullptr && !instanceof<Catapulte> (uTemp)){ //(std::is_base_of<Catapulte, typeid(uTemp).name()>::value)
+        uTemp->Avancer();
+        cases.at(i-1) =cases.at(i);
+        cases.at(i)   =Case();
+      }
+    }
   }
-
-  
-  dep=dep;
-  arriv=arriv;
 
 }
 void Terrain::Action3(bool sensAB){
-  int dep, arriv;
-  if(sensAB){dep=0;arriv=taille-1;}
-  else{dep=taille-1;arriv=0;}
 
-  dep=dep;
-  arriv=arriv;
+  if(sensAB)
+  for(int i=0; i<taille; i++){
+    auto uTemp= cases.at(i).get();
+    if(uTemp!=nullptr) {
+      if(uTemp->getAsAction1()){}
+      uTemp->setAsAction1(false);
+    }
+
+  }
 }

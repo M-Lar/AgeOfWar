@@ -18,13 +18,17 @@ public:
   Archer(bool isCampA, int pos, int pv):  Unite(isCampA, pos, pv){};
   ~Archer(){};
 
-  //Archer copy(Archer &u);
+  //Archer copy(Archer &u);s
 
   void afficheCarac();
   void afficheEtat();
   void affiche();
 
-  void print();
+  std::string print(int i);
+
+  std::pair<int,int> getPortee(){return portee;}
+
+  bool Attaquer(Unite* enemie){return (Unite::Attaquer(enemie, att));}
 
 };
 int Archer::prix = 12;

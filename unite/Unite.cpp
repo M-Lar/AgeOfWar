@@ -34,15 +34,9 @@ bool Unite::Attaquer(Unite* enemie, int att){
   //return false;
 }
 bool Unite::Avancer(){
-  /*if(isCampA && pos<ter->getTaille()-2){
-    pos+=1;
-    return true;
-  } else
-  if(!isCampA && pos>1){
-    pos-=1;
-    return true;
-  }*/
-  return false;
+  if(isCampA) pos+=1;
+  else pos-=1;
+  return true;
 }
 
 

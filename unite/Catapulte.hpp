@@ -25,11 +25,7 @@ public:
   void affiche();
 
   void print();
-/*
-  void Action1();
-  void Action2();
-  void Action3();
-*/
+
 };
 int Catapulte::prix = 20;
 int Catapulte::att = 6;

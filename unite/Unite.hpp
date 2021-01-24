@@ -27,21 +27,22 @@ public:
   Unite(bool isCampG, int pos, int pv);
   virtual ~Unite(){};
 
-  //virtual Unite copy(Unite &u)=0;
-  /*
-  template <class U>
-  U copy(U u);
-  */
-
   virtual void afficheCarac() =0;
   virtual void afficheEtat();//const Unite u) const;
   virtual void affiche() =0;
 
-  virtual void print() =0;
+  virtual std::string print(int i) =0;
+
+  virtual std::pair<int,int> getPortee()=0;
+  bool getIsCampA(){return isCampA;}
+  bool getAsAction1(){return asAction1;}
+  void setAsAction1(bool b){asAction1=b;}
 
   //template <class U>
   virtual bool Attaquer(Unite* enemie, int att);
   virtual bool Avancer();
+
+  virtual bool Attaquer(Unite* enemie)=0;
 
   virtual bool loselife(int att);
 
@@ -49,9 +50,9 @@ public:
 };
 
 
-template<typename Base, typename T>
-inline bool instanceof(const T*) {
-   return std::is_base_of<Base, T>::value;
+template<typename U, typename S>
+inline bool instanceof(const S*) {
+   return std::is_base_of<U, S>::value;
 }
 
 #endif

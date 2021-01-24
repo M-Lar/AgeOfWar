@@ -24,7 +24,11 @@ public:
   void afficheEtat();
   void affiche();
 
-  void print();
+  std::string print(int i);
+
+  std::pair<int,int> getPortee(){return portee;}
+
+  bool Attaquer(Unite* enemie){return (Unite::Attaquer(enemie, att));}
 
 };
 int Fantassin::prix = 10;

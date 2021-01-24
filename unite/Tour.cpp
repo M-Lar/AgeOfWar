@@ -25,8 +25,9 @@ void Tour::affiche(){
   std::cout<<"]"<<std::endl;
 }
 
-void Tour::print(){
-  std::cout<<"T";
+std::string Tour::print(int i){
+  return"T";
+  i=i;
 }
 /*
 void Tour::Action1(){

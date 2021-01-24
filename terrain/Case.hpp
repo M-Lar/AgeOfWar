@@ -13,10 +13,11 @@ private:
 public:
   Case(){contenue=nullptr;}
   ~Case();
-  void affiche() const;
+  std::string print(int i) const;
 
-  void set(Unite *u);
-  Unite* get();
+  void set(Unite* u){ contenue=u; }
+  Unite* get(){ return contenue; }
+  bool estVide(){return contenue==nullptr;}
 
   //void tour();
 

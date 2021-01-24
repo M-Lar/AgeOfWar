@@ -10,24 +10,25 @@ Case::~Case(){
   destruct();
 }
 
-void Case::affiche() const{
+std::string Case::print(int i) const{
   //std::cout << "inAfficheCase" << '\n';
+  std::string res="";
+
   if(contenue!=nullptr) {
     //std::cout<<" ouiiii ";
-    contenue -> print();
+    res+= (contenue -> print(i));
+  } else if(i==0) {
+    //std::cout<<" __ ";
+    res+=" __ ";
   } else {
-    std::cout<<" _ ";
+    //std::cout<<"    ";
+    res+="    ";
   }
+  return res;
+  //std::cout << res << '\n';
   //std::cout << "outAfficheCase" << '\n';
 }
 
-//template <class U>
-void Case::set(Unite* u){
-  contenue=u;
-}
-Unite* Case::get(){
-  return contenue;
-}
 
 //void Case::tour(){
   /*
