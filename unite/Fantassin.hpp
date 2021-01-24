@@ -7,7 +7,6 @@
 #define fantassin
 
 
-int F_pv = 10;
 class Fantassin : public Unite{
 private:
   static int prix;
@@ -15,7 +14,7 @@ private:
   static std::pair<int,int> portee;
 
 public:
-  Fantassin(bool isCampA, int pos): Unite(isCampA, pos, F_pv){};
+  Fantassin(bool isCampA, int pos): Unite(isCampA, pos, 10){};
   Fantassin(bool isCampA, int pos, int pv):  Unite(isCampA, pos, pv){};
   ~Fantassin(){};
 
@@ -26,11 +25,7 @@ public:
   void affiche();
 
   void print();
-/*
-  void Action1();
-  void Action2();
-  void Action3();
-*/
+
 };
 int Fantassin::prix = 10;
 int Fantassin::att = 4;

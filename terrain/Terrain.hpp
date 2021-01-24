@@ -1,7 +1,7 @@
 #include <iostream>
 #include <cstdlib>
 #include "Case.hpp"
-#include "../unite/Tour.hpp"
+#include "allUnite.h"
 #include <vector>
 
 #ifndef terrain
@@ -32,9 +32,9 @@ public:
   void tourAB();
   void tourBA();
 
-  void Action1();
-  void Action2();
-  void Action3();
+  void Action1(bool sensAB);
+  void Action2(bool sensAB);
+  void Action3(bool sensAB);
 
 
   //void avancer();

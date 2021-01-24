@@ -17,13 +17,13 @@ void test1(){
 }
 
 void test2(){
-
+  //std::cout << clear;
 }
 
 
 int main(){
   test1();
 
-  std::cout << "bye" << std::endl;
+  //system("clear");
   return 0;
 }
