@@ -28,34 +28,40 @@ void Fantassin::affiche(){
 
 std::string Fantassin::print(int i){
   //std::cout<<"F";
+  //return "F";
 
 
   if(isCampA) {
     if(i==2)      return "O  /";
     else if(i==1) return "|-/ ";
     else if(i==0) return "|   ";
+    else if(i==-1) return into_string(pv);
     else return "    ";
 
-/*
-    switch(i) {
-      case 2: std::cout<< "O  /"; break;
-      case 1: std::cout<< "|-/ "; break;
-      case 0: std::cout<< "|	 "; break;
-      default: std::cout<< "    ";
-    }
-*/
+
   } else {
     if(i==2)      return "\\  O";
     else if(i==1) return " \\-|";
     else if(i==0) return "   |";
+    else if(i==-1) return " "+into_string(pv);
     else return "    ";
-/*
-    switch(i) {
-      case 2: std::cout<< "\\  O"; break;
-      case 1: std::cout<< " \\-|"; break;
-      case 0: std::cout<< "   |"; break;
-      default: std::cout<< "    ";
-    }
-*/
+
   }
+  /*
+  if(isCampA) {
+      switch(i) {
+        case 2: std::cout<< "O  /"; break;
+        case 1: std::cout<< "|-/ "; break;
+        case 0: std::cout<< "|	 "; break;
+        default: std::cout<< "    ";
+      }
+  } else {
+      switch(i) {
+        case 2: std::cout<< "\\  O"; break;
+        case 1: std::cout<< " \\-|"; break;
+        case 0: std::cout<< "   |"; break;
+        default: std::cout<< "    ";
+      }
+  }
+  */
 }

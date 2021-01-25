@@ -26,8 +26,17 @@ void Tour::affiche(){
 }
 
 std::string Tour::print(int i){
-  return"T";
-  i=i;
+  //return"T";
+  if(i==-1) return into_string(pv);
+  else if(i==2) return "  |\\_/‾\\_/|";
+  else if(isCampA){
+    if(i==1) return " |     _ |";
+    if(i==0) return " |    | ||";
+  } else {
+    if(i==1) return " | _     |";
+    if(i==0) return " || |    |";
+  }
+  return "          ";
 }
 /*
 void Tour::Action1(){

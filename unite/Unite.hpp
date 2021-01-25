@@ -1,6 +1,8 @@
 #include <iostream>
 #include <cstdlib>
 
+#include "../principal/outils.cpp"
+
 
 
 #ifndef unite
@@ -48,11 +50,5 @@ public:
 
 
 };
-
-
-template<typename U, typename S>
-inline bool instanceof(const S*) {
-   return std::is_base_of<U, S>::value;
-}
 
 #endif

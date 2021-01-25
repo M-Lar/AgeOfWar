@@ -9,14 +9,14 @@ Terrain::~Terrain(){}
 
 void Terrain::affiche(){
   //std::cout << "inAffiche" << '\n';
-  for(int li=4; li>=0; li--){
+  for(int li=4; li>=-1; li--){
     //cases[i].affiche();
     for(int i=0; i<taille; i++){
       std::cout<<cases.at(i).print(li);
     }
     std::cout<<std::endl;
   }
-
+  std::cout<<std::endl;
   //std::cout << "outAffiche" << '\n';
 }
 
@@ -37,9 +37,13 @@ void Terrain::addFantassin(bool isTourA){
 
 void Terrain::tourAB(){
   //std::cout << "ab" << '\n';
+  std::cout << "0" << '\n';
   Action1(true);
+  std::cout << "1" << '\n';
   Action2(true);
+  std::cout << "2" << '\n';
   Action3(true);
+  std::cout << "3" << '\n';
 }
 void Terrain::tourBA(){
   Action1(false);
@@ -55,7 +59,26 @@ void Terrain::Action1(bool sensAB){
       auto portee= uTemp->getPortee();
 
       if(uTemp!=nullptr && uTemp->getIsCampA()){
-        for(int j=i; j<i+portee.first; j++){
+        for(int j=i+portee.first; (j<=i+portee.second && j<taille) ; j++){
+          auto cible=cases.at(j).get();
+          if(cible!=nullptr){
+
+            if(uTemp->Attaquer(cible)){
+              uTemp->setAsAction1(true);
+              if(instanceof<Catapulte> (uTemp)){ std::cout << "cata" << '\n'; }
+            }
+
+          }
+        }
+      }
+    }
+  } else {
+    for(int i=taille-1; i>=0; i++){
+      auto uTemp= cases.at(i).get();
+      auto portee= uTemp->getPortee();
+
+      if(uTemp!=nullptr && uTemp->getIsCampA()){
+        for(int j=i-portee.second; (j>=i-portee.first && j>=0); j--){
           auto cible=cases.at(j).get();
           if(cible!=nullptr){
 
