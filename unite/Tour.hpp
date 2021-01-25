@@ -27,6 +27,9 @@ public:
 
   bool Attaquer(Unite* enemie){return (Unite::Attaquer(enemie, att));}
 
+  std::string getInstance(){return "Tour";}
+  //<class U> getInstance2(){return <Tour>;}
+
 };
 int Tour::prix = 0;
 int Tour::att = 0;

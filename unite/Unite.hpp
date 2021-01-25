@@ -38,6 +38,7 @@ public:
   int getPv(){return pv;}
   virtual std::pair<int,int> getPortee()=0;
   bool getIsCampA(){return isCampA;}
+  bool isSameCamp(Unite *u){return isCampA==u->getIsCampA();}
   bool getAsAction1(){return asAction1;}
   void setAsAction1(bool b){asAction1=b;}
 
@@ -49,7 +50,12 @@ public:
 
   bool loselife(int att);
 
-
+  virtual std::string getInstance(){return "Unite";}
+  //virtual <class U> getInstance2(){return <Unite>;}
+/*
+  template<class U>
+  bool instanceofUnite(const U* u);
+*/
 };
 
 #endif

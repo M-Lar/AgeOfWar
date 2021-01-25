@@ -1,13 +1,18 @@
 #include <iostream>
 #include <cstdlib>
 #include <cmath>
+#include <type_traits>
 
 #ifndef outils
 #define outils
-template<typename U, typename S>
-inline bool instanceof(const S*) {
+/*
+template<class U, class S>
+bool instanceof(const S*) {
+  //std::cout << "inInstOf" << '\n';
+  //std::cout << U.name() << "|" << S.name() << '\n';
    return std::is_base_of<U, S>::value;
 }
+*/
 
 std::string into_string(const int i, int nbChiffre= 4){
   std::string res="";

@@ -12,16 +12,17 @@ void test1(){
   Terrain T= Terrain(12);
   T.affiche();
   std::cout << "4" << '\n';
-  T.add<Fantassin>(false);
-  T.add<Archer>(true);
+  //T.add<Fantassin>(false);
+  T.add<Catapulte>(true);
   T.affiche();
 
   //std::cout << "survie1" << '\n';
   //std::cout << "test1" << '\n';
-  for (int i=0; i< 30; i++){
+  for (int i=0; i< 10; i++){
     //std::cout << "test2" << '\n';
     //std::cout << " i:" << i;
-    T.add<Catapulte>(true);
+    //T.add<Catapulte>(true);
+    T.add<Fantassin>(false);
     T.tourAB(); T.tourBA();
     T.affiche();
 
@@ -36,12 +37,14 @@ void test1(){
 }
 
 void test2(){
-  //std::cout << clear;
+  //Jeu jeu= Jeu();
+  //jeu.jouer();
 }
 
 
 int main(){
   test1();
+  //test2();
 
   //system("clear");
   return 0;

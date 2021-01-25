@@ -28,6 +28,9 @@ public:
 
   bool Attaquer(Unite* enemie){return (Unite::Attaquer(enemie, att));}
 
+  std::string getInstance(){return "Fantassin";}
+  //<class U> getInstance2(){return <Fantassin>;}
+
 };
 int Fantassin::prix = 10;
 int Fantassin::att = 4;

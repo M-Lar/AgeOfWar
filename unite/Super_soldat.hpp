@@ -17,6 +17,8 @@ public:
 
   void print(int i);
 
+  std::string getInstance(){return "Super_soldat";}
+
 };
 
 #endif

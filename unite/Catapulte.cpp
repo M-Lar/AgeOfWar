@@ -37,3 +37,12 @@ void Catapulte::print(int i){
     else std::cout<< "    ";
   }
 }
+
+bool Catapulte::Attaquer(Unite* cible){
+  //return (Unite::Attaquer(enemie, att));
+  return (cible->loselife(att));
+}
+/*
+std::pair<bool,bool> Catapulte::Attaquer(Unite* cible1, Unite* cible2){
+  return make_pair(cible1->loselife(att), cible2->loselife(att));
+}*/

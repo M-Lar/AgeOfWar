@@ -28,12 +28,16 @@ public:
 
   std::pair<int,int> getPortee(){return portee;}
 
-  bool Attaquer(Unite* enemie){return (Unite::Attaquer(enemie, att));}
+  bool Attaquer(Unite* cible);
+  //std::pair<bool,bool> Attaquer(Unite* enemie1, Unite* enemie2);
+
+  std::string getInstance(){return "Catapulte";}
+  //<class U> getInstance2(){return <Catapulte>;}
 
 };
 int Catapulte::prix = 20;
 int Catapulte::att = 6;
-std::pair<int,int> Catapulte::portee = std::make_pair(2,3);
+std::pair<int,int> Catapulte::portee = std::make_pair(2,4);
 
 
 #endif

@@ -30,6 +30,9 @@ public:
 
   bool Attaquer(Unite* enemie){return (Unite::Attaquer(enemie, att));}
 
+  std::string getInstance(){return "Archer";}
+  //<class U> getInstance2(){return <Archer>;}
+
 };
 int Archer::prix = 12;
 int Archer::att = 3;

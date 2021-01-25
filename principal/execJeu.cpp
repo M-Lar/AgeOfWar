@@ -3,6 +3,11 @@
 
 #include "include.h"
 
+/*
+#include <chrono>
+#include <thread>
+*/
+
 void init(){
   std::cout << " -- Bienvenue dans Age Of War --" << '\n';
 

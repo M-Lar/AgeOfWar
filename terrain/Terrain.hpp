@@ -15,6 +15,8 @@ private:
   int vieBg;
   int vieBd;*/
   int taille= 12;
+  int argentA;
+  int argentB;
   Tour TourA= Tour(true,0);
   Tour TourB= Tour(false,taille-1, 100);
 
@@ -39,6 +41,7 @@ public:
 
   void afficheVictoire();
 
+  //void deplacement(int sens, int i, bool expluCata= true);
 
 
   //void avancer();
