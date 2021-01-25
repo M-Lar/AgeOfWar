@@ -18,8 +18,6 @@ public:
   Fantassin(bool isCampA, int pos, int pv):  Unite(isCampA, pos, pv){};
   ~Fantassin(){};
 
-  //Fantassin copy(Fantassin &u);
-
   void afficheCarac();
   void afficheEtat();
   void affiche();

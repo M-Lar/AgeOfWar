@@ -28,13 +28,16 @@ void Unite::afficheEtat()/*const*/{
 }
 
 
-//template <class U>
+
 bool Unite::Attaquer(Unite* enemie, int att){
+  std::cout << "inAttaquerUnite" << '\n';
+
+  if(enemie->isCampA==isCampA) return false;
   return enemie->loselife(att);
   //return false;
 }
 bool Unite::Avancer(){
-  if(isCampA) pos+=1; 
+  if(isCampA) pos+=1;
   else if(!isCampA) pos-=1;
   else return false;
   return true;
@@ -42,7 +45,9 @@ bool Unite::Avancer(){
 
 
 bool Unite::loselife(int att){
+  //std::cout << "inLoselife" << '\n';
   pv-=att;
   if(pv<=0) return true;
+  asAction1= true;
   return false;
 }

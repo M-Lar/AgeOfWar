@@ -15,6 +15,8 @@ public:
   Super_soldat(bool isCampA, int pos, int pv):  Fantassin(isCampA, pos, pv){};
   ~Super_soldat(){};
 
+  void print(int i);
+
 };
 
 #endif

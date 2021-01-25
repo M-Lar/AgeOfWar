@@ -27,7 +27,8 @@ public:
   void affiche();
 
 //protected:
-  void addFantassin(bool isTourA);
+  template <class U>
+  void add(bool isTourDeA);
 
   void tourAB();
   void tourBA();

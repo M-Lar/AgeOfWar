@@ -40,13 +40,13 @@ public:
   bool getAsAction1(){return asAction1;}
   void setAsAction1(bool b){asAction1=b;}
 
-  //template <class U>
-  bool Attaquer(Unite* enemie, int att);
-  virtual bool Avancer();
-
   virtual bool Attaquer(Unite* enemie)=0;
 
-  virtual bool loselife(int att);
+  bool Attaquer(Unite* enemie, int att);
+  bool Avancer();
+
+
+  bool loselife(int att);
 
 
 };

@@ -28,13 +28,13 @@ void Tour::affiche(){
 void Tour::print(int i){
   //return"T";
   if(i==-1) std::cout<< into_string(pv);
-  else if(i==2) std::cout<< "  |\\_/‾\\_/|";
+  else if(i==2) std::cout<< "|\\_/‾\\_/|";
   else if(isCampA){
-    if(i==1) std::cout<< " |     _ |";
-    if(i==0) std::cout<< " |    | ||";
+    if(i==1) std::cout<< "|     _ |";
+    if(i==0) std::cout<< "|    | ||";
   } else {
-    if(i==1) std::cout<< " | _     |";
-    if(i==0) std::cout<< " || |    |";
+    if(i==1) std::cout<< "| _     |";
+    if(i==0) std::cout<< "|| |    |";
   }
   std::cout<< "          ";
 }

@@ -4,9 +4,6 @@
 #include "Fantassin.hpp"
 
 
-/*Fantassin Fantassin::copy(Fantassin &u){
-  return Fantassin(u.isCampA, u.pos, u.pv);
-}*/
 
 void Fantassin::afficheCarac(){
   std::cout<<"F:";

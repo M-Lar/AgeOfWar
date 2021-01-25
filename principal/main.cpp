@@ -12,22 +12,26 @@ void test1(){
   Terrain T= Terrain();
   T.affiche();
   std::cout << "4" << '\n';
-  T.addFantassin(true);
-  T.addFantassin(false);
+  T.add<Fantassin>(false);
+  T.add<Archer>(true);
   T.affiche();
 
   //std::cout << "survie1" << '\n';
   //std::cout << "test1" << '\n';
-  for (int i=0; i< 16; i++){
+  for (int i=0; i< 30; i++){
     //std::cout << "test2" << '\n';
     //std::cout << " i:" << i;
+    T.add<Fantassin>(false);
     T.tourAB(); T.tourBA();
+    T.affiche();
+    
   }
   T.affiche();
   std::cout << "survie2" << '\n';
-  T.addFantassin(true);
+  /*T.add<Fantassin>(true);
   T.tourAB();
-  T.affiche();
+  T.affiche();*/
+
   //std::cout << "5gfds" << std::flush << '\n';
 }
 

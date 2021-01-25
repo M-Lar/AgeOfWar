@@ -53,3 +53,11 @@ Toute nouvelle unite doit implémenter :
   O \		 / O
   |- |	| -|
   | /		 \ |
+
+0\
+  \
+O‾‾O
+
+  /0
+ /
+O‾‾O
