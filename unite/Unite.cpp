@@ -34,8 +34,9 @@ bool Unite::Attaquer(Unite* enemie, int att){
   //return false;
 }
 bool Unite::Avancer(){
-  if(isCampA) pos+=1;
-  else pos-=1;
+  if(isCampA) pos+=1; 
+  else if(!isCampA) pos-=1;
+  else return false;
   return true;
 }
 

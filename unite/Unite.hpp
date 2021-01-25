@@ -33,7 +33,7 @@ public:
   virtual void afficheEtat();//const Unite u) const;
   virtual void affiche() =0;
 
-  virtual std::string print(int i) =0;
+  virtual void print(int i) =0;
 
   virtual std::pair<int,int> getPortee()=0;
   bool getIsCampA(){return isCampA;}
@@ -41,7 +41,7 @@ public:
   void setAsAction1(bool b){asAction1=b;}
 
   //template <class U>
-  virtual bool Attaquer(Unite* enemie, int att);
+  bool Attaquer(Unite* enemie, int att);
   virtual bool Avancer();
 
   virtual bool Attaquer(Unite* enemie)=0;

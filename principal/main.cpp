@@ -21,11 +21,11 @@ void test1(){
   for (int i=0; i< 16; i++){
     //std::cout << "test2" << '\n';
     //std::cout << " i:" << i;
-    //T.tourAB(); T.tourBA();
+    T.tourAB(); T.tourBA();
   }
   T.affiche();
-  //std::cout << "survie2" << '\n';
-  //T.addFantassin(true);
+  std::cout << "survie2" << '\n';
+  T.addFantassin(true);
   T.tourAB();
   T.affiche();
   //std::cout << "5gfds" << std::flush << '\n';

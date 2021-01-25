@@ -13,7 +13,7 @@ private:
 public:
   Case(){contenue=nullptr;}
   ~Case();
-  std::string print(int i) const;
+  void print(int i) const;
 
   void set(Unite* u){ contenue=u; }
   Unite* get(){ return contenue; }

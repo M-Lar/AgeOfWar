@@ -26,27 +26,25 @@ void Fantassin::affiche(){
   std::cout<<"]"<<std::endl;
 }
 
-std::string Fantassin::print(int i){
+void Fantassin::print(int i){
   //std::cout<<"F";
   //return "F";
 
 
   if(isCampA) {
-    if(i==2)      return "O  /";
-    else if(i==1) return "|-/ ";
-    else if(i==0) return "|   ";
-    else if(i==-1) return into_string(pv);
-    else return "    ";
-
-
+    if(i==2)      std::cout<< "O  /";
+    else if(i==1) std::cout<< "|-/ ";
+    else if(i==0) std::cout<< "|   ";
+    else if(i==-1) std::cout<< into_string(pv,3)+" ";
+    else std::cout<< "    ";
   } else {
-    if(i==2)      return "\\  O";
-    else if(i==1) return " \\-|";
-    else if(i==0) return "   |";
-    else if(i==-1) return " "+into_string(pv);
-    else return "    ";
-
+    if(i==2)      std::cout<< "\\  O";
+    else if(i==1) std::cout<< " \\-|";
+    else if(i==0) std::cout<< "   |";
+    else if(i==-1) std::cout<< into_string(pv,3)+" ";
+    else std::cout<< "    ";
   }
+
   /*
   if(isCampA) {
       switch(i) {

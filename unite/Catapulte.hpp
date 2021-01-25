@@ -24,7 +24,7 @@ public:
   void afficheEtat();
   void affiche();
 
-  std::string print(int i);
+  void print(int i);
 
   std::pair<int,int> getPortee(){return portee;}
 

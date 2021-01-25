@@ -12,7 +12,7 @@ void Terrain::affiche(){
   for(int li=4; li>=-1; li--){
     //cases[i].affiche();
     for(int i=0; i<taille; i++){
-      std::cout<<cases.at(i).print(li);
+      cases.at(i).print(li);
     }
     std::cout<<std::endl;
   }
@@ -37,16 +37,16 @@ void Terrain::addFantassin(bool isTourA){
 
 void Terrain::tourAB(){
   //std::cout << "ab" << '\n';
-  std::cout << "0" << '\n';
-  Action1(true);
-  std::cout << "1" << '\n';
+  //std::cout << "0" << '\n';
+  //Action1(true);
+  //std::cout << "1" << '\n';
   Action2(true);
-  std::cout << "2" << '\n';
+  //std::cout << "2" << '\n';
   Action3(true);
-  std::cout << "3" << '\n';
+  //std::cout << "3" << '\n';
 }
 void Terrain::tourBA(){
-  Action1(false);
+  //Action1(false);
   Action2(false);
   Action3(false);
 }

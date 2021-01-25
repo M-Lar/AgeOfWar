@@ -10,21 +10,21 @@ Case::~Case(){
   destruct();
 }
 
-std::string Case::print(int i) const{
+void Case::print(int i) const{
   //std::cout << "inAfficheCase" << '\n';
-  std::string res="";
+  //std::string res="";
 
   if(contenue!=nullptr) {
     //std::cout<<" ouiiii ";
-    res+= (contenue -> print(i));
+    (contenue -> print(i));//res+=
   } else if(i==0) {
     //std::cout<<" __ ";
-    res+=" __ ";
+    std::cout<<" __ ";//res+=
   } else {
     //std::cout<<"    ";
-    res+="    ";
+    std::cout<<"    ";//res+=
   }
-  return res;
+  //return res;
   //std::cout << res << '\n';
   //std::cout << "outAfficheCase" << '\n';
 }

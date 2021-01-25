@@ -25,18 +25,18 @@ void Tour::affiche(){
   std::cout<<"]"<<std::endl;
 }
 
-std::string Tour::print(int i){
+void Tour::print(int i){
   //return"T";
-  if(i==-1) return into_string(pv);
-  else if(i==2) return "  |\\_/‾\\_/|";
+  if(i==-1) std::cout<< into_string(pv);
+  else if(i==2) std::cout<< "  |\\_/‾\\_/|";
   else if(isCampA){
-    if(i==1) return " |     _ |";
-    if(i==0) return " |    | ||";
+    if(i==1) std::cout<< " |     _ |";
+    if(i==0) std::cout<< " |    | ||";
   } else {
-    if(i==1) return " | _     |";
-    if(i==0) return " || |    |";
+    if(i==1) std::cout<< " | _     |";
+    if(i==0) std::cout<< " || |    |";
   }
-  return "          ";
+  std::cout<< "          ";
 }
 /*
 void Tour::Action1(){
