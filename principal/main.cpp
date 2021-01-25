@@ -22,7 +22,7 @@ void test1(){
     //std::cout << "test2" << '\n';
     //std::cout << " i:" << i;
     //T.add<Catapulte>(true);
-    T.add<Fantassin>(false);
+    //T.add<Fantassin>(false);
     T.tourAB(); T.tourBA();
     T.affiche();
 

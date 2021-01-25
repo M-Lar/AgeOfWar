@@ -92,7 +92,9 @@ void Terrain::Action1(bool sensAB){
               std::cout << "caseAttTourAB" << '\n';
               auto isDead= uTemp->Attaquer(&TourB);
 
-              if(isDead) {break;}
+              if(isDead) {std::cout << "tour dead" << '\n';}
+              uTemp->setAsAction1(true);
+              break;
             }
           }//endFor
           //affiche(); //a afficher
