@@ -18,6 +18,12 @@ Toute nouvelle unite doit implémenter :
   |     _ |
   |    | ||
 
+  |\_/‾\_/‾\_/|
+  |      ___  |
+  |     /   \ |
+  |     |   | |
+
+
   |\_/‾\_/|
   | _     |
   || |    |

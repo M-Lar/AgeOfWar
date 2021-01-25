@@ -21,6 +21,7 @@ public:
   void affiche();
 
   void print(int i);
+  void print(int i, Unite* u);
 
   std::pair<int,int> getPortee(){return portee;}//portee;}
 

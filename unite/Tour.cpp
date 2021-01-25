@@ -27,16 +27,44 @@ void Tour::affiche(){
 
 void Tour::print(int i){
   //return"T";
-  if(i==-1) std::cout<< into_string(pv);
-  else if(i==2) std::cout<< "|\\_/‾\\_/|";
-  else if(isCampA){
-    if(i==1) std::cout<< "|     _ |";
-    if(i==0) std::cout<< "|    | ||";
+
+  if(isCampA){
+    if(i==3) std::cout<< "|\\_/‾\\_/| ";
+    else if(i==2) std::cout<< "|       | ";
+    else if(i==1) std::cout<< "|     _ | ";
+    else if(i==0) std::cout<< "|    | || ";
+    else if(i==-1) std::cout<< into_string(pv,5)+"     ";
+    else std::cout<< "          ";
   } else {
-    if(i==1) std::cout<< "| _     |";
-    if(i==0) std::cout<< "|| |    |";
+    if(i==3) std::cout<< " |\\_/‾\\_/|";
+    else if(i==2) std::cout<< " |       |";
+    else if(i==1) std::cout<< " | _     |";
+    else if(i==0) std::cout<< " || |    |";
+    else if(i==-1) std::cout<< into_string(pv,8)+"  ";
+    else std::cout<< "          ";
   }
-  std::cout<< "          ";
+
+}
+void Tour::print(int i, Unite *u){
+  if (u==nullptr) print(i);
+  else{
+    if(isCampA){
+      if(i==3) std::cout<< "|\\_/‾\\_/| ";
+      else if(i==2) {std::cout<< "|  " ; u->print(i); std::cout<< " | ";}
+      else if(i==1) {std::cout<< "|  " ; u->print(i); std::cout<< " | ";}
+      else if(i==0) {std::cout<< "|  " ; u->print(i); std::cout<< " | ";}
+      else if(i==-1){std::cout<< into_string(pv,4)+" "<< into_string(u->getPv(),3) <<"  ";}
+      else std::cout<< "          ";
+    } else {
+      if(i==3) std::cout<< " |\\_/‾\\_/|";
+      else if(i==2) {std::cout<< " | " ; u->print(i); std::cout<< "  |";}
+      else if(i==1) {std::cout<< " | " ; u->print(i); std::cout<< "  |";}
+      else if(i==0) {std::cout<< " | " ; u->print(i); std::cout<< "  |";}
+      else if(i==-1){std::cout<< into_string(u->getPv(),4) << " " <<into_string(pv,4)+" ";}
+      else std::cout<< "          ";
+    }
+
+  }
 }
 /*
 void Tour::Action1(){

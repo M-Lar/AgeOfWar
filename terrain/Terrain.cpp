@@ -4,19 +4,26 @@
 #include "Terrain.hpp"
 
 
-Terrain::Terrain(){ cases.resize(taille); }
+Terrain::Terrain(int t){
+  taille=t;
+  cases.resize(taille);
+}
 Terrain::~Terrain(){}
 
 void Terrain::affiche(){
   for(int li=4; li>=-1; li--){
-    for(int i=0; i<taille; i++){
-      cases.at(i).print(li);
-    }
+    TourA.print(li,cases.at(0).get());
+    for(int i=1; i<taille-1; i++){ cases.at(i).print(li);}
+    TourB.print(li,cases.at(taille-1).get());
     std::cout<<std::endl;
   }
   std::cout<<std::endl;
 }
 
+void Terrain::afficheVictoire(){
+  std::system("clear");
+  std::cout << "GG" << '\n';
+}
 
 template <class U>
 void Terrain::add(bool isTourDeA){
@@ -57,6 +64,11 @@ void Terrain::Action1(bool sensAB){
                 if(isDead) cases.at(j)= Case();
                 break;
               }
+            } else if(j==taille-1){
+              std::cout << "caseAttTourAB" << '\n';
+              auto isDead= uTemp->Attaquer(&TourB);
+
+              if(isDead) {afficheVictoire(); break;}
             }
           }//endFor
         }
@@ -69,18 +81,19 @@ void Terrain::Action1(bool sensAB){
 
       if(uTemp!=nullptr) {
         auto portee= uTemp->getPortee();
-        if(uTemp->getIsCampA()){
+        if(!uTemp->getIsCampA()){
           //std::cout << "inCampB" << '\n';
           for(int j=i-portee.first; (j>=i-portee.second && j>0); j--){
             //std::cout << "marche" << '\n';
             auto cible=cases.at(j).get();
             //std::cout << typeid(uTemp).name() << " attaq=" << i << " cible=" << j << std::endl;
+            //std::cout << "cible:" << cible << '\n';
             if(cible!=nullptr){
-              //std::cout << "enfaceB" << '\n';
-              if(uTemp->Attaquer(cible)){
-                //std::cout << "attaqueB" << '\n';
-                uTemp->setAsAction1(true);
+              if(!uTemp->getAsAction1()){
+                auto isDead= uTemp->Attaquer(cible);
                 if(instanceof<Catapulte> (uTemp)){ std::cout << "cata" << '\n'; }
+
+                if(isDead) cases.at(j)= Case();
                 break;
               }
             }
@@ -106,7 +119,7 @@ void Terrain::Action2(bool sensAB){
       }
     }
   } else {
-    for(int i=3; i<taille; i++){
+    for(int i=2; i<taille; i++){
       auto uTemp= cases.at(i).get();
       auto suiv=cases.at(i-1).get();
 

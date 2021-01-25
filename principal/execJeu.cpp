@@ -9,10 +9,9 @@ void init(){
   Terrain T= Terrain();
   T.affiche();
 }
-/*
+
 int main(){
-  test1();
+  init();
 
   return 0;
 }
-*/

@@ -24,17 +24,16 @@ void Catapulte::affiche(){
 }
 
 void Catapulte::print(int i){
-  if(isCampA) {
+  if(i==-1) std::cout<< into_string(pv,3)+" ";
+  else if(isCampA) {
     if(i==2)      std::cout<< "0\\  ";
     else if(i==1) std::cout<< "  \\ ";
     else if(i==0) std::cout<< "O‾‾O";
-    else if(i==-1) std::cout<< into_string(pv,3)+" ";
     else std::cout<< "    ";
   } else {
     if(i==2)      std::cout<< "  /0";
     else if(i==1) std::cout<< " /  ";
     else if(i==0) std::cout<< "O‾‾O";
-    else if(i==-1) std::cout<< into_string(pv,3)+" ";
     else std::cout<< "    ";
   }
 }

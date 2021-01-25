@@ -30,7 +30,7 @@ void Unite::afficheEtat()/*const*/{
 
 
 bool Unite::Attaquer(Unite* enemie, int att){
-  std::cout << "inAttaquerUnite" << '\n';
+  //std::cout << "inAttaquerUnite" << '\n';
 
   if(enemie->isCampA==isCampA) return false;
   return enemie->loselife(att);

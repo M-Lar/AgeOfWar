@@ -16,10 +16,10 @@ private:
   int vieBd;*/
   int taille= 12;
   Tour TourA= Tour(true,0);
-  Tour TourB= Tour(true,taille-1, 100);
+  Tour TourB= Tour(false,taille-1, 100);
 
 public:
-  Terrain();
+  Terrain(int t);
   ~Terrain();
 
   int getTaille(){return taille;}
@@ -36,6 +36,8 @@ public:
   void Action1(bool sensAB);
   void Action2(bool sensAB);
   void Action3(bool sensAB);
+
+  void afficheVictoire();
 
 
 

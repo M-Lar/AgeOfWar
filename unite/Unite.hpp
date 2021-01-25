@@ -35,6 +35,7 @@ public:
 
   virtual void print(int i) =0;
 
+  int getPv(){return pv;}
   virtual std::pair<int,int> getPortee()=0;
   bool getIsCampA(){return isCampA;}
   bool getAsAction1(){return asAction1;}

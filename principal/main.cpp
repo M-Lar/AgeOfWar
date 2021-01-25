@@ -9,7 +9,7 @@ void test1(){
   std::cout << "la  " <<  typeid(f1).name() << '\n';
 
 
-  Terrain T= Terrain();
+  Terrain T= Terrain(12);
   T.affiche();
   std::cout << "4" << '\n';
   T.add<Fantassin>(false);
@@ -21,10 +21,10 @@ void test1(){
   for (int i=0; i< 30; i++){
     //std::cout << "test2" << '\n';
     //std::cout << " i:" << i;
-    T.add<Fantassin>(false);
+    T.add<Catapulte>(true);
     T.tourAB(); T.tourBA();
     T.affiche();
-    
+
   }
   T.affiche();
   std::cout << "survie2" << '\n';
