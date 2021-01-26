@@ -114,21 +114,16 @@ void Terrain::Action1(bool sensAB){
     for(int i=taille-1; i>0; i--){
       auto uTemp= cases.at(i).get();
 
-      //UniteBAattaquer(uTemp,i);
-//*
+      UniteBAattaquer(uTemp,i);
+/*
       if(uTemp!=nullptr) {
         auto portee= uTemp->getPortee();
         if(!uTemp->getIsCampA()){
-          //std::cout << "inCampB" << '\n';
           for(int j=i-portee.first; (j>=i-portee.second && j>0); j--){
-            //std::cout << "marche" << '\n';
             auto cible=cases.at(j).get();
-            //std::cout << typeid(uTemp).name() << " attaq=" << i << " cible=" << j << std::endl;
-            //std::cout << "cible:" << cible << '\n';
             if(cible!=nullptr){
               if(!uTemp->getAsAction1()){
                 auto isDead= uTemp->Attaquer(cible);
-                //std::cout << "instance:" << uTemp->getInstance() << '\n';
                 if(uTemp->getInstance()=="Catapulte"){//instanceof<Catapulte> (uTemp)){
                   std::cout << "cata" << '\n';
                 }
@@ -145,7 +140,7 @@ void Terrain::Action1(bool sensAB){
           }
         }
       }
-//*/
+*/
     }
 
   }
@@ -281,11 +276,10 @@ void Terrain::UniteABattaquer(Unite *uTemp,int i){
 void Terrain::UniteBAattaquer(Unite *uTemp,int i){
   if(uTemp!=nullptr) {
     auto portee= uTemp->getPortee();
-    if(uTemp->getIsCampA()){
+    if(!uTemp->getIsCampA()){
       for(int j=i-portee.first; (j>=i-portee.second && j>=0) ; j--){
         auto cible= cases.at(j).get();
         if(cible!=nullptr){
-          std::cout << "incible" << '\n';
           if(!uTemp->getAsAction1()){
             bool isDead;
                                                       //std::cout << "instance:" << uTemp->getInstance() << '\n';
