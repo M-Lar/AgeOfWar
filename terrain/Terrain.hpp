@@ -44,6 +44,10 @@ public:
   void tourAB();
   void tourBA();
 
+  void testAction1(bool sensAB);
+  void testAction2(bool sensAB);
+  void testAction3(bool sensAB);
+
   void Action1(bool sensAB);
   void Action2(bool sensAB);
   void Action3(bool sensAB);
