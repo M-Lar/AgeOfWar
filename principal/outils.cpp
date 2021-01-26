@@ -2,6 +2,8 @@
 #include <cstdlib>
 #include <cmath>
 #include <type_traits>
+#include <vector>
+#include <algorithm>
 
 #ifndef outils
 #define outils
@@ -25,4 +27,26 @@ std::string into_string(const int i, int nbChiffre= 4, bool invers= false){
   if(invers) return std::to_string(i)+res;
   return res+std::to_string(i);
 }
+
+char getEntree(std::vector<char> listeEntresPermises){
+  std::string entre;
+
+  do{
+    std::cout << "entre: " << '\n';
+    std::cin >> entre;
+    //std::tolower(entre);
+    std::transform(entre.begin(), entre.end(), entre.begin(),
+    [](char c){ return std::tolower(c); });
+
+    if(!entre.empty()){
+      for(char cl : listeEntresPermises){//size_t i=0; i<listeEntresPermises.size(); i++){
+        if(entre.front()=='q' || entre.front()==cl)//listeEntresPermises.at(i))
+          return entre.front();
+      }
+    }
+  }while(true);
+
+  return 'q';
+}
+
 #endif

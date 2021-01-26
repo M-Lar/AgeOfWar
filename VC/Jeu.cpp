@@ -8,9 +8,8 @@
 
 
 void Jeu::affiche(){
-  //std::this_thread::sleep_for(std::chrono::milliseconds(45));
-  std::string tempo;
-  std::cin>>tempo;
+  std::this_thread::sleep_for(std::chrono::milliseconds(180));
+  //std::string tempo; std::cin>>tempo;
 
   std::system("clear");
   std::string nomJoueur= "Joueur ";
@@ -38,6 +37,24 @@ void Jeu::affiche(){
 //affiche Terrain
   this->Terrain::affiche();
 }
+void Jeu::init(){
+  std::cout << '\n';
+  for(int i=0; i<(int)((getTaille()*4+6*2) -31)/2; i++){std::cout << " ";}
+  std::cout << "-- Bienvenue dans Age Of War --" << "\n\n";
+
+  char c;
+  std::cout << "Solo ou Multijoueur ?" << "(s/m)";
+  std::cout << '\n';
+  c= getEntree({'s','m'});
+
+  if(c=='s') multi=false;
+
+  std::cout << "Vouler vous charger une sauvgarde ?" << "(Y/N)";
+  std::cout << '\n';
+  c= getEntree({'y','n'});
+
+  if(c=='y') load();
+}
 
 
 template <class U>
@@ -62,24 +79,29 @@ bool Jeu::achatUnite(char u){
   else if(u=='c') return achat<Catapulte>();
   else return false;
 }
+bool Jeu::achatUnite(){
+  std::cout << "Voulez vous acheter une unite ?" << "(f/a/c) (passer:p)";
+  std::cout << '\n';
+
+  auto c= getEntree({'f','c','a','p','s'});
+
+  if(c=='q') return false;
+  else if(c=='p') return true;
+  else if(c=='s') {save(); return true;}
+  else {
+    achatUnite(c);
+    return true;
+  }
+}
 
 void Jeu::donnerArgent(){
   if(isTourA) argentA+=8;
   else argentB+=8;
 }
 
-char Jeu::getEntree(std::vector<std::string> entre){
-  entre.size();
-  return 'r';
-}
-
 
 void Jeu::jouer(){
-  //m.init();
-  std::cout << '\n';
-  for(int i=0; i<(int)((getTaille()*4+6*2) -31)/2; i++){std::cout << " ";}
-  std::cout << "-- Bienvenue dans Age Of War --" << "\n\n";
-
+  init();
 
   //affiche();
 
@@ -95,12 +117,28 @@ void Jeu::jouer(){
     Action3(isTourA); affiche();
 
 
-    achatUnite('f'); affiche();
+    jeuEnCour= achatUnite(); affiche();
 
 
     tourDeJeu++;
     isTourA= !isTourA;
   }
   affiche();
+
+  if(!jeuEnCour){
+    std::cout << "Vouler vous sauvgarder ?" << "(Y/N)";
+    std::cout << '\n';
+    auto c= getEntree({'y','n'});
+
+    if(c=='y') save();
+  }
+  std::cout << "  Bonne journée" << '\n';
+
+}
+
+void Jeu::save(){
+
+}
+void Jeu::load(){
 
 }
