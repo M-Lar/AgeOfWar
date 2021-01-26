@@ -44,19 +44,15 @@ public:
   void tourAB();
   void tourBA();
 
-  void testAction1(bool sensAB);
-  void testAction2(bool sensAB);
-  void testAction3(bool sensAB);
-
-  void Action1(bool sensAB);
-  void Action2(bool sensAB);
-  void Action3(bool sensAB);
+  bool Action1(bool sensAB);
+  bool Action2(bool sensAB);
+  bool Action3(bool sensAB);
 
   void afficheVictoire();
 
   void deplacement(bool sensAB, int i, bool expluCata);
-  void UniteABattaquer(Unite *uTemp,int i);
-  void UniteBAattaquer(Unite *uTemp,int i);
+  bool UniteABattaquer(Unite *uTemp,int i);
+  bool UniteBAattaquer(Unite *uTemp,int i);
 
 
   //void avancer();

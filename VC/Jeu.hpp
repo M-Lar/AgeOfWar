@@ -10,14 +10,9 @@
 
 class Jeu : public Terrain{
 private:
-  //static Menu m;
-  bool jeuEnCour=true;
-  bool victoire=false;
   bool isTourA=true;
-  /*static*/ int maxTourDeJeu;
-
-
-  bool multi=true;
+  int maxTourDeJeu;
+  bool bot=false;
 
 public:
   Jeu(int mTJ): Terrain(12){ Jeu::maxTourDeJeu=mTJ; }
@@ -32,10 +27,11 @@ public:
 
   void jouer();
 
+
+  char decisionBot();
+
   void save();
   void load();
 };
-//int Jeu::maxTourDeJeu;
-//Menu Jeu::menu;
 
 #endif

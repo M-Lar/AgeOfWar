@@ -8,7 +8,7 @@
 
 
 void Jeu::affiche(){
-  std::this_thread::sleep_for(std::chrono::milliseconds(45));//180));
+  std::this_thread::sleep_for(std::chrono::milliseconds(240));//45));
 
   std::system("clear");
   std::string nomJoueur= "Joueur ";
@@ -43,11 +43,11 @@ void Jeu::init(){
   std::cout << "-- Bienvenue dans Age Of War --" << "\n\n";
 
   char c;
-  std::cout << "Solo ou Multijoueur ?" << "(s/m)";
+  std::cout << "Vouler vous jouer en Multijoueur ?" << "(y/n)";
   std::cout << '\n';
-  c= getEntree({'s','m'});
+  c= getEntree({'y','n'});
 
-  if(c=='s') multi=false;
+  if(c=='n') bot=true;
 
   std::cout << "Vouler vous charger une sauvgarde ?" << "(y/n)";
   std::cout << '\n';
@@ -66,7 +66,12 @@ bool Jeu::achatUnite(){
   std::cout << "Voulez vous acheter une unite ?" << "(f/a/c) (passer:p)";
   std::cout << '\n';
 
-  char c= getEntree({'f','c','a','p','s'});
+  char c;
+
+  if(bot && !isTourA) c= decisionBot();
+  else    c= getEntree({'f','c','a','p','s'});
+
+
 
   if(c=='q') return false;
   else if(c=='p') return true;
@@ -82,12 +87,15 @@ void Jeu::jouer(){
   init();
 
   int tourDeJeu=0;
-  while(jeuEnCour && tourDeJeu<=maxTourDeJeu){
+  bool victoire=false;
+  bool jeuEnCour=true;
+  while(jeuEnCour && tourDeJeu<=maxTourDeJeu && !victoire){
     donnerArgent(isTourA);
 
-    Action1(isTourA); affiche();
-    Action2(isTourA); affiche();
-    Action3(isTourA); affiche();
+
+    victoire=victoire|| Action1(isTourA); affiche();
+                        Action2(isTourA); affiche();
+    victoire=victoire|| Action3(isTourA); affiche();
 
     jeuEnCour= achatUnite(); affiche();
 
@@ -98,14 +106,25 @@ void Jeu::jouer(){
   affiche();
 
   if(!jeuEnCour){
-    std::cout << "Vouler vous sauvgarder ?" << "(Y/N)";
+    std::cout << "Vouler vous sauvgarder ?" << "(y/n)";
     std::cout << '\n';
     auto c= getEntree({'y','n'});
 
     if(c=='y') save();
   }
+  else if(victoire){
+    std::cout << '\n' << "Bravo" << '\n';
+  }
+
   std::cout << "  Bonne journée" << '\n';
 
+}
+
+char Jeu::decisionBot(){
+  if(achat<Catapulte>(isTourA)) return true;
+  else if(achat<Fantassin>(isTourA)) return true;
+  else if(achat<Archer>(isTourA)) return true;
+  else return false;
 }
 
 void Jeu::save(){

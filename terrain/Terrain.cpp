@@ -10,7 +10,7 @@ Terrain::Terrain(int t){
   taille=t;
   cases.resize(taille);
   TourA= Tour(true,0);
-  TourB= Tour(false,taille-1, 100);
+  TourB= Tour(false,taille-1, 1);//00);
 }
 Terrain::~Terrain(){}
 
@@ -76,103 +76,50 @@ void Terrain::tourBA(){
   Action3(false);
 }
 
-void Terrain::Action1(bool sensAB){
+bool Terrain::Action1(bool sensAB){
+  bool res=false;
   if(sensAB){
     for(int i=0; i<taille-1; i++){
       auto uTemp= cases.at(i).get();
-      UniteABattaquer(uTemp,i);
+      res=res||UniteABattaquer(uTemp,i);
     }
   } else {
     for(int i=taille-1; i>0; i--){
       auto uTemp= cases.at(i).get();
-      UniteBAattaquer(uTemp,i);
+      res=res||UniteBAattaquer(uTemp,i);
     }
 
   }
+  return res;
 
 }
-void Terrain::Action2(bool sensAB){
-  if(sensAB){
-    for(int i=taille-3; i>=0; i--){
-      deplacement(sensAB, i, true);
-/*
-      auto uTemp= cases.at(i).get();
-      auto suiv=cases.at(i+1).get();
-
-      if(uTemp!=nullptr && uTemp->getIsCampA())
-      if(suiv==nullptr && !(uTemp->getInstance()=="Catapulte" )){//!instanceof<Catapulte> (uTemp)){ //(std::is_base_of<Catapulte, typeid(uTemp).name()>::value)
-        uTemp->Avancer();
-        cases.at(i+1) =cases.at(i);
-        cases.at(i)   =Case();
-      }
-*/
-    }
+bool Terrain::Action2(bool sensAB){
+  if(sensAB) {
+    for(int i=taille-3; i>=0; i--){ deplacement(sensAB, i, true); }
   } else {
-    for(int i=2; i<taille; i++){
-      deplacement(sensAB, i, true);
-
-/*
-      auto uTemp= cases.at(i).get();
-      auto suiv=cases.at(i-1).get();
-
-      if(uTemp!=nullptr && !uTemp->getIsCampA())
-      if(suiv==nullptr && !(uTemp->getInstance()=="Catapulte" )){//!instanceof<Catapulte> (uTemp)){ //(std::is_base_of<Catapulte, typeid(uTemp).name()>::value)
-        uTemp->Avancer();
-        cases.at(i-1) =cases.at(i);
-        cases.at(i)   =Case();
-      }
-*/
-    }
+    for(int i=2; i<taille; i++){ deplacement(sensAB, i, true); }
   }
-
+  return false;
 }
-void Terrain::Action3(bool sensAB){
-  /*int debut, fin;
-  if(sensAB)*/
+bool Terrain::Action3(bool sensAB){
   auto a3 = [this, sensAB] (int i) {
     auto uTemp= cases.at(i).get();
+    bool res=false;
     if(uTemp!=nullptr) {
       if(!uTemp->getAsAction1() && uTemp->getInstance()=="Catapulte") deplacement(sensAB, i, false);
-      if(uTemp->getInstance()=="Fantassin") UniteABattaquer(uTemp, i);
+      if(uTemp->getInstance()=="Fantassin")
+        res= (sensAB?UniteABattaquer(uTemp, i):UniteBAattaquer(uTemp, i));
       uTemp->setAsAction1(false);
     }
+    return res;
   };
 
-  if(sensAB) {
-    for(int i=taille-2; i>=0; i--){
-      a3(i);
-/*
-      auto uTemp= cases.at(i).get();
-      if(uTemp!=nullptr) {
-        if(!uTemp->getAsAction1() && uTemp->getInstance()=="Catapulte") deplacement(sensAB, i, false);
-        if(uTemp->getInstance()=="Fantassin") UniteABattaquer(uTemp, i);
-        uTemp->setAsAction1(false);
-      }
-
-*/
-
-    }
-  } else {
-    for(int i=1; i<taille; i++){
-      a3(i);
-/*
-      auto uTemp= cases.at(i).get();
-      if(uTemp!=nullptr) {
-        if(!uTemp->getAsAction1() && uTemp->getInstance()=="Catapulte") deplacement(sensAB, i, false);
-        if(uTemp->getInstance()=="Fantassin") UniteBAattaquer(uTemp, i);
-        uTemp->setAsAction1(false);
-      }
-*/
-
-    }
-  }
+  bool res=false;
+  if(sensAB) for(int i=taille-2; i>=0; i--){ res=res||a3(i);}
+  else for(int i=1; i<taille; i++){ res=res||a3(i); }
+  return res;
 }
 
-/*
-void Terrain::testAction1(bool sensAB){}
-void Terrain::testAction2(bool sensAB){}
-void Terrain::testAction3(bool sensAB){}
-*/
 
 void Terrain::deplacement(bool sensAB, int i, bool expluCata){
   int sens;
@@ -193,13 +140,14 @@ void Terrain::deplacement(bool sensAB, int i, bool expluCata){
     cases.at(i)   =Case();
   }
 }
-void Terrain::UniteABattaquer(Unite *uTemp,int i){
+bool Terrain::UniteABattaquer(Unite *uTemp,int i){
   if(uTemp!=nullptr) {
     auto portee= uTemp->getPortee();
     if(uTemp->getIsCampA()){
       for(int j=i+portee.first; (j<=i+portee.second && j<taille) ; j++){
         auto cible= cases.at(j).get();
-        if(cible!=nullptr){
+        if(cible!=nullptr && !cible->getIsCampA()){
+          std::cout << "att" << '\n';
           if(!uTemp->getAsAction1() || uTemp->getInstance()=="Fantassin"){
             int isDead;
                                                       //std::cout << "instance:" << uTemp->getInstance() << '\n';
@@ -209,7 +157,10 @@ void Terrain::UniteABattaquer(Unite *uTemp,int i){
                 auto cible2= cases.at(j+1).get();
 
                 isDead= uTemp->Attaquer(cible2);
-                if(isDead) cases.at(j+1)= Case();
+                if(isDead) {
+                  argentA+=isDead;
+                  cases.at(j+1)= Case();
+                }
               } else if(j==i+portee.second) {
                 auto cible2= cases.at(j-1).get();
 
@@ -234,7 +185,8 @@ void Terrain::UniteABattaquer(Unite *uTemp,int i){
         } else if(j==taille-1){
           auto isDead= uTemp->Attaquer(&TourB);
 
-          if(isDead) {std::cout << "tour dead" << '\n';}
+          std::cout << "test" << '\n';
+          if(isDead) {std::cout << "tour dead" << '\n'; return true;}
           uTemp->setAsAction1(true);
           break;
         }
@@ -242,14 +194,15 @@ void Terrain::UniteABattaquer(Unite *uTemp,int i){
       //affiche(); //a afficher
     }
   }
+  return false;
 }
-void Terrain::UniteBAattaquer(Unite *uTemp,int i){
+bool Terrain::UniteBAattaquer(Unite *uTemp,int i){
   if(uTemp!=nullptr) {
     auto portee= uTemp->getPortee();
     if(!uTemp->getIsCampA()){
       for(int j=i-portee.first; (j>=i-portee.second && j>=0) ; j--){
         auto cible= cases.at(j).get();
-        if(cible!=nullptr){
+        if(cible!=nullptr && cible->getIsCampA()){
           if(!uTemp->getAsAction1() || uTemp->getInstance()=="Fantassin"){
             int isDead;
                                                       //std::cout << "instance:" << uTemp->getInstance() << '\n';
@@ -284,7 +237,8 @@ void Terrain::UniteBAattaquer(Unite *uTemp,int i){
           std::cout << "caseAttTourAB" << '\n';
           auto isDead= uTemp->Attaquer(&TourA);
 
-          if(isDead) {std::cout << "tour dead" << '\n';}
+          std::cout << "test" << '\n';
+          if(isDead) {std::cout << "tour dead" << '\n'; return true;}
           uTemp->setAsAction1(true);
           break;
         }
@@ -292,4 +246,5 @@ void Terrain::UniteBAattaquer(Unite *uTemp,int i){
       //affiche(); //a afficher
     }
   }
+  return false;
 }
