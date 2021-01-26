@@ -9,7 +9,6 @@
 
 void Jeu::affiche(){
   std::this_thread::sleep_for(std::chrono::milliseconds(45));//180));
-  //std::string tempo; std::cin>>tempo;
 
   std::system("clear");
   std::string nomJoueur= "Joueur ";
@@ -38,6 +37,7 @@ void Jeu::affiche(){
   this->Terrain::affiche();
 }
 void Jeu::init(){
+  std::system("clear");
   std::cout << '\n';
   for(int i=0; i<(int)((getTaille()*4+6*2) -31)/2; i++){std::cout << " ";}
   std::cout << "-- Bienvenue dans Age Of War --" << "\n\n";

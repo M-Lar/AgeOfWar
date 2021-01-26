@@ -23,13 +23,14 @@ public:
   void print(int i);
   void print(int i, Unite* u);
 
+  std::string getInstance(){return "Tour";}
+  //<class U> getInstance2(){return <Tour>;}
   std::pair<int,int> getPortee(){return portee;}//portee;}
   int getPrix(){return prix;}
 
   int Attaquer(Unite* enemie){return (Unite::Attaquer(enemie, att));}
 
-  std::string getInstance(){return "Tour";}
-  //<class U> getInstance2(){return <Tour>;}
+
 
 };
 int Tour::prix = 0;

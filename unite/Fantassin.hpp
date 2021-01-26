@@ -25,16 +25,18 @@ public:
 
   void print(int i);
 
+  std::string getInstance(){return "Fantassin";}
+  //<class U> getInstance2(){return <Fantassin>;}
   std::pair<int,int> getPortee(){return portee;}
   int getPrix(){return prix;};
-  void setIsSuper(){isSuper=true;}
-  bool getIsSuper(){return isSuper;}
   //static bool getIsSuper(Unite* u){return isSuper;}
+  bool getIsSuper(){return isSuper;}
+  void setIsSuper(){isSuper=true;}
+
 
   int Attaquer(Unite* enemie);
 
-  std::string getInstance(){return "Fantassin";}
-  //<class U> getInstance2(){return <Fantassin>;}
+
 
 };
 int Fantassin::prix = 10;

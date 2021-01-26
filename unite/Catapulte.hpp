@@ -26,6 +26,8 @@ public:
 
   void print(int i);
 
+  std::string getInstance(){return "Catapulte";}
+  //<class U> getInstance2(){return <Catapulte>;}
   std::pair<int,int> getPortee(){return portee;}
   int getPrix(){return prix;};
 
@@ -33,8 +35,7 @@ public:
   //std::pair<bool,bool> Attaquer(Unite* enemie1, Unite* enemie2);
   bool Avancer();
 
-  std::string getInstance(){return "Catapulte";}
-  //<class U> getInstance2(){return <Catapulte>;}
+
 
 };
 int Catapulte::prix = 20;

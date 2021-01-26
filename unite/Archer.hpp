@@ -26,13 +26,15 @@ public:
 
   void print(int i);
 
+  std::string getInstance(){return "Archer";}
+  //<class U> getInstance2(){return <Archer>;}
   std::pair<int,int> getPortee(){return portee;}
   int getPrix(){return prix;};
 
   int Attaquer(Unite* enemie);
 
-  std::string getInstance(){return "Archer";}
-  //<class U> getInstance2(){return <Archer>;}
+
+
 
 };
 int Archer::prix = 12;
