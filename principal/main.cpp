@@ -19,7 +19,7 @@ void test1(){
 
   //std::cout << "survie1" << '\n';
   //std::cout << "test1" << '\n';
-  for (int i=0; i< 10; i++){
+  for (int i=0; i< 15; i++){
     //std::cout << "test2" << '\n';
     //std::cout << " i:" << i;
     //T.add<Catapulte>(true);

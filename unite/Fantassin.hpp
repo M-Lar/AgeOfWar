@@ -28,6 +28,7 @@ public:
   std::pair<int,int> getPortee(){return portee;}
   void setIsSuper(){isSuper=true;}
   bool getIsSuper(){return isSuper;}
+  //static bool getIsSuper(Unite* u){return isSuper;}
 
   bool Attaquer(Unite* enemie);
 

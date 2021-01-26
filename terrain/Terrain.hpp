@@ -42,6 +42,8 @@ public:
   void afficheVictoire();
 
   //void deplacement(int sens, int i, bool expluCata= true);
+  void UniteABattaquer(Unite *uTemp,int i);
+  void UniteBAattaquer(Unite *uTemp,int i);
 
 
   //void avancer();
