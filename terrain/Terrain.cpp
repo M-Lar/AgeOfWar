@@ -189,20 +189,7 @@ void Terrain::Action3(bool sensAB){
 
       auto uTemp= cases.at(i).get();
       if(uTemp!=nullptr) {
-        if(!uTemp->getAsAction1() && uTemp->getInstance()=="Catapulte"){
-          //std::cout << "depCA" << '\n';
-          deplacement(sensAB, i, false);
-          /*
-          auto uTemp= cases.at(i).get();
-          auto suiv=cases.at(i+1).get();
-
-          if(uTemp!=nullptr && uTemp->getIsCampA())
-          if(suiv==nullptr){//!instanceof<Catapulte> (uTemp)){ //(std::is_base_of<Catapulte, typeid(uTemp).name()>::value)
-            uTemp->Avancer();
-            cases.at(i+1) =cases.at(i);
-            cases.at(i)   =Case();
-          }*/
-        }
+        if(!uTemp->getAsAction1() && uTemp->getInstance()=="Catapulte") deplacement(sensAB, i, false);
         if(uTemp->getInstance()=="Fantassin") UniteABattaquer(uTemp, i);
         uTemp->setAsAction1(false);
       }
