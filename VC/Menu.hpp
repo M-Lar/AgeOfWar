@@ -11,6 +11,10 @@ public:
   Menu(){}
   ~Menu(){}
 
+  static char getEntree();
+
+  void init();
+
 };
 
 #endif

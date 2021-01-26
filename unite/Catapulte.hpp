@@ -27,6 +27,7 @@ public:
   void print(int i);
 
   std::pair<int,int> getPortee(){return portee;}
+  int getPrix(){return prix;};
 
   bool Attaquer(Unite* cible);
   //std::pair<bool,bool> Attaquer(Unite* enemie1, Unite* enemie2);

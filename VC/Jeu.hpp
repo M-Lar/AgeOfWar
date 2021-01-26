@@ -1,29 +1,39 @@
 #include <iostream>
 #include <cstdlib>
+#include <vector>
 
 #include "../terrain/Terrain.hpp"
 #include "Menu.hpp"
 
 
-#ifndef terrain
-#define terrain
+#ifndef jeu
+#define jeu
 
 class Jeu : public Terrain{
 private:
-  Menu m;
-  bool jeuEnCour;
-  bool isTourA;
+  //static Menu m;
+  bool jeuEnCour=true;
+  bool isTourA=true;
+  /*static*/ int maxTourDeJeu;
+  int argentA=8;
+  int argentB=8;
 
 public:
-  Jeu():Terrain(12){
-    menu=Menu();
-    jeuEnCour=true;
-    isTourA=true;
-  }
+  Jeu(int mTJ): Terrain(12){ Jeu::maxTourDeJeu=mTJ; }
   ~Jeu(){}
+
+  void affiche();
+
+  template <class U>
+  bool achat();
+  bool achatUnite(char u);
+  static char getEntree(std::vector<std::string> entre);
+
+  void payer(int *budjet, int prix){ (*budjet)-=prix; }
 
   void jouer();
 };
-//Menu Jeu::menu= Menu();
+//int Jeu::maxTourDeJeu;
+//Menu Jeu::menu;
 
 #endif

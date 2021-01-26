@@ -9,4 +9,5 @@
 #include "../terrain/Terrain.cpp"
 #include "../terrain/Case.cpp"
 
-#include "../VC/Jeu.hpp"
+//#include "../VC/Jeu.hpp"
+#include "../VC/Jeu.cpp"

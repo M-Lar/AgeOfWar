@@ -15,8 +15,6 @@ private:
   int vieBg;
   int vieBd;*/
   int taille= 12;
-  int argentA;
-  int argentB;
   Tour TourA= Tour(true,0);
   Tour TourB= Tour(false,taille-1, 100);
 
@@ -26,7 +24,7 @@ public:
 
   int getTaille(){return taille;}
 
-  void affiche();
+  void affiche(int nbLi);
 
 //protected:
   template <class U>

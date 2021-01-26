@@ -26,6 +26,7 @@ public:
   void print(int i);
 
   std::pair<int,int> getPortee(){return portee;}
+  int getPrix(){return prix;};
   void setIsSuper(){isSuper=true;}
   bool getIsSuper(){return isSuper;}
   //static bool getIsSuper(Unite* u){return isSuper;}

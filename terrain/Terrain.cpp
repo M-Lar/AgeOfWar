@@ -14,9 +14,13 @@ Terrain::Terrain(int t){
 }
 Terrain::~Terrain(){}
 
-void Terrain::affiche(){
-  //std::this_thread::sleep_for(std::chrono::milliseconds(45)); std::system("clear");
-  for(int li=4; li>=-1; li--){
+void Terrain::affiche(int nbLi=4){
+  std::this_thread::sleep_for(std::chrono::milliseconds(45));
+  //std::system("clear");
+  int limiteBasse=-1;
+
+  if(nbLi<limiteBasse) {std::cerr << "affiche trop peu de lignes" << '\n'; return;}
+  for(int li=nbLi; li>=limiteBasse; li--){
     TourA.print(li,cases.at(0).get());
     for(int i=1; i<taille-1; i++){ cases.at(i).print(li);}
     TourB.print(li,cases.at(taille-1).get());
@@ -238,8 +242,6 @@ void Terrain::UniteABattaquer(Unite *uTemp,int i){
                                                       //std::cout << "instance:" << uTemp->getInstance() << '\n';
                                                       //instanceof<Catapulte> (uTemp)){
             if(uTemp->getInstance()=="Catapulte"){
-              std::cout << "cata" << '\n';
-              //Unite* cible2= nullptr;
               if(j+1<=taille && j+1<i+portee.second) {
                 auto cible2= cases.at(j+1).get();
 
@@ -261,7 +263,6 @@ void Terrain::UniteABattaquer(Unite *uTemp,int i){
             break;
           }
         } else if(j==taille-1){
-          std::cout << "caseAttTourAB" << '\n';
           auto isDead= uTemp->Attaquer(&TourB);
 
           if(isDead) {std::cout << "tour dead" << '\n';}
@@ -269,7 +270,7 @@ void Terrain::UniteABattaquer(Unite *uTemp,int i){
           break;
         }
       }//endFor
-      //affiche(); //a afficher
+      affiche(); //a afficher
     }
   }
 }
@@ -285,8 +286,6 @@ void Terrain::UniteBAattaquer(Unite *uTemp,int i){
                                                       //std::cout << "instance:" << uTemp->getInstance() << '\n';
                                                       //instanceof<Catapulte> (uTemp)){
             if(uTemp->getInstance()=="Catapulte"){
-              std::cout << "cata" << '\n';
-              //Unite* cible2= nullptr;
               if(j-1>=0 && j-1>i-portee.second) {
                 auto cible2= cases.at(j+1).get();
 
@@ -315,7 +314,7 @@ void Terrain::UniteBAattaquer(Unite *uTemp,int i){
           break;
         }
       }//endFor
-      //affiche(); //a afficher
+      affiche(); //a afficher
     }
   }
 }
