@@ -30,12 +30,12 @@ void Fantassin::print(int i){
 
   if(i==-1) std::cout<< into_string(pv,3)+" ";
   else if(isCampA) {
-    if(i==2)      std::cout<< "O  /";
+    if(i==2)      std::cout<< (isSuper?"Ö":"O") <<"  /";
     else if(i==1) std::cout<< "|-/ ";
     else if(i==0) std::cout<< "|   ";
     else std::cout<< "    ";
   } else {
-    if(i==2)      std::cout<< "\\  O";
+    if(i==2)      std::cout<< "\\  "<< (isSuper?"Ö":"O");
     else if(i==1) std::cout<< " \\-|";
     else if(i==0) std::cout<< "   |";
     else std::cout<< "    ";
@@ -59,4 +59,10 @@ void Fantassin::print(int i){
       }
   }
 */
+}
+
+bool Fantassin::Attaquer(Unite* enemie){
+   bool isDead= Unite::Attaquer(enemie, att);
+   if(isDead && enemie->getInstance()=="Fantassin") isSuper=true;
+   return isDead;
 }

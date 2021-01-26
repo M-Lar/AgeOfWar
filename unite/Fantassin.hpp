@@ -12,6 +12,7 @@ private:
   static int prix;
   static int att;
   static std::pair<int,int> portee;
+  bool isSuper= false;
 
 public:
   Fantassin(bool isCampA, int pos): Unite(isCampA, pos, 10){};
@@ -25,8 +26,10 @@ public:
   void print(int i);
 
   std::pair<int,int> getPortee(){return portee;}
+  void setIsSuper(){isSuper=true;}
+  bool getIsSuper(){return isSuper;}
 
-  bool Attaquer(Unite* enemie){return (Unite::Attaquer(enemie, att));}
+  bool Attaquer(Unite* enemie);
 
   std::string getInstance(){return "Fantassin";}
   //<class U> getInstance2(){return <Fantassin>;}

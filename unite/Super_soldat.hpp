@@ -13,6 +13,7 @@ private:
 public:
   //Super_soldat(bool isCampA, int pos): Fantassin(isCampA, pos, 10){};
   Super_soldat(bool isCampA, int pos, int pv):  Fantassin(isCampA, pos, pv){};
+  Super_soldat(Unite *f): Fantassin(f->getIsCampA(), f->getPos(), f->getPv()){};
   ~Super_soldat(){};
 
   void print(int i);

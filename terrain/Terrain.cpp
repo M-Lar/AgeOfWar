@@ -85,6 +85,7 @@ void Terrain::Action1(bool sensAB){
 
                 if(isDead) cases.at(j)= Case();
 
+
                 uTemp->setAsAction1(true);
                 break;
               }
