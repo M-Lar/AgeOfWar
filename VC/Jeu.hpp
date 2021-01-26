@@ -27,9 +27,14 @@ public:
   template <class U>
   bool achat();
   bool achatUnite(char u);
+
+  void donnerArgent();
+  void payer(int *budjet, int prix){ (*budjet)-=prix; }
+
   static char getEntree(std::vector<std::string> entre);
 
-  void payer(int *budjet, int prix){ (*budjet)-=prix; }
+
+
 
   void jouer();
 };

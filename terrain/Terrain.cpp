@@ -57,7 +57,6 @@ void Terrain::tourBA(){
 }
 
 void Terrain::Action1(bool sensAB){
-  std::cout << "inA1" << '\n';
   if(sensAB){
     for(int i=0; i<taille-1; i++){
       auto uTemp= cases.at(i).get();
@@ -152,7 +151,6 @@ void Terrain::Action1(bool sensAB){
 
 }
 void Terrain::Action2(bool sensAB){
-  std::cout << "inA2" << '\n';
   if(sensAB){
     for(int i=taille-3; i>=0; i--){
       deplacement(sensAB, i, true);
@@ -188,7 +186,6 @@ void Terrain::Action2(bool sensAB){
 
 }
 void Terrain::Action3(bool sensAB){
-  std::cout << "inA3" << '\n';
   if(sensAB) {
     for(int i=taille-2; i>=0; i--){
       auto uTemp= cases.at(i).get();

@@ -63,10 +63,16 @@ bool Jeu::achatUnite(char u){
   else return false;
 }
 
+void Jeu::donnerArgent(){
+  if(isTourA) argentA+=8;
+  else argentB+=8;
+}
+
 char Jeu::getEntree(std::vector<std::string> entre){
   entre.size();
   return 'r';
 }
+
 
 void Jeu::jouer(){
   //m.init();
@@ -75,22 +81,19 @@ void Jeu::jouer(){
   std::cout << "-- Bienvenue dans Age Of War --" << "\n\n";
 
 
-  //std::string clavier;
-  //std::cin>>clavier;
-  affiche();
+  //affiche();
 
   int tourDeJeu=0;
   //std::cout << "avWhile" << '\n';
   while(jeuEnCour && tourDeJeu<=maxTourDeJeu){
-    //std::cout << "inWhile ";
-    if(isTourA) argentA+=8;
-    else argentB+=8;
+    donnerArgent();
 
-    affiche();
+    //affiche();
 
     Action1(isTourA); affiche();
     Action2(isTourA); affiche();
     Action3(isTourA); affiche();
+
 
     achatUnite('f'); affiche();
 
