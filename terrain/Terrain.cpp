@@ -190,7 +190,7 @@ void Terrain::Action3(bool sensAB){
       auto uTemp= cases.at(i).get();
       if(uTemp!=nullptr) {
         if(!uTemp->getAsAction1() && uTemp->getInstance()=="Catapulte"){
-          std::cout << "depCA" << '\n';
+          //std::cout << "depCA" << '\n';
           deplacement(sensAB, i, false);
           /*
           auto uTemp= cases.at(i).get();
@@ -214,9 +214,9 @@ void Terrain::Action3(bool sensAB){
 
       auto uTemp= cases.at(i).get();
       if(uTemp!=nullptr) {
-        std::cout << "there" << '\n';
+        //std::cout << "there" << '\n';
         if(!uTemp->getAsAction1() && uTemp->getInstance()=="Catapulte"){
-          std::cout << "depCB" << '\n';
+          //std::cout << "depCB" << '\n';
           deplacement(sensAB, i, false);
         }
         if(uTemp->getInstance()=="Fantassin") UniteBAattaquer(uTemp, i);
@@ -236,11 +236,11 @@ void Terrain::deplacement(bool sensAB, int i, bool expluCata){
   auto suiv=cases.at(i+sens).get();
 
 
-  std::cout << "la ";
+  //std::cout << "la ";
 
   if(uTemp!=nullptr && (!uTemp->getIsCampA() ^ sensAB) )
   if(suiv==nullptr && !(expluCata && (uTemp->getInstance()=="Catapulte"))){//!instanceof<Catapulte> (uTemp)){ //(std::is_base_of<Catapulte, typeid(uTemp).name()>::value)
-    std::cout << "u:" << i << " s:" << i+sens << '\n';
+    //std::cout << "u:" << i << " s:" << i+sens << '\n';
     if(uTemp->getInstance()=="Catapulte"){std::cout << "cataDoitAvance" << '\n';}
     uTemp->Avancer();
     cases.at(i+sens) =cases.at(i);

@@ -8,7 +8,7 @@
 
 
 void Jeu::affiche(){
-  std::this_thread::sleep_for(std::chrono::milliseconds(180));
+  std::this_thread::sleep_for(std::chrono::milliseconds(45));//180));
   //std::string tempo; std::cin>>tempo;
 
   std::system("clear");
@@ -49,7 +49,7 @@ void Jeu::init(){
 
   if(c=='s') multi=false;
 
-  std::cout << "Vouler vous charger une sauvgarde ?" << "(Y/N)";
+  std::cout << "Vouler vous charger une sauvgarde ?" << "(y/n)";
   std::cout << '\n';
   c= getEntree({'y','n'});
 
@@ -103,19 +103,13 @@ void Jeu::donnerArgent(){
 void Jeu::jouer(){
   init();
 
-  //affiche();
-
   int tourDeJeu=0;
-  //std::cout << "avWhile" << '\n';
   while(jeuEnCour && tourDeJeu<=maxTourDeJeu){
     donnerArgent();
-
-    //affiche();
 
     Action1(isTourA); affiche();
     Action2(isTourA); affiche();
     Action3(isTourA); affiche();
-
 
     jeuEnCour= achatUnite(); affiche();
 

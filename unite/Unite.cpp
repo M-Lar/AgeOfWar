@@ -38,6 +38,7 @@ void Unite::afficheEtat()/*const*/{
 
 
 bool Unite::Attaquer(Unite* enemie, int att){
+  if(enemie==nullptr) return false;
   if(enemie->isCampA==isCampA) return false;
   return enemie->loselife(att);
 }
