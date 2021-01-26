@@ -65,7 +65,9 @@ void Fantassin::print(int i){
 }
 
 bool Fantassin::Attaquer(Unite* enemie){
-  if(!asAction1 || isSuper){
+  std::cout << "inAttaq" << '\n';
+  if(isSuper || !asAction1){
+   std::cout << "Attak" << '\n';
    bool isDead= Unite::Attaquer(enemie, att);
    if(isDead && enemie->getInstance()=="Fantassin") isSuper=true;
    return isDead;

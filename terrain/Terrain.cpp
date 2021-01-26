@@ -57,6 +57,7 @@ void Terrain::tourBA(){
 }
 
 void Terrain::Action1(bool sensAB){
+  std::cout << "inA1" << '\n';
   if(sensAB){
     for(int i=0; i<taille-1; i++){
       auto uTemp= cases.at(i).get();
@@ -151,7 +152,7 @@ void Terrain::Action1(bool sensAB){
 
 }
 void Terrain::Action2(bool sensAB){
-
+  std::cout << "inA2" << '\n';
   if(sensAB){
     for(int i=taille-3; i>=0; i--){
       deplacement(sensAB, i, true);
@@ -187,7 +188,7 @@ void Terrain::Action2(bool sensAB){
 
 }
 void Terrain::Action3(bool sensAB){
-
+  std::cout << "inA3" << '\n';
   if(sensAB) {
     for(int i=taille-2; i>=0; i--){
       auto uTemp= cases.at(i).get();
@@ -205,15 +206,26 @@ void Terrain::Action3(bool sensAB){
             cases.at(i)   =Case();
           }*/
         }
-
         if(uTemp->getInstance()=="Fantassin") UniteABattaquer(uTemp, i);
         uTemp->setAsAction1(false);
       }
 
 
     }
-  }
+  } else {
+    for(int i=1; i<taille-1; i++){
+      auto uTemp= cases.at(i).get();
+      if(uTemp!=nullptr) {
+        if(!uTemp->getAsAction1() && uTemp->getInstance()=="Catapulte"){
+          deplacement(sensAB, i, false);
+        }
+        if(uTemp->getInstance()=="Fantassin") UniteBAattaquer(uTemp, i);
+        uTemp->setAsAction1(false);
+      }
 
+
+    }
+  }
 }
 
 void Terrain::deplacement(bool sensAB, int i, bool expluCata){
@@ -237,7 +249,7 @@ void Terrain::UniteABattaquer(Unite *uTemp,int i){
       for(int j=i+portee.first; (j<=i+portee.second && j<taille) ; j++){
         auto cible= cases.at(j).get();
         if(cible!=nullptr){
-          if(!uTemp->getAsAction1()){
+          if(!uTemp->getAsAction1() || uTemp->getInstance()=="Fantassin"){
             bool isDead;
                                                       //std::cout << "instance:" << uTemp->getInstance() << '\n';
                                                       //instanceof<Catapulte> (uTemp)){
@@ -281,7 +293,7 @@ void Terrain::UniteBAattaquer(Unite *uTemp,int i){
       for(int j=i-portee.first; (j>=i-portee.second && j>=0) ; j--){
         auto cible= cases.at(j).get();
         if(cible!=nullptr){
-          if(!uTemp->getAsAction1()){
+          if(!uTemp->getAsAction1() || uTemp->getInstance()=="Fantassin"){
             bool isDead;
                                                       //std::cout << "instance:" << uTemp->getInstance() << '\n';
                                                       //instanceof<Catapulte> (uTemp)){
