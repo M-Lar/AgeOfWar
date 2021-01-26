@@ -1,13 +1,25 @@
 #include <iostream>
 #include <cstdlib>
 
+#include <chrono>
+#include <thread>
+
 #include "Jeu.hpp"
 
 
 void Jeu::affiche(){
-  std::string nomJoueur= "Joureur ";
+  //std::this_thread::sleep_for(std::chrono::milliseconds(45));
+  std::string tempo;
+  std::cin>>tempo;
+
+  std::system("clear");
+  std::string nomJoueur= "Joueur ";
+
 //ligne 0
-  std::cout << "  Tour de " << (isTourA?"A":"B") << '\n';
+  for(int i=0; i<(int)((getTaille()*4+6*2) -16)/2; i++) {std::cout << " ";}
+  if(isTourA) std::cout << colorCyan << "Tour de Joueur 1" << '\n';
+  else        std::cout << colorMagenta << "Tour de Joueur 2" << '\n';
+  std::cout << colorReset;
 
 //ligne 1
   std::cout /*<< colorCyan*/ << nomJoueur << "1";
@@ -65,6 +77,7 @@ void Jeu::jouer(){
 
   //std::string clavier;
   //std::cin>>clavier;
+  affiche();
 
   int tourDeJeu=0;
   //std::cout << "avWhile" << '\n';
@@ -75,12 +88,11 @@ void Jeu::jouer(){
 
     affiche();
 
-    Action1(isTourA);
-    Action2(isTourA);
-    Action3(isTourA);
+    Action1(isTourA); affiche();
+    Action2(isTourA); affiche();
+    Action3(isTourA); affiche();
 
-    achatUnite('f');
-    affiche();
+    achatUnite('f'); affiche();
 
 
     tourDeJeu++;

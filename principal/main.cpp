@@ -38,7 +38,7 @@ void test1(){
 }
 
 void test2(){
-  Jeu jeux(10);
+  Jeu jeux(100);
   jeux.jouer();
 }
 

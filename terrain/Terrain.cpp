@@ -15,7 +15,7 @@ Terrain::Terrain(int t){
 Terrain::~Terrain(){}
 
 void Terrain::affiche(int nbLi=4){
-  std::this_thread::sleep_for(std::chrono::milliseconds(45));
+  //std::this_thread::sleep_for(std::chrono::milliseconds(45));
   //std::system("clear");
   int limiteBasse=-1;
 
@@ -270,7 +270,7 @@ void Terrain::UniteABattaquer(Unite *uTemp,int i){
           break;
         }
       }//endFor
-      affiche(); //a afficher
+      //affiche(); //a afficher
     }
   }
 }
@@ -314,7 +314,7 @@ void Terrain::UniteBAattaquer(Unite *uTemp,int i){
           break;
         }
       }//endFor
-      affiche(); //a afficher
+      //affiche(); //a afficher
     }
   }
 }
