@@ -122,9 +122,13 @@ void Jeu::jouer(){
 
 char Jeu::decisionBot(){
   if(achat<Catapulte>(isTourA)) return true;
-  else if(achat<Fantassin>(isTourA)) return true;
-  else if(achat<Archer>(isTourA)) return true;
-  else return false;
+  else {
+    int alea= rand() % 3+1;
+
+    if(alea==1) return achat<Archer>(isTourA);
+    if(alea==2) return achat<Fantassin>(isTourA);
+  }
+  return false;
 }
 
 void Jeu::save(){
