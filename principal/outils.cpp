@@ -32,7 +32,7 @@ char getEntree(std::vector<char> listeEntresPermises){
   std::string entre;
 
   do{
-    std::cout << "entre: " << '\n';
+    std::cout << "entre: ";
     std::cin >> entre;
     //std::tolower(entre);
     std::transform(entre.begin(), entre.end(), entre.begin(),
