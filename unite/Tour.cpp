@@ -29,13 +29,15 @@ void Tour::print(int i){
   //return"T";
 
   if(isCampA){
-    if(i==3) std::cout<< "|\\_/‾\\_/| ";
+    std::cout << colorCyan;
+    if(i==3)      std::cout<< "|\\_/‾\\_/| ";
     else if(i==2) std::cout<< "|       | ";
     else if(i==1) std::cout<< "|     _ | ";
     else if(i==0) std::cout<< "|    | || ";
     else if(i==-1) std::cout<< into_string(pv,5)+"     ";
     else std::cout<< "          ";
   } else {
+    std::cout << colorMagenta;
     if(i==3) std::cout<< " |\\_/‾\\_/|";
     else if(i==2) std::cout<< " |       |";
     else if(i==1) std::cout<< " | _     |";
@@ -43,27 +45,30 @@ void Tour::print(int i){
     else if(i==-1) std::cout<< into_string(pv,8)+"  ";
     else std::cout<< "          ";
   }
+  std::cout<< colorReset;
 
 }
 void Tour::print(int i, Unite *u){
   if (u==nullptr) print(i);
   else{
     if(isCampA){
+      std::cout << colorCyan;
       if(i==3) std::cout<< "|\\_/‾\\_/| ";
-      else if(i==2) {std::cout<< "|  " ; u->print(i); std::cout<< " | ";}
-      else if(i==1) {std::cout<< "|  " ; u->print(i); std::cout<< " | ";}
-      else if(i==0) {std::cout<< "|  " ; u->print(i); std::cout<< " | ";}
-      else if(i==-1){std::cout<< into_string(pv,4)+" "<< into_string(u->getPv(),3) <<"  ";}
+      else if(i==2) {std::cout<< "|  " ; u->print(i); std::cout<< colorCyan<< " | ";}
+      else if(i==1) {std::cout<< "|  " ; u->print(i); std::cout<< colorCyan<< " | ";}
+      else if(i==0) {std::cout<< "|  " ; u->print(i); std::cout<< colorCyan<< " | ";}
+      else if(i==-1){std::cout<< into_string(pv,4)+" "<< colorGreen<< into_string(u->getPv(),3) <<"  ";}
       else std::cout<< "          ";
     } else {
+      std::cout << colorMagenta;
       if(i==3) std::cout<< " |\\_/‾\\_/|";
-      else if(i==2) {std::cout<< " | " ; u->print(i); std::cout<< "  |";}
-      else if(i==1) {std::cout<< " | " ; u->print(i); std::cout<< "  |";}
-      else if(i==0) {std::cout<< " | " ; u->print(i); std::cout<< "  |";}
-      else if(i==-1){std::cout<< into_string(u->getPv(),4) << " " <<into_string(pv,4)+" ";}
+      else if(i==2) {std::cout<< " | " ; u->print(i); std::cout<< colorMagenta<< "  |";}
+      else if(i==1) {std::cout<< " | " ; u->print(i); std::cout<< colorMagenta<< "  |";}
+      else if(i==0) {std::cout<< " | " ; u->print(i); std::cout<< colorMagenta<< "  |";}
+      else if(i==-1){std::cout<< colorGreen << into_string(u->getPv(),4)<< colorMagenta << " " <<into_string(pv,4)+" ";}
       else std::cout<< "          ";
     }
-
+    std::cout<< colorReset;
   }
 }
 /*

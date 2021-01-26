@@ -28,18 +28,21 @@ void Fantassin::print(int i){
   //return "F";
 
 
-  if(i==-1) std::cout<< into_string(pv,3)+" ";
+  if(i==-1) std::cout<< colorGreen<< into_string(pv,3)+" ";
   else if(isCampA) {
+    std::cout << colorCyan;
     if(i==2)      std::cout<< (isSuper?"Ö":"O") <<"  /";
     else if(i==1) std::cout<< "|-/ ";
     else if(i==0) std::cout<< "|   ";
     else std::cout<< "    ";
   } else {
+    std::cout << colorMagenta;
     if(i==2)      std::cout<< "\\  "<< (isSuper?"Ö":"O");
     else if(i==1) std::cout<< " \\-|";
     else if(i==0) std::cout<< "   |";
     else std::cout<< "    ";
   }
+  std::cout<< colorReset;
 
 /*
   if(i==-1) std::cout<< into_string(pv,3)+" ";

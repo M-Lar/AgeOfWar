@@ -24,18 +24,21 @@ void Catapulte::affiche(){
 }
 
 void Catapulte::print(int i){
-  if(i==-1) std::cout<< into_string(pv,3)+" ";
+  if(i==-1) std::cout<< colorGreen<< into_string(pv,3)+" ";
   else if(isCampA) {
+    std::cout << colorCyan;
     if(i==2)      std::cout<< "0\\  ";
     else if(i==1) std::cout<< "  \\ ";
     else if(i==0) std::cout<< "O‾‾O";
     else std::cout<< "    ";
   } else {
+    std::cout << colorMagenta;
     if(i==2)      std::cout<< "  /0";
     else if(i==1) std::cout<< " /  ";
     else if(i==0) std::cout<< "O‾‾O";
     else std::cout<< "    ";
   }
+  std::cout<< colorReset;
 }
 
 bool Catapulte::Attaquer(Unite* cible){
