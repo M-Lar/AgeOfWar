@@ -37,10 +37,11 @@ void Unite::afficheEtat()/*const*/{
 
 
 
-bool Unite::Attaquer(Unite* enemie, int att){
-  if(enemie==nullptr) return false;
-  if(enemie->isCampA==isCampA) return false;
-  return enemie->loselife(att);
+int Unite::Attaquer(Unite* enemie, int att){
+  if(enemie==nullptr) return 0;
+  if(enemie->isCampA==isCampA) return 0;
+  if(enemie->loselife(att)) return (enemie->getPrix()/2);
+  return 0;
 }
 bool Unite::Avancer(){
   if(isCampA) pos+=1;

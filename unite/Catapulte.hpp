@@ -29,7 +29,7 @@ public:
   std::pair<int,int> getPortee(){return portee;}
   int getPrix(){return prix;};
 
-  bool Attaquer(Unite* cible);
+  int Attaquer(Unite* cible);
   //std::pair<bool,bool> Attaquer(Unite* enemie1, Unite* enemie2);
   bool Avancer();
 

@@ -29,7 +29,7 @@ public:
   std::pair<int,int> getPortee(){return portee;}
   int getPrix(){return prix;};
 
-  bool Attaquer(Unite* enemie);
+  int Attaquer(Unite* enemie);
 
   std::string getInstance(){return "Archer";}
   //<class U> getInstance2(){return <Archer>;}

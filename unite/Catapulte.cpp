@@ -41,7 +41,7 @@ void Catapulte::print(int i){
   std::cout<< colorReset;
 }
 
-bool Catapulte::Attaquer(Unite* cible){
+int Catapulte::Attaquer(Unite* cible){
   //return (Unite::Attaquer(enemie, att));
   if(cible==nullptr) return false;
   return (cible->loselife(att));

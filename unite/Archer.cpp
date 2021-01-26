@@ -41,7 +41,7 @@ void Archer::print(int i){
   std::cout<< colorReset;
 }
 
-bool Archer::Attaquer(Unite* enemie){
+int Archer::Attaquer(Unite* enemie){
   if (!asAction1) return (Unite::Attaquer(enemie, att));
   return false;
 }

@@ -31,7 +31,7 @@ public:
   bool getIsSuper(){return isSuper;}
   //static bool getIsSuper(Unite* u){return isSuper;}
 
-  bool Attaquer(Unite* enemie);
+  int Attaquer(Unite* enemie);
 
   std::string getInstance(){return "Fantassin";}
   //<class U> getInstance2(){return <Fantassin>;}

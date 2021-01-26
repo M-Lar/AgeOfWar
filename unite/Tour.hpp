@@ -24,8 +24,9 @@ public:
   void print(int i, Unite* u);
 
   std::pair<int,int> getPortee(){return portee;}//portee;}
+  int getPrix(){return prix;}
 
-  bool Attaquer(Unite* enemie){return (Unite::Attaquer(enemie, att));}
+  int Attaquer(Unite* enemie){return (Unite::Attaquer(enemie, att));}
 
   std::string getInstance(){return "Tour";}
   //<class U> getInstance2(){return <Tour>;}

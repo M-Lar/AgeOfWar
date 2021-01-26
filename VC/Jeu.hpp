@@ -2,7 +2,7 @@
 #include <cstdlib>
 
 #include "../terrain/Terrain.hpp"
-#include "Menu.hpp"
+//#include "Menu.hpp"
 
 
 #ifndef jeu
@@ -15,8 +15,7 @@ private:
   bool victoire=false;
   bool isTourA=true;
   /*static*/ int maxTourDeJeu;
-  int argentA=8;
-  int argentB=8;
+
 
   bool multi=true;
 
@@ -27,13 +26,8 @@ public:
   void affiche();
   void init();
 
-  template <class U>
-  bool achat();
   bool achatUnite(char u);
   bool achatUnite();
-
-  void donnerArgent();
-  void payer(int *budjet, int prix){ (*budjet)-=prix; }
 
 
   void jouer();

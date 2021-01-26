@@ -28,11 +28,11 @@ void Terrain::affiche(int nbLi=4){
   }
   std::cout<<std::endl;
 }
-
 void Terrain::afficheVictoire(){
   std::system("clear");
   std::cout << "GG" << '\n';
 }
+
 
 template <class U>
 void Terrain::add(bool isTourDeA){
@@ -42,6 +42,26 @@ void Terrain::add(bool isTourDeA){
 
   U* unit= new U(isTourDeA, (isTourDeA?3:taille-1));
   cases[dep].set(unit);
+}
+template <class U>
+bool Terrain::achat(bool isTourDeA){
+  U* unit= new U(isTourDeA, (isTourDeA?0:getTaille()-1));
+  auto prixU= unit->getPrix();
+  int *budjet;
+
+  if(isTourDeA) budjet=&argentA;
+  else budjet=&argentB;
+
+  if((*budjet)>=prixU){
+    payer(budjet, prixU);
+    add<U>(isTourDeA);
+    return true;
+  }
+  return false;
+}
+void Terrain::donnerArgent(bool isTourDeA, int montant){
+  if(isTourDeA) argentA+=montant;
+  else argentB+=montant;
 }
 
 
@@ -242,7 +262,7 @@ void Terrain::UniteABattaquer(Unite *uTemp,int i){
         auto cible= cases.at(j).get();
         if(cible!=nullptr){
           if(!uTemp->getAsAction1() || uTemp->getInstance()=="Fantassin"){
-            bool isDead;
+            int isDead;
                                                       //std::cout << "instance:" << uTemp->getInstance() << '\n';
                                                       //instanceof<Catapulte> (uTemp)){
             if(uTemp->getInstance()=="Catapulte"){
@@ -255,12 +275,18 @@ void Terrain::UniteABattaquer(Unite *uTemp,int i){
                 auto cible2= cases.at(j-1).get();
 
                 isDead= uTemp->Attaquer(cible2);
-                if(isDead) cases.at(j-1)= Case();
+                if(isDead) {
+                  argentA+=isDead;
+                  cases.at(j-1)= Case();
+                }
               }
             }
 
             isDead= uTemp->Attaquer(cible);
-            if(isDead) cases.at(j)= Case();
+            if(isDead) {
+              argentA+=isDead;
+              cases.at(j)= Case();
+            }
 
 
             uTemp->setAsAction1(true);
@@ -286,7 +312,7 @@ void Terrain::UniteBAattaquer(Unite *uTemp,int i){
         auto cible= cases.at(j).get();
         if(cible!=nullptr){
           if(!uTemp->getAsAction1() || uTemp->getInstance()=="Fantassin"){
-            bool isDead;
+            int isDead;
                                                       //std::cout << "instance:" << uTemp->getInstance() << '\n';
                                                       //instanceof<Catapulte> (uTemp)){
             if(uTemp->getInstance()=="Catapulte"){
@@ -294,7 +320,10 @@ void Terrain::UniteBAattaquer(Unite *uTemp,int i){
                 auto cible2= cases.at(j+1).get();
 
                 isDead= uTemp->Attaquer(cible2);
-                if(isDead) cases.at(j-1)= Case();
+                if(isDead) {
+                  argentB+=isDead;
+                  cases.at(j-1)= Case();
+                }
               } else if(j==i-portee.second) {
                 auto cible2= cases.at(j+1).get();
 
@@ -304,7 +333,10 @@ void Terrain::UniteBAattaquer(Unite *uTemp,int i){
             }
 
             isDead= uTemp->Attaquer(cible);
-            if(isDead) cases.at(j)= Case();
+            if(isDead) {
+              argentB+=isDead;
+              cases.at(j)= Case();
+            }
 
             uTemp->setAsAction1(true);
             break;

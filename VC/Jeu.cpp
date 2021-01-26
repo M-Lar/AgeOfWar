@@ -28,9 +28,9 @@ void Jeu::affiche(){
 
 //ligne 2
   std::cout << colorYellow;
-  std::cout << into_string(argentA, 5)<< " p ";
+  std::cout << into_string(getArgentA(), 5)<< " p ";
   for(int i=0; i<(int)(getTaille()*4+6*2 -(3+5)*2)-1; i++){ std::cout << " "; }
-  std::cout << into_string(argentB, 5)<< " p ";
+  std::cout << into_string(getArgentB(), 5)<< " p ";
   std::cout << std::endl;
   std::cout << colorReset;
 
@@ -56,34 +56,17 @@ void Jeu::init(){
   if(c=='y') load();
 }
 
-
-template <class U>
-bool Jeu::achat(){
-  U* unit= new U(isTourA, (isTourA?0:getTaille()-1));
-  auto prixU= unit->getPrix();
-  int *budjet;
-
-  if(isTourA) budjet=&argentA;
-  else budjet=&argentB;
-
-  if((*budjet)>=prixU){
-    payer(budjet, prixU);
-    add<U>(isTourA);
-    return true;
-  }
-  return false;
-}
 bool Jeu::achatUnite(char u){
-  if(u=='f') return achat<Fantassin>();
-  else if(u=='a') return achat<Archer>();
-  else if(u=='c') return achat<Catapulte>();
+  if(u=='f') return achat<Fantassin>(isTourA);
+  else if(u=='a') return achat<Archer>(isTourA);
+  else if(u=='c') return achat<Catapulte>(isTourA);
   else return false;
 }
 bool Jeu::achatUnite(){
   std::cout << "Voulez vous acheter une unite ?" << "(f/a/c) (passer:p)";
   std::cout << '\n';
 
-  auto c= getEntree({'f','c','a','p','s'});
+  char c= getEntree({'f','c','a','p','s'});
 
   if(c=='q') return false;
   else if(c=='p') return true;
@@ -94,18 +77,13 @@ bool Jeu::achatUnite(){
   }
 }
 
-void Jeu::donnerArgent(){
-  if(isTourA) argentA+=8;
-  else argentB+=8;
-}
-
 
 void Jeu::jouer(){
   init();
 
   int tourDeJeu=0;
   while(jeuEnCour && tourDeJeu<=maxTourDeJeu){
-    donnerArgent();
+    donnerArgent(isTourA);
 
     Action1(isTourA); affiche();
     Action2(isTourA); affiche();
