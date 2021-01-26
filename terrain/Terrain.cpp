@@ -114,8 +114,8 @@ void Terrain::Action1(bool sensAB){
     for(int i=taille-1; i>0; i--){
       auto uTemp= cases.at(i).get();
 
-      UniteBAattaquer(uTemp,i);
-/*
+      //UniteBAattaquer(uTemp,i);
+//*
       if(uTemp!=nullptr) {
         auto portee= uTemp->getPortee();
         if(!uTemp->getIsCampA()){
@@ -128,7 +128,7 @@ void Terrain::Action1(bool sensAB){
             if(cible!=nullptr){
               if(!uTemp->getAsAction1()){
                 auto isDead= uTemp->Attaquer(cible);
-                std::cout << "instance:" << uTemp->getInstance() << '\n';
+                //std::cout << "instance:" << uTemp->getInstance() << '\n';
                 if(uTemp->getInstance()=="Catapulte"){//instanceof<Catapulte> (uTemp)){
                   std::cout << "cata" << '\n';
                 }
@@ -145,7 +145,7 @@ void Terrain::Action1(bool sensAB){
           }
         }
       }
-*/
+//*/
     }
 
   }
@@ -257,8 +257,8 @@ void Terrain::UniteABattaquer(Unite *uTemp,int i){
                 if(isDead) cases.at(j-1)= Case();
               }
             }
-            isDead= uTemp->Attaquer(cible);
 
+            isDead= uTemp->Attaquer(cible);
             if(isDead) cases.at(j)= Case();
 
 
@@ -279,13 +279,13 @@ void Terrain::UniteABattaquer(Unite *uTemp,int i){
   }
 }
 void Terrain::UniteBAattaquer(Unite *uTemp,int i){
-  //int sens=-1;
   if(uTemp!=nullptr) {
     auto portee= uTemp->getPortee();
     if(uTemp->getIsCampA()){
-      for(int j=i-portee.first; (j>=i-portee.second && j>0) ; j--){
+      for(int j=i-portee.first; (j>=i-portee.second && j>=0) ; j--){
         auto cible= cases.at(j).get();
         if(cible!=nullptr){
+          std::cout << "incible" << '\n';
           if(!uTemp->getAsAction1()){
             bool isDead;
                                                       //std::cout << "instance:" << uTemp->getInstance() << '\n';
@@ -305,17 +305,16 @@ void Terrain::UniteBAattaquer(Unite *uTemp,int i){
                 if(isDead) cases.at(j+1)= Case();
               }
             }
+
             isDead= uTemp->Attaquer(cible);
-
             if(isDead) cases.at(j)= Case();
-
 
             uTemp->setAsAction1(true);
             break;
           }
         } else if(j==0){
           std::cout << "caseAttTourAB" << '\n';
-          auto isDead= uTemp->Attaquer(&TourB);
+          auto isDead= uTemp->Attaquer(&TourA);
 
           if(isDead) {std::cout << "tour dead" << '\n';}
           uTemp->setAsAction1(true);
