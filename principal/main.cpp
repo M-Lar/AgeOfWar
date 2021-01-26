@@ -12,8 +12,8 @@ void test1(){
   Terrain T= Terrain(12);
   T.affiche();
   std::cout << "4" << '\n';
-  T.add<Fantassin>(true);
-  T.add<Fantassin>(false);
+  T.add<Catapulte>(false);
+  //T.add<Fantassin>(false);
   //T.add<Catapulte>(true);
   T.affiche();
 
@@ -23,7 +23,7 @@ void test1(){
     //std::cout << "test2" << '\n';
     //std::cout << " i:" << i;
     //T.add<Catapulte>(true);
-    //T.add<Fantassin>(false);
+    T.add<Fantassin>(true);
     T.tourAB(); T.tourBA();
     T.affiche();
 

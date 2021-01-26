@@ -155,8 +155,8 @@ void Terrain::Action2(bool sensAB){
 
   if(sensAB){
     for(int i=taille-3; i>=0; i--){
-      //deplacement(1, i);
-
+      deplacement(sensAB, i, true);
+/*
       auto uTemp= cases.at(i).get();
       auto suiv=cases.at(i+1).get();
 
@@ -166,12 +166,13 @@ void Terrain::Action2(bool sensAB){
         cases.at(i+1) =cases.at(i);
         cases.at(i)   =Case();
       }
-
+*/
     }
   } else {
     for(int i=2; i<taille; i++){
-      //deplacement(-1, i);
+      deplacement(sensAB, i, true);
 
+/*
       auto uTemp= cases.at(i).get();
       auto suiv=cases.at(i-1).get();
 
@@ -181,7 +182,7 @@ void Terrain::Action2(bool sensAB){
         cases.at(i-1) =cases.at(i);
         cases.at(i)   =Case();
       }
-
+*/
     }
   }
 
@@ -193,6 +194,8 @@ void Terrain::Action3(bool sensAB){
       auto uTemp= cases.at(i).get();
       if(uTemp!=nullptr) {
         if(!uTemp->getAsAction1() && uTemp->getInstance()=="Catapulte"){
+          deplacement(sensAB, i, false);
+          /*
           auto uTemp= cases.at(i).get();
           auto suiv=cases.at(i+1).get();
 
@@ -201,7 +204,7 @@ void Terrain::Action3(bool sensAB){
             uTemp->Avancer();
             cases.at(i+1) =cases.at(i);
             cases.at(i)   =Case();
-          }
+          }*/
         }
 
         if(uTemp->getInstance()=="Fantassin") UniteABattaquer(uTemp, i);
@@ -213,20 +216,21 @@ void Terrain::Action3(bool sensAB){
   }
 
 }
-/*
-void Terrain::deplacement(int sens, int i, bool expluCata){
+
+void Terrain::deplacement(bool sensAB, int i, bool expluCata){
+  int sens;
+  if(sensAB) {sens=1;}
+  else {sens=-1;}
   auto uTemp= cases.at(i).get();
   auto suiv=cases.at(i+sens).get();
 
-  if(uTemp!=nullptr && uTemp->getIsCampA())
+  if(uTemp!=nullptr && (!uTemp->getIsCampA() ^ sensAB) )
   if(suiv==nullptr && !(expluCata && (uTemp->getInstance()=="Catapulte"))){//!instanceof<Catapulte> (uTemp)){ //(std::is_base_of<Catapulte, typeid(uTemp).name()>::value)
     uTemp->Avancer();
     cases.at(i+sens) =cases.at(i);
     cases.at(i)   =Case();
   }
 }
-*/
-
 void Terrain::UniteABattaquer(Unite *uTemp,int i){
   if(uTemp!=nullptr) {
     auto portee= uTemp->getPortee();
