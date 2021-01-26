@@ -40,7 +40,7 @@ void Unite::afficheEtat()/*const*/{
 int Unite::Attaquer(Unite* enemie, int att){
   if(enemie==nullptr) return 0;
   if(enemie->isCampA==isCampA) return 0;
-  if(enemie->loselife(att)) return (enemie->getPrix()/2);
+  if(enemie->loselife(att)) {std::cout << " dedU:" << (enemie->getPrix()/2) << '\n';return (enemie->getPrix()/2);}
   return 0;
 }
 bool Unite::Avancer(){

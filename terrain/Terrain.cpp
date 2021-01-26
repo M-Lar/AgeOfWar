@@ -9,8 +9,8 @@
 Terrain::Terrain(int t){
   taille=t;
   cases.resize(taille);
-  TourA= Tour(true,0);
-  TourB= Tour(false,taille-1, 1);//00);
+  //TourA= Tour(true,0);
+  //TourB= Tour(false,taille-1, 100);//00);
 }
 Terrain::~Terrain(){}
 
@@ -185,10 +185,11 @@ bool Terrain::UniteABattaquer(Unite *uTemp,int i){
         } else if(j==taille-1){
           auto isDead= uTemp->Attaquer(&TourB);
 
-          std::cout << "test" << '\n';
-          if(isDead) {std::cout << "tour dead" << '\n'; return true;}
+          //std::cout << "test" << '\n';
+          if(isDead) {/*std::cout << "tour dead" << '\n';*/ return true;}
           uTemp->setAsAction1(true);
           break;
+
         }
       }//endFor
       //affiche(); //a afficher

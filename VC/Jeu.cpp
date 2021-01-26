@@ -8,7 +8,7 @@
 
 
 void Jeu::affiche(){
-  std::this_thread::sleep_for(std::chrono::milliseconds(240));//45));
+  std::this_thread::sleep_for(std::chrono::milliseconds(45));//200));
 
   std::system("clear");
   std::string nomJoueur= "Joueur ";
@@ -89,13 +89,14 @@ void Jeu::jouer(){
   int tourDeJeu=0;
   bool victoire=false;
   bool jeuEnCour=true;
-  while(jeuEnCour && tourDeJeu<=maxTourDeJeu && !victoire){
+  while(jeuEnCour && tourDeJeu<=maxTourDeJeu){
     donnerArgent(isTourA);
 
 
     victoire=victoire|| Action1(isTourA); affiche();
                         Action2(isTourA); affiche();
     victoire=victoire|| Action3(isTourA); affiche();
+    if(victoire) break;
 
     jeuEnCour= achatUnite(); affiche();
 
@@ -113,10 +114,11 @@ void Jeu::jouer(){
     if(c=='y') save();
   }
   else if(victoire){
-    std::cout << '\n' << "Bravo" << '\n';
+    for(int i=0; i<(int)((getTaille()*4+6*2) -14)/2; i++) {std::cout << " ";}
+    std::cout << colorYellow << "Bravo " << (isTourA?"Joueur 1":"Joueur 2") << colorReset << '\n';
   }
 
-  std::cout << "  Bonne journée" << '\n';
+  std::cout << '\n' << "Bonne journée" << '\n';
 
 }
 

@@ -33,7 +33,7 @@ public:
 
 
 };
-int Tour::prix = 0;
+int Tour::prix = 2147483647;
 int Tour::att = 0;
 std::pair<int,int> Tour::portee = std::make_pair(0,0);
 

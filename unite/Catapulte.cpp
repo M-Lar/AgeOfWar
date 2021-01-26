@@ -43,7 +43,7 @@ void Catapulte::print(int i){
 
 int Catapulte::Attaquer(Unite* cible){
   //return (Unite::Attaquer(enemie, att));
-  if(cible==nullptr) return false;
+  if(cible==nullptr) return 0;
   return (cible->loselife(att));
 }
 /*
