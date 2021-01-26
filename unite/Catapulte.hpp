@@ -31,6 +31,7 @@ public:
 
   bool Attaquer(Unite* cible);
   //std::pair<bool,bool> Attaquer(Unite* enemie1, Unite* enemie2);
+  bool Avancer();
 
   std::string getInstance(){return "Catapulte";}
   //<class U> getInstance2(){return <Catapulte>;}

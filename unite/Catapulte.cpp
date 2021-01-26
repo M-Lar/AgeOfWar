@@ -49,3 +49,8 @@ bool Catapulte::Attaquer(Unite* cible){
 std::pair<bool,bool> Catapulte::Attaquer(Unite* cible1, Unite* cible2){
   return make_pair(cible1->loselife(att), cible2->loselife(att));
 }*/
+
+bool Catapulte::Avancer(){
+  if(!asAction1) return Unite::Avancer();
+  return false;
+}
