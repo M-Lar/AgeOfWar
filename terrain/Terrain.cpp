@@ -149,7 +149,8 @@ bool Terrain::acheter(bool isTourDeA){
   if(isTourDeA) budjet=&argentA;
   else budjet=&argentB;
 
-  if((*budjet)>=prixU){
+  bool libre= cases.at(isTourDeA?0:1).get()==nullptr;
+  if((*budjet)>=prixU && libre){
     payer(budjet, prixU);
     add<U>(isTourDeA);
     return true;
