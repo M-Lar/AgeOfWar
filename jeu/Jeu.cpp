@@ -253,7 +253,7 @@ void Jeu::load(){
 }
 
 void Jeu::reset(int mTJ, int nT, bool isTA, bool vsBot, int t, int pvA, int pvB, int aA, int aB, std::string ter, int nbUC){
-  Terrain::reset(t, pvA, pvB, aA, aB, std::make_tuple(ter, nbUC));
+  Terrain::reset(t, pvA, pvB, aA, aB, std::make_pair(ter, nbUC));
   maxTourDeJeu=mTJ;
   numTourCourant=nT;
   isTourA=isTA;

@@ -38,7 +38,7 @@ std::string Terrain::getTerrain(int &nbUniteCree){
   }
   return res;
 }
-void Terrain::reset(int t, int pvA, int pvB, int aA, int aB, std::tuple<std::string, int> ter_nbUniteCree){
+void Terrain::reset(int t, int pvA, int pvB, int aA, int aB, std::pair<std::string, int> ter_nbUniteCree){
   if(t<4) {
     std::cerr << "Taille terrain trop petite" << '\n';
     t=4;
@@ -54,8 +54,8 @@ void Terrain::reset(int t, int pvA, int pvB, int aA, int aB, std::tuple<std::str
 
 
 
-  std::string ter= std::get<0>(ter_nbUniteCree);
-  int nbUniteCree= std::get<1>(ter_nbUniteCree);;
+  std::string ter= ter_nbUniteCree.first;   //std::get<0>(ter_nbUniteCree);
+  int nbUniteCree= ter_nbUniteCree.second;  //std::get<1>(ter_nbUniteCree);;
 
   std::string nomUnite;
   int pv, pos;
@@ -86,9 +86,9 @@ void Terrain::reset(int t, int pvA, int pvB, int aA, int aB, std::tuple<std::str
     //std::cout << nomUnite << "[pv:" << pv << "|pos:" << pos << "|isCampA:" << isCampA << "]" << '\n';
 
 
-    if(nomUnite=="F" || nomUnite=="f") add<Fantassin>(isCampA, std::make_tuple(pv, pos));
-    else if(nomUnite=="A" || nomUnite=="a") add<Archer>(isCampA, std::make_tuple(pv, pos));
-    else if(nomUnite=="C" || nomUnite=="c") add<Catapulte>(isCampA, std::make_tuple(pv, pos));
+    if(nomUnite=="F" || nomUnite=="f") add<Fantassin>(isCampA, std::make_pair(pv, pos));
+    else if(nomUnite=="A" || nomUnite=="a") add<Archer>(isCampA, std::make_pair(pv, pos));
+    else if(nomUnite=="C" || nomUnite=="c") add<Catapulte>(isCampA, std::make_pair(pv, pos));
 
     posCROCHET_OUVRANT= ter.find("[",posCROCHET_OUVRANT+1,1);
     posCROCHET_FERMANT= ter.find("]",posCROCHET_FERMANT+1,1);
@@ -116,9 +116,9 @@ void Terrain::afficheVictoire(){
 
 
 template <class U>
-void Terrain::add(bool isCampA, std::tuple<int, int> pv_pos){
-  int pv= std::get<0>(pv_pos);
-  int pos= std::get<1>(pv_pos);
+void Terrain::add(bool isCampA, std::pair<int, int> pv_pos){
+  int pv= pv_pos.first;  //std::get<0>(pv_pos);
+  int pos= pv_pos.second;   //std::get<1>(pv_pos);
   U* unit;
 
   if(pos==-1){
