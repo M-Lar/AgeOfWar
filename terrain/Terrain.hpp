@@ -36,8 +36,8 @@ public:
   void affiche(int nbLi);
 
 //protected:
-  std::string getTerrain();
-  void reset(int t, int pvA, int pvB, int aA, int aB, std::string ter="");
+  std::string getTerrain(int &nbUniteCree);
+  void reset(int t, int pvA, int pvB, int aA, int aB, std::tuple<std::string, int> ter_nbUniteCree= std::make_tuple("", 0));
 
 
   template <class U>

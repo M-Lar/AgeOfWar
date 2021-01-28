@@ -128,6 +128,7 @@ void Jeu::jouer(){
     std::cout << '\n';
     auto c= getEntree({'y','n'});
 
+    isTourA= !isTourA;
     if(c=='y') save();
   }
   else if(victoire){
@@ -170,12 +171,14 @@ void Jeu::save(){
         flux << ", vsBot:" << bot;
 
         //Etat Terrain
-        flux << ", ter:" << getTerrain();
+        int nbUniteCree;
+        flux << ", ter:" << getTerrain(nbUniteCree);
+        flux << ", nbUC:" << nbUniteCree;
 
     } else {
       std::cout << "ERREUR: Impossible d'ouvrir le fichier." << std::endl;
     }
-    std::this_thread::sleep_for(std::chrono::milliseconds(300));
+    //std::this_thread::sleep_for(std::chrono::milliseconds(300));
 //*/
 }
 void Jeu::load(){
@@ -220,49 +223,53 @@ void Jeu::load(){
         size_t posV= ligne.find(",");
         size_t trouv= ligne.find("taille")+7;
         int t= std::stoi(ligne.substr (trouv,posV-trouv),nullptr);
+        posV= ligne.find(",",posV+1,1);
 
         trouv= ligne.find("pvA")+4;
-        posV= ligne.find(",",posV+1,1);
         int pvA= std::stoi(ligne.substr (trouv,posV-trouv),nullptr);
-
+        posV= ligne.find(",",posV+1,1);
 
         trouv= ligne.find("pvB")+4;
-        posV= ligne.find(",",posV+1,1);
         int pvB= std::stoi(ligne.substr (trouv,posV-trouv),nullptr);
+        posV= ligne.find(",",posV+1,1);
 
         trouv= ligne.find("aA")+3;
-        posV= ligne.find(",",posV+1,1);
         int aA= std::stoi(ligne.substr (trouv,posV-trouv),nullptr);
+        posV= ligne.find(",",posV+1,1);
 
         trouv= ligne.find("aB")+3;
-        posV= ligne.find(",",posV+1,1);
         int aB= std::stoi(ligne.substr (trouv,posV-trouv),nullptr);
+        posV= ligne.find(",",posV+1,1);
 
         trouv= ligne.find("mTJ")+4;
-        posV= ligne.find(",",posV+1,1);
         int mTJ= std::stoi(ligne.substr (trouv,posV-trouv),nullptr);
+        posV= ligne.find(",",posV+1,1);
 
         trouv= ligne.find("nT")+3;
-        posV= ligne.find(",",posV+1,1);
         int nT= std::stoi(ligne.substr (trouv,posV-trouv),nullptr);
+        posV= ligne.find(",",posV+1,1);
 
         trouv= ligne.find("isTA")+5;
-        posV= ligne.find(",",posV+1,1);
         int isTA= std::stoi(ligne.substr (trouv,posV-trouv),nullptr);
+        posV= ligne.find(",",posV+1,1);
 
         trouv= ligne.find("vsBot")+6;
-        posV= ligne.find(",",posV+1,1);
         int vsBot= std::stoi(ligne.substr (trouv,posV-trouv),nullptr);
+        posV= ligne.find(",",posV+1,1);
 
         trouv= ligne.find("ter")+4;
-        std::string ter=ligne.substr (trouv);
+        std::string ter=ligne.substr (trouv,posV-trouv);
+
+        trouv= ligne.find("nbUC")+5;
+        int nbUC= std::stoi(ligne.substr (trouv),nullptr);
+
 
         std::cout << "ligne:" << ligne << '\n';
-        std::cout << "ligne: taille:" << t << ", pvA:" << pvA << ", pvB:" << pvB << ", aA:" << aA << ", aB:" << aB << ", mTJ:" << mTJ << ", nT:" << nT << ", isTA:" << isTA << ", vsBot:" << vsBot << ", ter:" << ter << '\n';
+        std::cout << "ligne: taille:" << t << ", pvA:" << pvA << ", pvB:" << pvB << ", aA:" << aA << ", aB:" << aB << ", mTJ:" << mTJ << ", nT:" << nT << ", isTA:" << isTA << ", vsBot:" << vsBot << ", ter:" << ter << ", nbUC:" << nbUC << '\n';
         //100 100 100 100 100 100 0 0 0 0 100 22 14 100 3 1 0 __f________
         //std::cout << "fin" << '\n';
 
-        reset(mTJ, nT, isTA, vsBot, t, pvA, pvB, aA, aB, ter);
+        reset(mTJ, nT, isTA, vsBot, t, pvA, pvB, aA, aB, ter, nbUC);
       }
    } else {
       std::cout << "ERREUR: Impossible d'ouvrir le fichier en lecture." << std::endl;
@@ -273,8 +280,8 @@ void Jeu::load(){
 
 }
 
-void Jeu::reset(int mTJ, int nT, bool isTA, bool vsBot, int t, int pvA, int pvB, int aA, int aB, std::string ter){
-  Terrain::reset(t, pvA, pvB, aA, aB, ter);
+void Jeu::reset(int mTJ, int nT, bool isTA, bool vsBot, int t, int pvA, int pvB, int aA, int aB, std::string ter, int nbUC){
+  Terrain::reset(t, pvA, pvB, aA, aB, std::make_tuple(ter, nbUC));
   maxTourDeJeu=mTJ;
   numTourCourant=nT;
   isTourA=isTA;

@@ -29,7 +29,7 @@ std::string Case::contenueCase() const{
     else if(contenue->getInstance()=="Archer") return 'a';
     else if(contenue->getInstance()=="Catapulte") return 'c';*/
   }
-  return "_";
+  return "";
 }
 
 

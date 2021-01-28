@@ -29,12 +29,17 @@ Terrain::Terrain(int t, int pvTour, int argent){
 }
 Terrain::~Terrain(){}
 
-std::string Terrain::getTerrain(){
+std::string Terrain::getTerrain(int &nbUniteCree){
   std::string res= "";
-  for(int i=0; i<taille; i++){ res+=cases.at(i).contenueCase();}
+  nbUniteCree=0;
+  for(int i=0; i<taille; i++){
+    res+=cases.at(i).contenueCase();
+    if(!cases.at(i).estVide()) nbUniteCree++;
+    std::cout << "nvu:" << nbUniteCree << '\n';
+  }
   return res;
 }
-void Terrain::reset(int t, int pvA, int pvB, int aA, int aB, std::string ter){
+void Terrain::reset(int t, int pvA, int pvB, int aA, int aB, std::tuple<std::string, int> ter_nbUniteCree){
   if(t<4) {
     std::cerr << "Taille terrain trop petite" << '\n';
     t=4;
@@ -48,56 +53,49 @@ void Terrain::reset(int t, int pvA, int pvB, int aA, int aB, std::string ter){
   argentA= aA;
   argentB= aB;
 
-  std::cout << "ter:" << ter << "\n\n";
 
+
+  std::string ter= std::get<0>(ter_nbUniteCree);
+  int nbUniteCree= std::get<1>(ter_nbUniteCree);;
+  std::cout << "ter:" << ter << "\n\n";
 
   std::string nomUnite;
   int pv, pos;
   bool isCampA;
 
-
-std::cout << "test1" << '\n';
-  //size_t posCOLON; //posCOLON= ter.find(":",posV+1,1);
-  size_t debDefUnite;
+  size_t debDefUnite=0;
   size_t posBARRE= ter.find("|");
   size_t posCROCHET_OUVRANT= ter.find("[");
+  size_t posCROCHET_FERMANT= ter.find("]");
   size_t trouv;
-  while(true){
-//std::cout << "test2" << '\n';
+
+  std::cout << "nbUniteCree:" << nbUniteCree << '\n';
+  for (int i=0; i<nbUniteCree; i++){
     debDefUnite= posCROCHET_OUVRANT-1;
 
-//std::cout << "test3" << '\n';
     nomUnite= ter.substr (debDefUnite,1);
-    std::cout << nomUnite << '\n';
 
-//std::cout << "test4" << '\n';
     trouv= ter.find("pv",debDefUnite)+3;
     pv= std::stoi(ter.substr (trouv,posBARRE-trouv),nullptr);
-    //std::cout << ter.substr (trouv,posBARRE-trouv) << '\n';
-//std::cout << "test4" << '\n';
     posBARRE= ter.find("|",posBARRE+1,1);
-//std::cout << "test6" << '\n';
 
     trouv= ter.find("pos",debDefUnite)+4;
     pos= std::stoi(ter.substr (trouv,posBARRE-trouv),nullptr);
-    //std::cout << ter.substr (trouv,posBARRE-trouv) << '\n';
     posBARRE= ter.find("|",posBARRE+1,1);
 
     trouv= ter.find("camp",debDefUnite)+5;
-    if(ter.substr (trouv,posBARRE-trouv) == "A") isCampA= true;
-    else isCampA= false;
-    //std::cout << ter.substr (trouv,posBARRE-trouv) << '\n';
+    isCampA= std::stoi(ter.substr (trouv,posBARRE-trouv),nullptr);
+
+    std::cout << nomUnite << "[pv:" << pv << "|pos:" << pos << "|isCampA:" << isCampA << "]" << '\n';
 
 
-    std::cout << "la[pv:" << pv << "|pos:" << pos << "isCampA:" << isCampA << "]" << '\n';
+    std::cout << "nomU:" << nomUnite <<":" << '\n';
+    if(nomUnite=="F" || nomUnite=="f") add<Fantassin>(isCampA, std::make_tuple(pv, pos));
+    else if(nomUnite=="A" || nomUnite=="a") add<Archer>(isCampA, std::make_tuple(pv, pos));
+    else if(nomUnite=="C" || nomUnite=="c") add<Catapulte>(isCampA, std::make_tuple(pv, pos));
 
-
-    if(nomUnite=="f") add<Fantassin>(isCampA, std::make_tuple(pv, pos));
-    else if(nomUnite=="a") add<Archer>(isCampA, std::make_tuple(pv, pos));
-    else if(nomUnite=="c") add<Catapulte>(isCampA, std::make_tuple(pv, pos));
-    else break;
-    posBARRE= ter.find("[",posCROCHET_OUVRANT+1,1);
-
+    posCROCHET_OUVRANT= ter.find("[",posCROCHET_OUVRANT+1,1);
+    posCROCHET_FERMANT= ter.find("]",posCROCHET_FERMANT+1,1);
   }
 }
 
