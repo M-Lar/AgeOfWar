@@ -38,7 +38,7 @@ void Tour::print(int i){
     else if(i==2) std::cout<< "|       | ";
     else if(i==1) std::cout<< "|     _ | ";
     else if(i==0) std::cout<< "|    | || ";
-    else if(i==-1) std::cout<< into_string(pv,5)+"     ";
+    else if(i==-1) std::cout<< "  "+into_string(pv,8, true);
     else std::cout<< "          ";
   } else {
     std::cout << colorMagenta;
@@ -61,7 +61,7 @@ void Tour::print(int i, Unite *u){
       else if(i==2) {std::cout<< "|  " ; u->print(i); std::cout<< colorCyan<< " | ";}
       else if(i==1) {std::cout<< "|  " ; u->print(i); std::cout<< colorCyan<< " | ";}
       else if(i==0) {std::cout<< "|  " ; u->print(i); std::cout<< colorCyan<< " | ";}
-      else if(i==-1){std::cout<< into_string(pv,4)+" "<< colorGreen<< into_string(u->getPv(),3) <<"  ";}
+      else if(i==-1){std::cout<< into_string(pv,4)+" "<< colorGreen<< into_string(u->getPv(),4) <<" ";}
       else std::cout<< "          ";
     } else {
       std::cout << colorMagenta;

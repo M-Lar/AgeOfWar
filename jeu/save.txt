@@ -1,1 +1,1 @@
- taille:12, pvA:100, pvB:100, aA:13, aB:18, mTJ:100, nT:18, isTA:0, vsBot:0, ter:C[pv:12|pos:1|camp:1]C[pv:12|pos:4|camp:1]C[pv:12|pos:5|camp:1]C[pv:12|pos:9|camp:0]C[pv:12|pos:10|camp:0], nbUC:5
+ taille:12, pvA:100, pvB:100, aA:2, aB:22, mTJ:100, nT:4, isTA:1, vsBot:0, ter:C[pv:12|pos:0|camp:1]F[pv:10|pos:2|camp:1]F[pv:10|pos:9|camp:0], nbUC:3
