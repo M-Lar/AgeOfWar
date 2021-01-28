@@ -5,6 +5,12 @@
 #include <vector>
 #include <algorithm>
 
+#include <chrono>
+//#include <thread>
+#include <tuple>
+//#include <boost/algorithm/string.hpp>
+
+
 #ifndef outils
 #define outils
 /*

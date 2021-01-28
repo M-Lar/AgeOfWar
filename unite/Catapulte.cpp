@@ -4,19 +4,22 @@
 #include "Catapulte.hpp"
 
 
+std::string Catapulte::to_string(){
+  return "C["+Unite::to_string()+"]";
+}
 
 void Catapulte::afficheCarac(){
-  std::cout<<"C:";
+  std::cout<<"C";
   Unite::afficheCarac(prix, att, portee);
   std::cout<<std::endl;
 }
 void Catapulte::afficheEtat(){
-  std::cout<<"C:";
+  std::cout<<"C";
   Unite::afficheEtat();
   std::cout<<std::endl;
 }
 void Catapulte::affiche(){
-  std::cout<<"C:[";
+  std::cout<<"C[";
   Unite::afficheCarac(prix, att, portee);
   std::cout<<"|";
   Unite::afficheEtat();

@@ -1,1 +1,1 @@
- taille:12, pvA:91, pvB:100, aA:104, aB:92, mTJ:100, nT:13, isTA:0, vsBot:0, ter:_a__________
+ taille:12, pvA:100, pvB:100, aA:16, aB:17, mTJ:100, nT:24, isTA:1, vsBot:1, ter:C[pv:12|pos:0|camp:A]C[pv:12|pos:1|camp:A]C[pv:12|pos:2|camp:A]C[pv:6|pos:3|camp:A]___C[pv:6|pos:7|camp:B]_F[pv:10|pos:9|camp:B]F[pv:10|pos:10|camp:B]_

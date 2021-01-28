@@ -20,6 +20,8 @@ public:
 
   //Catapulte copy(Catapulte &u);
 
+  std::string to_string();
+
   void afficheCarac();
   void afficheEtat();
   void affiche();

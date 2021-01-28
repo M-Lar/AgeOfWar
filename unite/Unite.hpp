@@ -29,6 +29,8 @@ public:
   Unite(bool isCampG, int pos, int pv);
   virtual ~Unite(){};
 
+  virtual std::string to_string();
+
   virtual void afficheCarac() =0;
   virtual void afficheEtat();//const Unite u) const;
   virtual void affiche() =0;

@@ -28,11 +28,16 @@ U Unite::copy(U u){
    return (U(u.isCampA, u.pos, u.pv));
 }*/
 
+std::string Unite::to_string(){
+  /*std::string res;
+  std::sprintf (res, "pv:%d|pos:%d|camp:", pv, pos);*/
+  return /*res+(isCampA?"A":"B");//*/"pv:"+std::to_string(pv)+"|pos:"+std::to_string(pos)+"|camp:"+(isCampA?"A":"B");
+}
 void Unite::afficheCarac(int prix, int att, std::pair<int,int> portee){
   std::cout<<"prix:"<<prix<<"|att:"<<att<<"|portee:("<<portee.first<<","<<portee.second<<")";
 }
 void Unite::afficheEtat()/*const*/{
-  std::cout<<"pv:"<<pv<<"|pos:"<<pos<<"|camp:"<<(isCampA?"A":"B");
+  std::cout<<to_string();
 }
 
 

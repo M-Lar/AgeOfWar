@@ -15,9 +15,11 @@ private:
   bool isSuper= false;
 
 public:
-  Fantassin(bool isCampA, int pos): Unite(isCampA, pos, 10){};
-  Fantassin(bool isCampA, int pos, int pv):  Unite(isCampA, pos, pv){};
+  //Fantassin(bool isCampA, int pos): Unite(isCampA, pos, 10){};
+  Fantassin(bool isCampA, int pos, int pv= 10):  Unite(isCampA, pos, pv){};
   ~Fantassin(){};
+
+  std::string to_string();
 
   void afficheCarac();
   void afficheEtat();

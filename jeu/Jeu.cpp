@@ -257,8 +257,8 @@ void Jeu::load(){
         trouv= ligne.find("ter")+4;
         std::string ter=ligne.substr (trouv);
 
-        //std::cout << "ligne:" << ligne << '\n' << '\n';
-        //std::cout << t << " pvA:" << pvA << " pvB:" << pvB << " aA:" << aA << " aB:" << aB << " mTJ:" << mTJ << " nT:" << nT << " isTA:" << isTA << " vsBot:" << vsBot << " " << ter << '\n';
+        std::cout << "ligne:" << ligne << '\n';
+        std::cout << "ligne: taille:" << t << ", pvA:" << pvA << ", pvB:" << pvB << ", aA:" << aA << ", aB:" << aB << ", mTJ:" << mTJ << ", nT:" << nT << ", isTA:" << isTA << ", vsBot:" << vsBot << ", ter:" << ter << '\n';
         //100 100 100 100 100 100 0 0 0 0 100 22 14 100 3 1 0 __f________
         //std::cout << "fin" << '\n';
 
@@ -268,7 +268,7 @@ void Jeu::load(){
       std::cout << "ERREUR: Impossible d'ouvrir le fichier en lecture." << std::endl;
    }
    //std::this_thread::sleep_for(std::chrono::milliseconds(30000));
-   //std::string test; std::cin >> test;
+   std::string test; std::cin >> test;
 //*/
 
 }

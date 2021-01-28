@@ -20,6 +20,8 @@ public:
 
   //Archer copy(Archer &u);s
 
+  std::string to_string();
+
   void afficheCarac();
   void afficheEtat();
   void affiche();

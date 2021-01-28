@@ -16,6 +16,8 @@ public:
 
   //Tour copy(Tour &u);
 
+  std::string to_string();
+
   void afficheCarac();
   void afficheEtat();
   void affiche();

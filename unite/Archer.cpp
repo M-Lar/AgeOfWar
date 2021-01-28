@@ -4,19 +4,22 @@
 #include "Archer.hpp"
 
 
+std::string Archer::to_string(){
+  return "A["+Unite::to_string()+"]";
+}
 
 void Archer::afficheCarac(){
-  std::cout<<"A:";
+  std::cout<<"A";
   Unite::afficheCarac(prix, att, portee);
   std::cout<<std::endl;
 }
 void Archer::afficheEtat(){
-  std::cout<<"A:";
+  std::cout<<"A";
   Unite::afficheEtat();
   std::cout<<std::endl;
 }
 void Archer::affiche(){
-  std::cout<<"A:[";
+  std::cout<<"A[";
   Unite::afficheCarac(prix, att, portee);
   std::cout<<"|";
   Unite::afficheEtat();

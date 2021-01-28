@@ -4,19 +4,22 @@
 #include "Fantassin.hpp"
 
 
+std::string Fantassin::to_string(){
+  return "F["+Unite::to_string()+"]";
+}
 
 void Fantassin::afficheCarac(){
-  std::cout<<"F:";
+  std::cout<<"F";
   Unite::afficheCarac(prix, att, portee);
   std::cout<<std::endl;
 }
 void Fantassin::afficheEtat(){
-  std::cout<<"F:";
+  std::cout<<"F";
   Unite::afficheEtat();
   std::cout<<std::endl;
 }
 void Fantassin::affiche(){
-  std::cout<<"F:[";
+  std::cout<<"F[";
   Unite::afficheCarac(prix, att, portee);
   std::cout<<"|";
   Unite::afficheEtat();

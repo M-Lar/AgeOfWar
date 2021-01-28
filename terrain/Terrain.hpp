@@ -41,7 +41,7 @@ public:
 
 
   template <class U>
-  void add(bool isTourDeA, int inPos=-1);
+  void add(bool isTourDeA, std::tuple<int, int> pv_pos= std::make_tuple(-1,-1));
   template <class U>
   bool acheter(bool isTourDeA);
   void donnerArgent(bool isTourDeA, int montant=8);

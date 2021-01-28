@@ -4,7 +4,9 @@
 #include "Terrain.hpp"
 
 #include <chrono>
-#include <thread>
+//#include <thread>
+#include <tuple>
+//#include <boost/algorithm/string.hpp>
 
 Terrain::Terrain(int t, int pvTour, int argent){
   if(t<4) {
@@ -46,11 +48,56 @@ void Terrain::reset(int t, int pvA, int pvB, int aA, int aB, std::string ter){
   argentA= aA;
   argentB= aB;
 
-  for(int i=0; i<taille; i++){
-    char temp= ter.substr(i,1).front();
-    if(temp=='f') add<Fantassin>(i);
-    else if(temp=='a') add<Archer>(i);
-    else if(temp=='c') add<Catapulte>(i);
+  std::cout << "ter:" << ter << "\n\n";
+
+
+  std::string nomUnite;
+  int pv, pos;
+  bool isCampA;
+
+
+std::cout << "test1" << '\n';
+  //size_t posCOLON; //posCOLON= ter.find(":",posV+1,1);
+  size_t debDefUnite;
+  size_t posBARRE= ter.find("|");
+  size_t posCROCHET_OUVRANT= ter.find("[");
+  size_t trouv;
+  while(true){
+//std::cout << "test2" << '\n';
+    debDefUnite= posCROCHET_OUVRANT-1;
+
+//std::cout << "test3" << '\n';
+    nomUnite= ter.substr (debDefUnite,1);
+    std::cout << nomUnite << '\n';
+
+//std::cout << "test4" << '\n';
+    trouv= ter.find("pv",debDefUnite)+3;
+    pv= std::stoi(ter.substr (trouv,posBARRE-trouv),nullptr);
+    //std::cout << ter.substr (trouv,posBARRE-trouv) << '\n';
+//std::cout << "test4" << '\n';
+    posBARRE= ter.find("|",posBARRE+1,1);
+//std::cout << "test6" << '\n';
+
+    trouv= ter.find("pos",debDefUnite)+4;
+    pos= std::stoi(ter.substr (trouv,posBARRE-trouv),nullptr);
+    //std::cout << ter.substr (trouv,posBARRE-trouv) << '\n';
+    posBARRE= ter.find("|",posBARRE+1,1);
+
+    trouv= ter.find("camp",debDefUnite)+5;
+    if(ter.substr (trouv,posBARRE-trouv) == "A") isCampA= true;
+    else isCampA= false;
+    //std::cout << ter.substr (trouv,posBARRE-trouv) << '\n';
+
+
+    std::cout << "la[pv:" << pv << "|pos:" << pos << "isCampA:" << isCampA << "]" << '\n';
+
+
+    if(nomUnite=="f") add<Fantassin>(isCampA, std::make_tuple(pv, pos));
+    else if(nomUnite=="a") add<Archer>(isCampA, std::make_tuple(pv, pos));
+    else if(nomUnite=="c") add<Catapulte>(isCampA, std::make_tuple(pv, pos));
+    else break;
+    posBARRE= ter.find("[",posCROCHET_OUVRANT+1,1);
+
   }
 }
 
@@ -75,14 +122,23 @@ void Terrain::afficheVictoire(){
 
 
 template <class U>
-void Terrain::add(bool isTourDeA, int inPos){
-  if(inPos==-1){
-    if(isTourDeA) inPos=0;
-    else inPos=taille-1;
+void Terrain::add(bool isCampA, std::tuple<int, int> pv_pos){
+  int pv= std::get<0>(pv_pos);
+  int pos= std::get<1>(pv_pos);
+  U* unit;
+
+  if(pos==-1){
+    if(isCampA) pos=0;
+    else pos=taille-1;
   }
 
-  U* unit= new U(isTourDeA, (isTourDeA?3:taille-1));
-  cases[inPos].set(unit);
+  if(pv<0){
+    unit= new U(isCampA, pos);
+  } else {
+    unit= new U(isCampA, pos, pv);
+  }
+
+  cases[pos].set(unit);
 }
 template <class U>
 bool Terrain::acheter(bool isTourDeA){
@@ -101,10 +157,10 @@ bool Terrain::acheter(bool isTourDeA){
   return false;
 }
 void Terrain::donnerArgent(bool isTourDeA, int montant){
-  std::cout << "inDonnerArgent" << '\n';
+  //std::cout << "inDonnerArgent" << '\n';
   if(isTourDeA) argentA+=montant;
   else argentB+=montant;
-  std::cout << "outDonnerArgent" << '\n';
+  //std::cout << "outDonnerArgent" << '\n';
 }
 
 

@@ -8,17 +8,21 @@
   return Tour(u.isCampA, u.pos, u.pv);
 }*/
 
+std::string Tour::to_string(){
+  return "T["+Unite::to_string()+"]";
+}
+
 void Tour::afficheCarac(){
-  std::cout<<"T:";
+  std::cout<<"T";
   Unite::afficheCarac(prix, att, portee);
 }
 void Tour::afficheEtat(){
-  std::cout<<"T:";
+  std::cout<<"T";
   Unite::afficheEtat();
 
 }
 void Tour::affiche(){
-  std::cout<<"T:[";
+  std::cout<<"T[";
   Unite::afficheCarac(prix, att, portee);
   std::cout<<"|";
   Unite::afficheEtat();

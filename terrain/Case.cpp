@@ -21,13 +21,15 @@ void Case::print(int i) const{
   }
 }
 
-char Case::contenueCase() const{
+std::string Case::contenueCase() const{
   if(contenue!=nullptr) {
-    if(contenue->getInstance()=="Fantassin") return 'f';
+    std::cout << contenue->to_string() << '\n';
+    return contenue->to_string();
+    /*if(contenue->getInstance()=="Fantassin") return 'f';
     else if(contenue->getInstance()=="Archer") return 'a';
-    else if(contenue->getInstance()=="Catapulte") return 'c';
+    else if(contenue->getInstance()=="Catapulte") return 'c';*/
   }
-  return '_';
+  return "_";
 }
 
 
