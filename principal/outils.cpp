@@ -28,7 +28,7 @@ std::string into_string(const int i, int nbChiffre= 4, bool invers= false){
   return res+std::to_string(i);
 }
 
-char getEntree(std::vector<char> listeEntresPermises){
+char getEntree(std::vector<char> listeEntresPermises, bool include=true){
   std::string entre;
 
   do{
@@ -40,13 +40,18 @@ char getEntree(std::vector<char> listeEntresPermises){
 
     if(!entre.empty()){
       for(char cl : listeEntresPermises){//size_t i=0; i<listeEntresPermises.size(); i++){
-        if(entre.front()=='q' || entre.front()==cl)//listeEntresPermises.at(i))
+        if(entre.front()=='q' || ((entre.front()==cl) ^ !include))//listeEntresPermises.at(i))
           return entre.front();
       }
     }
   }while(true);
 
   return 'q';
+}
+
+std::string getNonValable(){
+  //std::cout << getEntree({'\n',' ','\\'}, false) << '\n';
+  return "";
 }
 
 #endif

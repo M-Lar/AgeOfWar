@@ -16,27 +16,34 @@ private:
   int taille;
   int vieBg;
   int vieBd;*/
-  int taille= 12;
+  int taille;//= 12;
   Tour TourA= Tour(true,0);
   Tour TourB= Tour(false,taille-1, 100);
-  int argentA=8;
-  int argentB=8;
+  int argentA;//=8;
+  int argentB;//=8;
 
 public:
-  Terrain(int t);
+  //Terrain(){ cases.resize(taille); }
+  Terrain(int t=12, int pvTour=100, int argent=8);
   ~Terrain();
 
   int getTaille(){return taille;}
   int getArgentA(){return argentA;}
   int getArgentB(){return argentB;}
+  int getPvA(){return TourA.getPv();}
+  int getPvB(){return TourB.getPv();}
 
   void affiche(int nbLi);
 
 //protected:
+  std::string getTerrain();
+  void reset(int t, int pvA, int pvB, int aA, int aB, std::string ter="");
+
+
   template <class U>
-  void add(bool isTourDeA);
+  void add(bool isTourDeA, int inPos=-1);
   template <class U>
-  bool achat(bool isTourDeA);
+  bool acheter(bool isTourDeA);
   void donnerArgent(bool isTourDeA, int montant=8);
   void payer(int *budjet, int prix){ (*budjet)-=prix; }
 

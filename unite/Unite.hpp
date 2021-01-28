@@ -37,7 +37,6 @@ public:
 
 
   virtual std::string getInstance(){return "Unite";}
-  //virtual <class U> getInstance2(){return <Unite>;}
   int getPv(){return pv;}
   int getPos(){return pos;}
   virtual std::pair<int,int> getPortee()=0;

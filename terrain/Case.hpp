@@ -14,6 +14,7 @@ public:
   Case(){contenue=nullptr;}
   ~Case();
   void print(int i) const;
+  char contenueCase() const;
 
   void set(Unite* u) {if(contenue==nullptr) contenue=u;}
   Unite* get(){ return contenue; }

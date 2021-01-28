@@ -1,0 +1,1 @@
+ taille:12, pvA:91, pvB:100, aA:104, aB:92, mTJ:100, nT:13, isTA:0, vsBot:0, ter:_a__________

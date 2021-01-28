@@ -10,16 +10,22 @@
 
 class Jeu : public Terrain{
 private:
-  bool isTourA=true;
-  int maxTourDeJeu;
+  int maxTourDeJeu;//=100;
+  int numTourCourant=1;
+  bool isTourA=false;
   bool bot=false;
 
+protected:
+  void reset(int mTJ, int nT, bool isTA, bool vsBot, int t, int pvA, int pvB, int aA, int aB, std::string ter);
+
 public:
-  Jeu(int mTJ): Terrain(12){ Jeu::maxTourDeJeu=mTJ; }
+  //Jeu(): Terrain(){}
+  Jeu(int mTJ=100, int t=12, int pvTour=100, int argent=8): Terrain(t, pvTour, argent){ Jeu::maxTourDeJeu=mTJ; }
+
   ~Jeu(){}
 
   void affiche();
-  void init();
+  bool init();
 
   bool achatUnite(char u);
   bool achatUnite();

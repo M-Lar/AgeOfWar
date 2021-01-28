@@ -38,15 +38,13 @@ void test1(){
 }
 
 void test2(){
-  Jeu jeux(100);
+  Jeu jeux;
   jeux.jouer();
 }
 
 
 int main(){
-  //test1();
   test2();
 
-  //system("clear");
   return 0;
 }

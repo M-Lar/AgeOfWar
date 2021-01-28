@@ -7,7 +7,8 @@ void Case::destruct(){
   if(contenue!=nullptr) delete contenue;
 }
 Case::~Case(){
-  destruct();
+  //destruct();
+  delete contenue;
 }
 
 void Case::print(int i) const{
@@ -18,6 +19,15 @@ void Case::print(int i) const{
     if(i==0) std::cout<<" __ ";
     else std::cout<<"    ";
   }
+}
+
+char Case::contenueCase() const{
+  if(contenue!=nullptr) {
+    if(contenue->getInstance()=="Fantassin") return 'f';
+    else if(contenue->getInstance()=="Archer") return 'a';
+    else if(contenue->getInstance()=="Catapulte") return 'c';
+  }
+  return '_';
 }
 
 

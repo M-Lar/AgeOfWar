@@ -6,13 +6,53 @@
 #include <chrono>
 #include <thread>
 
-Terrain::Terrain(int t){
+Terrain::Terrain(int t, int pvTour, int argent){
+  if(t<4) {
+    std::cerr << "Taille terrain trop petite" << '\n';
+    t=4;
+  }
   taille=t;
   cases.resize(taille);
-  //TourA= Tour(true,0);
-  //TourB= Tour(false,taille-1, 100);//00);
+
+  if(pvTour<1){
+    pvTour= 2;
+    std::cout << "Point de vie des Tours trop faible" << '\n';
+  }
+  TourA= Tour(true, 0, pvTour);
+  TourB= Tour(false, taille-1, pvTour);
+
+  argentA= argent;
+  argentB= argent;
+  //argent=argent;
 }
 Terrain::~Terrain(){}
+
+std::string Terrain::getTerrain(){
+  std::string res= "";
+  for(int i=0; i<taille; i++){ res+=cases.at(i).contenueCase();}
+  return res;
+}
+void Terrain::reset(int t, int pvA, int pvB, int aA, int aB, std::string ter){
+  if(t<4) {
+    std::cerr << "Taille terrain trop petite" << '\n';
+    t=4;
+  }
+  taille=t;
+  cases.resize(taille);
+
+  TourA= Tour(true, 0, pvA);
+  TourB= Tour(false, taille-1, pvB);
+
+  argentA= aA;
+  argentB= aB;
+
+  for(int i=0; i<taille; i++){
+    char temp= ter.substr(i,1).front();
+    if(temp=='f') add<Fantassin>(i);
+    else if(temp=='a') add<Archer>(i);
+    else if(temp=='c') add<Catapulte>(i);
+  }
+}
 
 void Terrain::affiche(int nbLi=4){
   //std::this_thread::sleep_for(std::chrono::milliseconds(45));
@@ -35,16 +75,17 @@ void Terrain::afficheVictoire(){
 
 
 template <class U>
-void Terrain::add(bool isTourDeA){
-  int dep;
-  if(isTourDeA) dep=0;
-  else dep=taille-1;
+void Terrain::add(bool isTourDeA, int inPos){
+  if(inPos==-1){
+    if(isTourDeA) inPos=0;
+    else inPos=taille-1;
+  }
 
   U* unit= new U(isTourDeA, (isTourDeA?3:taille-1));
-  cases[dep].set(unit);
+  cases[inPos].set(unit);
 }
 template <class U>
-bool Terrain::achat(bool isTourDeA){
+bool Terrain::acheter(bool isTourDeA){
   U* unit= new U(isTourDeA, (isTourDeA?0:getTaille()-1));
   auto prixU= unit->getPrix();
   int *budjet;
@@ -60,8 +101,10 @@ bool Terrain::achat(bool isTourDeA){
   return false;
 }
 void Terrain::donnerArgent(bool isTourDeA, int montant){
+  std::cout << "inDonnerArgent" << '\n';
   if(isTourDeA) argentA+=montant;
   else argentB+=montant;
+  std::cout << "outDonnerArgent" << '\n';
 }
 
 
