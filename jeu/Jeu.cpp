@@ -3,7 +3,7 @@
 #include <fstream>
 
 #include <chrono>
-#include <thread>
+//#include <thread>
 
 #include "Jeu.hpp"
 
@@ -64,8 +64,6 @@ bool Jeu::init(){
     else if(c=='q') return false;
   }
 
-  //std::string clav; std::cin >> clav;
-  //std::this_thread::sleep_for(std::chrono::milliseconds(3000));
   return true;
 }
 
@@ -81,9 +79,9 @@ bool Jeu::achatUnite(){
 
   char c;
 
+
   if(bot && !isTourA) c= decisionBot();
   else    c= getEntree({'f','c','a','p','s'});
-
 
 
   if(c=='q') return false;
@@ -102,7 +100,6 @@ void Jeu::jouer(){
     return;
   }
 
-  //int tourDeJeu=1;
   bool victoire=false;
   bool jeuEnCour=true;
   while(jeuEnCour && numTourCourant<=maxTourDeJeu){
@@ -133,7 +130,10 @@ void Jeu::jouer(){
   }
   else if(victoire){
     for(int i=0; i<(int)((getTaille()*4+6*2) -14)/2; i++) {std::cout << " ";}
-    std::cout << colorYellow << "Bravo " << (isTourA?"Joueur 1":"Joueur 2") << colorReset << '\n';
+    std::cout << colorYellow << "Bravo ";
+    if(isTourA) std::cout << colorCyan << "Joueur 1";
+    else        std::cout << colorMagenta << "Joueur 2";
+    std::cout << colorReset << '\n';
   }
 
   std::cout << '\n' << "Bonne journée" << '\n';
@@ -152,12 +152,10 @@ char Jeu::decisionBot(){
 }
 
 void Jeu::save(){
-//*
     std::string const fichierSauvegarde("../jeu/save.txt");
     std::ofstream flux(fichierSauvegarde.c_str());
 
     if(flux) {
-        //flux << getNonValable();
 
         //donnees init Terrain
         flux << " taille:" << getTaille(); //taille
@@ -178,17 +176,12 @@ void Jeu::save(){
     } else {
       std::cout << "ERREUR: Impossible d'ouvrir le fichier." << std::endl;
     }
-    //std::this_thread::sleep_for(std::chrono::milliseconds(300));
-//*/
 }
 void Jeu::load(){
-//*
    std::ifstream fichier("../jeu/save.txt");
 
    if(fichier) {
-      //L'ouverture s'est bien passée, on peut donc lire
-
-      std::string ligne; //Une variable pour stocker les lignes lues
+      std::string ligne;
       getline(fichier, ligne);
 
       /*
@@ -202,23 +195,8 @@ void Jeu::load(){
       }
       */
 
-      /*
-      //donnees init Terrain
-      flux << " taille:" << getTaille(); //taille
-      flux << " pvA:" << getPvA() << " pvB:" << getPvB(); //pv tour A et B
-      flux << " aA:" << getArgentA() << " aB:" << getArgentB(); //argentA argentB
-
-      //donnees init Jeu
-      flux << " mTJ:" << maxTourDeJeu;
-      flux << " nT:" << numTourCourant;
-      flux << " isTA:" << isTourA;
-      flux << " vsBot:" << bot;
-
-      //Etat Terrain
-      flux << getTerrain();
-      */
       //Jeu(int mTJ=maxTourDeJeu, int t=12, int pvTour=100, int argent=8): Terrain(t, pvTour, argent){ Jeu::maxTourDeJeu=mTJ; }
-      {
+      {//lecture ligne
 
         size_t posV= ligne.find(",");
         size_t trouv= ligne.find("taille")+7;
@@ -264,20 +242,14 @@ void Jeu::load(){
         int nbUC= std::stoi(ligne.substr (trouv),nullptr);
 
 
-        std::cout << "ligne:" << ligne << '\n';
-        std::cout << "ligne: taille:" << t << ", pvA:" << pvA << ", pvB:" << pvB << ", aA:" << aA << ", aB:" << aB << ", mTJ:" << mTJ << ", nT:" << nT << ", isTA:" << isTA << ", vsBot:" << vsBot << ", ter:" << ter << ", nbUC:" << nbUC << '\n';
-        //100 100 100 100 100 100 0 0 0 0 100 22 14 100 3 1 0 __f________
-        //std::cout << "fin" << '\n';
+        //std::cout << "ligne:" << ligne << '\n';
+        //std::cout << "ligne: taille:" << t << ", pvA:" << pvA << ", pvB:" << pvB << ", aA:" << aA << ", aB:" << aB << ", mTJ:" << mTJ << ", nT:" << nT << ", isTA:" << isTA << ", vsBot:" << vsBot << ", ter:" << ter << ", nbUC:" << nbUC << '\n';
 
         reset(mTJ, nT, isTA, vsBot, t, pvA, pvB, aA, aB, ter, nbUC);
       }
    } else {
       std::cout << "ERREUR: Impossible d'ouvrir le fichier en lecture." << std::endl;
    }
-   //std::this_thread::sleep_for(std::chrono::milliseconds(30000));
-   std::string test; std::cin >> test;
-//*/
-
 }
 
 void Jeu::reset(int mTJ, int nT, bool isTA, bool vsBot, int t, int pvA, int pvB, int aA, int aB, std::string ter, int nbUC){

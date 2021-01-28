@@ -35,7 +35,6 @@ std::string Terrain::getTerrain(int &nbUniteCree){
   for(int i=0; i<taille; i++){
     res+=cases.at(i).contenueCase();
     if(!cases.at(i).estVide()) nbUniteCree++;
-    std::cout << "nvu:" << nbUniteCree << '\n';
   }
   return res;
 }
@@ -57,7 +56,6 @@ void Terrain::reset(int t, int pvA, int pvB, int aA, int aB, std::tuple<std::str
 
   std::string ter= std::get<0>(ter_nbUniteCree);
   int nbUniteCree= std::get<1>(ter_nbUniteCree);;
-  std::cout << "ter:" << ter << "\n\n";
 
   std::string nomUnite;
   int pv, pos;
@@ -69,7 +67,6 @@ void Terrain::reset(int t, int pvA, int pvB, int aA, int aB, std::tuple<std::str
   size_t posCROCHET_FERMANT= ter.find("]");
   size_t trouv;
 
-  std::cout << "nbUniteCree:" << nbUniteCree << '\n';
   for (int i=0; i<nbUniteCree; i++){
     debDefUnite= posCROCHET_OUVRANT-1;
 
@@ -86,10 +83,9 @@ void Terrain::reset(int t, int pvA, int pvB, int aA, int aB, std::tuple<std::str
     trouv= ter.find("camp",debDefUnite)+5;
     isCampA= std::stoi(ter.substr (trouv,posBARRE-trouv),nullptr);
 
-    std::cout << nomUnite << "[pv:" << pv << "|pos:" << pos << "|isCampA:" << isCampA << "]" << '\n';
+    //std::cout << nomUnite << "[pv:" << pv << "|pos:" << pos << "|isCampA:" << isCampA << "]" << '\n';
 
 
-    std::cout << "nomU:" << nomUnite <<":" << '\n';
     if(nomUnite=="F" || nomUnite=="f") add<Fantassin>(isCampA, std::make_tuple(pv, pos));
     else if(nomUnite=="A" || nomUnite=="a") add<Archer>(isCampA, std::make_tuple(pv, pos));
     else if(nomUnite=="C" || nomUnite=="c") add<Catapulte>(isCampA, std::make_tuple(pv, pos));
@@ -147,7 +143,7 @@ bool Terrain::acheter(bool isTourDeA){
   if(isTourDeA) budjet=&argentA;
   else budjet=&argentB;
 
-  bool libre= cases.at(isTourDeA?0:1).get()==nullptr;
+  bool libre= cases.at(isTourDeA?0:taille-1).estVide();
   if((*budjet)>=prixU && libre){
     payer(budjet, prixU);
     add<U>(isTourDeA);
@@ -156,10 +152,8 @@ bool Terrain::acheter(bool isTourDeA){
   return false;
 }
 void Terrain::donnerArgent(bool isTourDeA, int montant){
-  //std::cout << "inDonnerArgent" << '\n';
   if(isTourDeA) argentA+=montant;
   else argentB+=montant;
-  //std::cout << "outDonnerArgent" << '\n';
 }
 
 
@@ -227,11 +221,9 @@ void Terrain::deplacement(bool sensAB, int i, bool expluCata){
   auto suiv=cases.at(i+sens).get();
 
 
-  //std::cout << "la ";
 
   if(uTemp!=nullptr && (!uTemp->getIsCampA() ^ sensAB) )
   if(suiv==nullptr && !(expluCata && (uTemp->getInstance()=="Catapulte"))){//!instanceof<Catapulte> (uTemp)){ //(std::is_base_of<Catapulte, typeid(uTemp).name()>::value)
-    //std::cout << "u:" << i << " s:" << i+sens << '\n';
     if(uTemp->getInstance()=="Catapulte"){std::cout << "cataDoitAvance" << '\n';}
     uTemp->Avancer();
     cases.at(i+sens) =cases.at(i);
@@ -245,11 +237,9 @@ bool Terrain::UniteABattaquer(Unite *uTemp,int i){
       for(int j=i+portee.first; (j<=i+portee.second && j<taille) ; j++){
         auto cible= cases.at(j).get();
         if(cible!=nullptr && !cible->getIsCampA()){
-          std::cout << "att" << '\n';
           if(!uTemp->getAsAction1() || uTemp->getInstance()=="Fantassin"){
             int isDead;
-                                                      //std::cout << "instance:" << uTemp->getInstance() << '\n';
-                                                      //instanceof<Catapulte> (uTemp)){
+
             if(uTemp->getInstance()=="Catapulte"){
               if(j+1<=taille && j+1<i+portee.second) {
                 auto cible2= cases.at(j+1).get();
@@ -283,8 +273,8 @@ bool Terrain::UniteABattaquer(Unite *uTemp,int i){
         } else if(j==taille-1){
           auto isDead= uTemp->Attaquer(&TourB);
 
-          //std::cout << "test" << '\n';
-          if(isDead) {/*std::cout << "tour dead" << '\n';*/ return true;}
+
+          if(isDead) {return true;}
           uTemp->setAsAction1(true);
           break;
 
@@ -304,8 +294,7 @@ bool Terrain::UniteBAattaquer(Unite *uTemp,int i){
         if(cible!=nullptr && cible->getIsCampA()){
           if(!uTemp->getAsAction1() || uTemp->getInstance()=="Fantassin"){
             int isDead;
-                                                      //std::cout << "instance:" << uTemp->getInstance() << '\n';
-                                                      //instanceof<Catapulte> (uTemp)){
+
             if(uTemp->getInstance()=="Catapulte"){
               if(j-1>=0 && j-1>i-portee.second) {
                 auto cible2= cases.at(j+1).get();
@@ -333,10 +322,8 @@ bool Terrain::UniteBAattaquer(Unite *uTemp,int i){
             break;
           }
         } else if(j==0){
-          std::cout << "caseAttTourAB" << '\n';
           auto isDead= uTemp->Attaquer(&TourA);
 
-          std::cout << "test" << '\n';
           if(isDead) {std::cout << "tour dead" << '\n'; return true;}
           uTemp->setAsAction1(true);
           break;
