@@ -3,7 +3,7 @@
 #include <fstream>
 
 #include <chrono>
-//#include <thread>
+#include <thread>
 
 #include "Jeu.hpp"
 
