@@ -237,53 +237,118 @@ bool Terrain::UniteABattaquer(Unite *uTemp,int i){
   if(uTemp!=nullptr) {
     auto portee= uTemp->getPortee();
     if(uTemp->getIsCampA()){
+
       for(int j=i+portee.first; (j<=i+portee.second && j<taille) ; j++){
         auto cible= cases.at(j).get();
+        int isDead;
+
         if(cible!=nullptr && !cible->getIsCampA()){
-          if(!uTemp->getAsAction1() || uTemp->getInstance()=="Fantassin"){
-            int isDead;
+          if(uTemp->getInstance()=="Catapulte"){
+            if(j==taille-1){
+              //attaque unite sur tour
+              isDead= uTemp->Attaquer(cible);
+              if(isDead) {
+                argentA+=isDead;
+                cases.at(j)= Case();
+              }
+              //attaque untite avant tour
+              auto cible2= cases.at(j-1).get();
 
-            if(uTemp->getInstance()=="Catapulte"){
-              if(j+1<=taille && j+1<i+portee.second) {
-                auto cible2= cases.at(j+1).get();
+              isDead= uTemp->Attaquer(cible2);
+              if(isDead) {
+                argentA+=isDead;
+                cases.at(j-1)= Case();
+              }
 
-                isDead= uTemp->Attaquer(cible2);
-                if(isDead) {
-                  argentA+=isDead;
-                  cases.at(j+1)= Case();
-                }
-              } else if(j==i+portee.second) {
-                auto cible2= cases.at(j-1).get();
+              //attaque Tour
+              isDead= uTemp->Attaquer(&TourB);
 
-                isDead= uTemp->Attaquer(cible2);
-                if(isDead) {
-                  argentA+=isDead;
-                  cases.at(j-1)= Case();
-                }
+              if(isDead) {return true;}
+            } else if (j==taille-2){
+              //attaque unite avant tour
+              isDead= uTemp->Attaquer(cible);
+              if(isDead) {
+                argentA+=isDead;
+                cases.at(j)= Case();
+              }
+              //attaque untite sur tour
+              auto cible2= cases.at(j+1).get();
+
+              isDead= uTemp->Attaquer(cible2);
+              if(isDead) {
+                argentA+=isDead;
+                cases.at(j+1)= Case();
+              }
+
+              //attaque Tour
+              isDead= uTemp->Attaquer(&TourB);
+
+            } else if (j==i+portee.second){
+              //attaque unite max portee
+              isDead= uTemp->Attaquer(cible);
+              if(isDead) {
+                argentA+=isDead;
+                cases.at(j)= Case();
+              }
+
+              //attaque untite avant
+              auto cible2= cases.at(j-1).get();
+
+              isDead= uTemp->Attaquer(cible2);
+              if(isDead) {
+                argentA+=isDead;
+                cases.at(j-1)= Case();
+              }
+            } else {
+
+              //attaque unite portee
+              isDead= uTemp->Attaquer(cible);
+              if(isDead) {
+                argentA+=isDead;
+                cases.at(j)= Case();
+              }
+
+              //attaque untite suivante
+              auto cible2= cases.at(j+1).get();
+
+              isDead= uTemp->Attaquer(cible2);
+              if(isDead) {
+                argentA+=isDead;
+                cases.at(j+1)= Case();
               }
             }
+
+          } else if(!uTemp->getAsAction1() || uTemp->getInstance()=="Fantassin"){
 
             isDead= uTemp->Attaquer(cible);
             if(isDead) {
               argentA+=isDead;
               cases.at(j)= Case();
             }
-
-
-            uTemp->setAsAction1(true);
-            break;
           }
+          uTemp->setAsAction1(true);
+          break;
         } else if(j==taille-1){
-          auto isDead= uTemp->Attaquer(&TourB);
 
+          if(uTemp->getInstance()=="Catapulte"){
+            //attaque unite avant tour
+            auto cible2= cases.at(j-1).get();
+
+            isDead= uTemp->Attaquer(cible2);
+            if(isDead) {
+              argentA+=isDead;
+              cases.at(j-1)= Case();
+            }
+          }
+
+          isDead= uTemp->Attaquer(&TourB);
 
           if(isDead) {return true;}
           uTemp->setAsAction1(true);
           break;
 
         }
-      }//endFor
-      //affiche(); //a afficher
+      }
     }
   }
   return false;
@@ -292,47 +357,117 @@ bool Terrain::UniteBAattaquer(Unite *uTemp,int i){
   if(uTemp!=nullptr) {
     auto portee= uTemp->getPortee();
     if(!uTemp->getIsCampA()){
+
       for(int j=i-portee.first; (j>=i-portee.second && j>=0) ; j--){
         auto cible= cases.at(j).get();
+        int isDead;
+
         if(cible!=nullptr && cible->getIsCampA()){
-          if(!uTemp->getAsAction1() || uTemp->getInstance()=="Fantassin"){
-            int isDead;
 
-            if(uTemp->getInstance()=="Catapulte"){
-              if(j-1>=0 && j-1>i-portee.second) {
-                auto cible2= cases.at(j+1).get();
+          if(uTemp->getInstance()=="Catapulte"){
+            if(j==0){
+              //attaque unite sur tour
+              isDead= uTemp->Attaquer(cible);
+              if(isDead) {
+                argentA+=isDead;
+                cases.at(j)= Case();
+              }
+              //attaque untite apres tour
+              auto cible2= cases.at(j+1).get();
 
-                isDead= uTemp->Attaquer(cible2);
-                if(isDead) {
-                  argentB+=isDead;
-                  cases.at(j-1)= Case();
-                }
-              } else if(j==i-portee.second) {
-                auto cible2= cases.at(j+1).get();
+              isDead= uTemp->Attaquer(cible2);
+              if(isDead) {
+                argentA+=isDead;
+                cases.at(j+1)= Case();
+              }
 
-                isDead= uTemp->Attaquer(cible2);
-                if(isDead) cases.at(j+1)= Case();
+              //attaque Tour
+              isDead= uTemp->Attaquer(&TourA);
+
+              if(isDead) {return true;}
+            } else if (j==1){
+              //attaque unite apres tour
+              isDead= uTemp->Attaquer(cible);
+              if(isDead) {
+                argentA+=isDead;
+                cases.at(j)= Case();
+              }
+              //attaque untite sur tour
+              auto cible2= cases.at(j-1).get();
+
+              isDead= uTemp->Attaquer(cible2);
+              if(isDead) {
+                argentA+=isDead;
+                cases.at(j-1)= Case();
+              }
+
+              //attaque Tour
+              isDead= uTemp->Attaquer(&TourA);
+
+            } else if (j==i-portee.second){
+              //attaque unite max portee
+              isDead= uTemp->Attaquer(cible);
+              if(isDead) {
+                argentA+=isDead;
+                cases.at(j)= Case();
+              }
+
+              //attaque untite avant
+              auto cible2= cases.at(j+1).get();
+
+              isDead= uTemp->Attaquer(cible2);
+              if(isDead) {
+                argentA+=isDead;
+                cases.at(j+1)= Case();
+              }
+            } else {
+
+              //attaque unite portee
+              isDead= uTemp->Attaquer(cible);
+              if(isDead) {
+                argentA+=isDead;
+                cases.at(j)= Case();
+              }
+
+              //attaque untite suivante
+              auto cible2= cases.at(j-1).get();
+
+              isDead= uTemp->Attaquer(cible2);
+              if(isDead) {
+                argentA+=isDead;
+                cases.at(j-1)= Case();
               }
             }
+
+          } else if(!uTemp->getAsAction1() || uTemp->getInstance()=="Fantassin"){
 
             isDead= uTemp->Attaquer(cible);
             if(isDead) {
               argentB+=isDead;
               cases.at(j)= Case();
             }
-
-            uTemp->setAsAction1(true);
-            break;
           }
+          uTemp->setAsAction1(true);
+          break;
         } else if(j==0){
-          auto isDead= uTemp->Attaquer(&TourA);
+          if(uTemp->getInstance()=="Catapulte"){
+            auto cible2= cases.at(j+1).get();
+
+            isDead= uTemp->Attaquer(cible2);
+            if(isDead) {
+              argentA+=isDead;
+              cases.at(j+1)= Case();
+            }
+          }
+
+
+          isDead= uTemp->Attaquer(&TourA);
 
           if(isDead) {std::cout << "tour dead" << '\n'; return true;}
           uTemp->setAsAction1(true);
           break;
         }
-      }//endFor
-      //affiche(); //a afficher
+      }
     }
   }
   return false;

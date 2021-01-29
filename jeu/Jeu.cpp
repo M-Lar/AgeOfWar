@@ -114,7 +114,12 @@ void Jeu::jouer(){
   bool victoire=false;
   bool jeuEnCour=true;
 
-  if(asLoad) {affiche();jeuEnCour= achatUnite();}
+  if(asLoad) {
+    affiche();
+    jeuEnCour= achatUnite(); affiche();
+    if(!isTourA) numTourCourant++;
+    isTourA= !isTourA;
+  }
   while(jeuEnCour && numTourCourant<=maxTourDeJeu){
 
     donnerArgent(isTourA);
