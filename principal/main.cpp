@@ -2,7 +2,7 @@
 #include <cstdlib>
 
 #include "include.h"
-
+/*
 void test1(){
   Fantassin f1= Fantassin(true,3);
   f1.affiche();
@@ -30,13 +30,13 @@ void test1(){
   }
   //T.affiche();
   std::cout << "survie2" << '\n';
-  /*T.add<Fantassin>(true);
+  T.add<Fantassin>(true);
   T.tourAB();
-  T.affiche();*/
+  T.affiche();*
 
   //std::cout << "5gfds" << std::flush << '\n';
 }
-
+*/
 void test2(){
   Jeu jeux;
   jeux.jouer();

@@ -35,7 +35,7 @@ public:
 
   void affiche(int nbLi);
 
-//protected:
+protected:
   std::string getTerrain(int &nbUniteCree);
   void reset(int t, int pvA, int pvB, int aA, int aB, std::pair<std::string, int> ter_nbUniteCree= std::make_pair("", 0));
 
