@@ -47,16 +47,6 @@ bool Jeu::init(bool &asLoad){
 
   char c;
 
-
-  {//multi
-    std::cout << "Vouler vous jouer en Multijoueur ?" << "(y/n)";
-    std::cout << '\n';
-    c= getEntree({'y','n'});
-
-    if(c=='n') bot=true;
-    else if(c=='q') return false;
-  }
-
   {//sauvegarde
     std::cout << "Vouler vous charger une sauvegarde ?" << "(y/n)";
     std::cout << '\n';
@@ -68,6 +58,17 @@ bool Jeu::init(bool &asLoad){
       return true;}
     else if(c=='q') return false;
   }
+
+  {//multi
+    std::cout << "Vouler vous jouer en Multijoueur ?" << "(y/n)";
+    std::cout << '\n';
+    c= getEntree({'y','n'});
+
+    if(c=='n') bot=true;
+    else if(c=='q') return false;
+  }
+
+
 
 
 
@@ -115,8 +116,6 @@ void Jeu::jouer(){
 
   if(asLoad) {affiche();jeuEnCour= achatUnite();}
   while(jeuEnCour && numTourCourant<=maxTourDeJeu){
-    isTourA= !isTourA;
-    if(!isTourA) numTourCourant++;
 
     donnerArgent(isTourA);
 
@@ -129,6 +128,9 @@ void Jeu::jouer(){
 
     jeuEnCour= achatUnite(); affiche();
 
+
+    if(!isTourA) numTourCourant++;
+    isTourA= !isTourA;
   }
   affiche();
 

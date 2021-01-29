@@ -38,8 +38,8 @@ void test1(){
 }
 */
 void test2(){
-  Jeu jeux;
-  //Jeu jeux(100, 4, 100, 8); //maxTourJeu Taille pvTour argent
+  //Jeu jeux;
+  Jeu jeux(100, 2, 100, 8); //maxTourJeu Taille pvTour argent
   jeux.jouer();
 }
 
