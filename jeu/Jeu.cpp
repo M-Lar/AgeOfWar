@@ -39,13 +39,15 @@ void Jeu::affiche(){
 //affiche Terrain
   this->Terrain::affiche();
 }
-bool Jeu::init(){
+bool Jeu::init(bool &asLoad){
   std::system("clear");
   std::cout << '\n';
   for(int i=0; i<(int)((getTaille()*4+6*2) -31)/2; i++){std::cout << " ";}
   std::cout << "-- Bienvenue dans Age Of War --" << "\n\n";
 
   char c;
+
+
   {//multi
     std::cout << "Vouler vous jouer en Multijoueur ?" << "(y/n)";
     std::cout << '\n';
@@ -56,13 +58,20 @@ bool Jeu::init(){
   }
 
   {//sauvegarde
-    std::cout << "Vouler vous charger une sauvgarde ?" << "(y/n)";
+    std::cout << "Vouler vous charger une sauvegarde ?" << "(y/n)";
     std::cout << '\n';
     c= getEntree({'y','n'});
 
-    if(c=='y') load();
+    if(c=='y') {
+      load();
+      asLoad=true;
+      return true;}
     else if(c=='q') return false;
   }
+
+
+
+
 
   return true;
 }
@@ -95,13 +104,16 @@ bool Jeu::achatUnite(){
 
 
 void Jeu::jouer(){
-  if(!init()) {
+  bool asLoad;
+  if(!init(asLoad)) {
     std::cout << "Partie interrompue" << '\n';
     return;
   }
 
   bool victoire=false;
   bool jeuEnCour=true;
+
+  if(asLoad) {affiche();jeuEnCour= achatUnite();}
   while(jeuEnCour && numTourCourant<=maxTourDeJeu){
     isTourA= !isTourA;
     if(!isTourA) numTourCourant++;
@@ -121,18 +133,17 @@ void Jeu::jouer(){
   affiche();
 
   if(!jeuEnCour){
-    std::cout << "Vouler vous sauvgarder ?" << "(y/n)";
+    std::cout << "Vouler vous sauvegarder ?" << "(y/n)";
     std::cout << '\n';
     auto c= getEntree({'y','n'});
 
-    isTourA= !isTourA;
     if(c=='y') save();
   }
   else if(victoire){
     for(int i=0; i<(int)((getTaille()*4+6*2) -14)/2; i++) {std::cout << " ";}
-    std::cout << colorYellow << "Bravo ";
-    if(isTourA) std::cout << colorCyan << "Joueur 1";
-    else        std::cout << colorMagenta << "Joueur 2";
+    std::cout << colorYellow << "Bravo Joueur ";
+    if(isTourA) std::cout << colorCyan << "1";
+    else        std::cout << colorMagenta << "2";
     std::cout << colorReset << '\n';
   }
 

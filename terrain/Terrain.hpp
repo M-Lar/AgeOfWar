@@ -39,7 +39,6 @@ protected:
   std::string getTerrain(int &nbUniteCree);
   void reset(int t, int pvA, int pvB, int aA, int aB, std::pair<std::string, int> ter_nbUniteCree= std::make_pair("", 0));
 
-
   template <class U>
   void add(bool isTourDeA, std::pair<int, int> pv_pos= std::make_pair(-1,-1));
   template <class U>

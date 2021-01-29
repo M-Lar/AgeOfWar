@@ -12,7 +12,7 @@ class Jeu : public Terrain{
 private:
   int maxTourDeJeu;//=100;
   int numTourCourant=1;
-  bool isTourA=false;
+  bool isTourA=true;
   bool bot=false;
 
 protected:
@@ -25,7 +25,7 @@ public:
   ~Jeu(){}
 
   void affiche();
-  bool init();
+  bool init(bool &asLoad);
 
   bool achatUnite(char u);
   bool achatUnite();
