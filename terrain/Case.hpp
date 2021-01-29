@@ -1,7 +1,7 @@
 #include <iostream>
 #include <cstdlib>
 
-#include "allUnite.h"
+#include "../unite/allUnite.h"
 
 #ifndef case
 #define case

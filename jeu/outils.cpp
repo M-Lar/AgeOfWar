@@ -6,21 +6,12 @@
 #include <algorithm>
 
 #include <chrono>
-//#include <thread>
-#include <tuple>
-//#include <boost/algorithm/string.hpp>
+
 
 
 #ifndef outils
 #define outils
-/*
-template<class U, class S>
-bool instanceof(const S*) {
-  //std::cout << "inInstOf" << '\n';
-  //std::cout << U.name() << "|" << S.name() << '\n';
-   return std::is_base_of<U, S>::value;
-}
-*/
+
 
 std::string into_string(const int i, int nbChiffre= 4, bool invers= false){
   std::string res="";
@@ -55,7 +46,7 @@ char getEntree(std::vector<char> listeEntresPermises, bool include=true){
   return 'q';
 }
 
-std::string getNonValable(){
+std::string getNomValable(){
   //std::cout << getEntree({'\n',' ','\\'}, false) << '\n';
   return "";
 }

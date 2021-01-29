@@ -1,8 +1,11 @@
 #include <iostream>
 #include <cstdlib>
 
+#include "Unite.hpp"
+
 #ifndef tour
 #define tour
+
 class Tour : public Unite{
 private:
   static int prix;
@@ -14,7 +17,6 @@ public:
   Tour(bool isCampA, int pos, int pv): Unite(isCampA, pos, pv){};
   ~Tour(){};
 
-  //Tour copy(Tour &u);
 
   std::string to_string();
 
@@ -26,8 +28,7 @@ public:
   void print(int i, Unite* u);
 
   std::string getInstance(){return "Tour";}
-  //<class U> getInstance2(){return <Tour>;}
-  std::pair<int,int> getPortee(){return portee;}//portee;}
+  std::pair<int,int> getPortee(){return portee;}
   int getPrix(){return prix;}
 
   int Attaquer(Unite* enemie){return (Unite::Attaquer(enemie, att));}

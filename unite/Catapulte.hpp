@@ -18,7 +18,6 @@ public:
   Catapulte(bool isCampA, int pos, int pv):  Unite(isCampA, pos, pv){};
   ~Catapulte(){};
 
-  //Catapulte copy(Catapulte &u);
 
   std::string to_string();
 
@@ -29,12 +28,10 @@ public:
   void print(int i);
 
   std::string getInstance(){return "Catapulte";}
-  //<class U> getInstance2(){return <Catapulte>;}
   std::pair<int,int> getPortee(){return portee;}
   int getPrix(){return prix;};
 
   int Attaquer(Unite* cible);
-  //std::pair<bool,bool> Attaquer(Unite* enemie1, Unite* enemie2);
   bool Avancer();
 
 

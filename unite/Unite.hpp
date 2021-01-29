@@ -1,7 +1,7 @@
 #include <iostream>
 #include <cstdlib>
 
-#include "../principal/outils.cpp"
+#include "../jeu/outils.cpp"
 
 
 
@@ -11,8 +11,8 @@
 //enum uniteType { Tour = 1, Fantassin, Archer, Catapulte, Super-soldat};
 
 class Unite{
-//private:
-protected:
+private:
+//protected:
 
   int pv;
 

@@ -27,8 +27,8 @@ void Catapulte::affiche(){
 }
 
 void Catapulte::print(int i){
-  if(i==-1) std::cout<< colorGreen<< into_string(pv,3)+" ";
-  else if(isCampA) {
+  if(i==-1) std::cout<< colorGreen<< into_string(getPv(),3)+" ";
+  else if(getIsCampA()) {
     std::cout << colorCyan;
     if(i==2)      std::cout<< "0\\  ";
     else if(i==1) std::cout<< "  \\ ";
@@ -45,16 +45,12 @@ void Catapulte::print(int i){
 }
 
 int Catapulte::Attaquer(Unite* cible){
-  //return (Unite::Attaquer(enemie, att));
   if(cible==nullptr) return 0;
   return (cible->loselife(att));
 }
-/*
-std::pair<bool,bool> Catapulte::Attaquer(Unite* cible1, Unite* cible2){
-  return make_pair(cible1->loselife(att), cible2->loselife(att));
-}*/
+
 
 bool Catapulte::Avancer(){
-  if(!asAction1) return Unite::Avancer();
+  if(!getAsAction1()) return Unite::Avancer();
   return false;
 }

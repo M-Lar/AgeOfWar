@@ -41,11 +41,15 @@ void Jeu::affiche(){
 }
 bool Jeu::init(bool &asLoad){
   std::system("clear");
+
+
+
   std::cout << '\n';
-  for(int i=0; i<(int)((getTaille()*4+6*2) -31)/2; i++){std::cout << " ";}
+  for(int i=0; i<(int)((getTaille()*4+6*2) -31)/2; i++){std::cout << " ";} //la taille du terrain  moins la taille de la string à afficher (/2 pour le mettre plus ou moins au milieu)
   std::cout << "-- Bienvenue dans Age Of War --" << "\n\n";
 
   char c;
+
 
   {//sauvegarde
     std::cout << "Vouler vous charger une sauvegarde ?" << "(y/n)";
@@ -67,11 +71,6 @@ bool Jeu::init(bool &asLoad){
     if(c=='n') bot=true;
     else if(c=='q') return false;
   }
-
-
-
-
-
 
 
   return true;
@@ -114,16 +113,22 @@ void Jeu::jouer(){
   bool victoire=false;
   bool jeuEnCour=true;
 
+
   if(asLoad) {
     affiche();
     jeuEnCour= achatUnite(); affiche();
-    if(!isTourA) numTourCourant++;
-    isTourA= !isTourA;
+    if(jeuEnCour){
+      if(!isTourA) numTourCourant++;
+      isTourA= !isTourA;
+    }
   }
+
   while(jeuEnCour && numTourCourant<=maxTourDeJeu){
+    isTourA= !isTourA;
+    if(!isTourA) numTourCourant++;
+
 
     donnerArgent(isTourA);
-
 
     victoire=victoire|| Action1(isTourA); affiche();
                         Action2(isTourA); affiche();
@@ -133,9 +138,6 @@ void Jeu::jouer(){
 
     jeuEnCour= achatUnite(); affiche();
 
-
-    if(!isTourA) numTourCourant++;
-    isTourA= !isTourA;
   }
   affiche();
 
@@ -144,9 +146,11 @@ void Jeu::jouer(){
     std::cout << '\n';
     auto c= getEntree({'y','n'});
 
+    //isTourA= !isTourA;
     if(c=='y') save();
   }
   else if(victoire){
+
     for(int i=0; i<(int)((getTaille()*4+6*2) -14)/2; i++) {std::cout << " ";}
     std::cout << colorYellow << "Bravo Joueur ";
     if(isTourA) std::cout << colorCyan << "1";
@@ -154,8 +158,8 @@ void Jeu::jouer(){
     std::cout << colorReset << '\n';
   }
 
-  std::cout << '\n' << "Bonne journée" << '\n';
 
+  std::cout << '\n' << "Bonne journée" << '\n';
 }
 
 char Jeu::decisionBot(){
@@ -202,9 +206,11 @@ void Jeu::load(){
       std::string ligne;
       getline(fichier, ligne);
 
+      //il sagit ici d'un debut de code ayant pour de permettre la lecture de plusieurs sauvegarde dans le meme fichier
+
       /*
       bool bonneLigne=false;
-      std::string nomSave= nonValable();
+      std::string nomSave= nomValable();
       while(getline(fichier, ligne) && !bonneLigne){
          auto nomLigne = ligne.substr (0,ligne.find(" "));
 
@@ -213,7 +219,6 @@ void Jeu::load(){
       }
       */
 
-      //Jeu(int mTJ=maxTourDeJeu, int t=12, int pvTour=100, int argent=8): Terrain(t, pvTour, argent){ Jeu::maxTourDeJeu=mTJ; }
       {//lecture ligne
 
         size_t posV= ligne.find(",");

@@ -2,7 +2,6 @@
 #include <cstdlib>
 
 #include "../terrain/Terrain.hpp"
-//#include "Menu.hpp"
 
 
 #ifndef jeu
@@ -19,7 +18,6 @@ protected:
   void reset(int mTJ, int nT, bool isTA, bool vsBot, int t, int pvA, int pvB, int aA, int aB, std::string ter, int nbUniteCree);
 
 public:
-  //Jeu(): Terrain(){}
   Jeu(int mTJ=100, int t=12, int pvTour=100, int argent=8): Terrain(t, pvTour, argent){ Jeu::maxTourDeJeu=mTJ; }
 
   ~Jeu(){}

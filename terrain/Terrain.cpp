@@ -1,12 +1,10 @@
 #include <iostream>
 #include <cstdlib>
+#include <chrono>
 
 #include "Terrain.hpp"
 
-#include <chrono>
-//#include <thread>
-#include <tuple>
-//#include <boost/algorithm/string.hpp>
+
 
 Terrain::Terrain(int t, int pvTour, int argent){
   if(t<4) {
@@ -27,7 +25,6 @@ Terrain::Terrain(int t, int pvTour, int argent){
   argentB= argent;
   //argent=argent;
 }
-Terrain::~Terrain(){}
 
 std::string Terrain::getTerrain(int &nbUniteCree){
   std::string res= "";
@@ -178,6 +175,7 @@ bool Terrain::Action1(bool sensAB){
       auto uTemp= cases.at(i).get();
       res=res||UniteABattaquer(uTemp,i);
     }
+    
   } else {
     for(int i=taille-1; i>0; i--){
       auto uTemp= cases.at(i).get();
@@ -341,12 +339,12 @@ bool Terrain::UniteABattaquer(Unite *uTemp,int i){
             }
           }
 
-          isDead= uTemp->Attaquer(&TourB);
 
+          isDead= uTemp->Attaquer(&TourB);
           if(isDead) {return true;}
+
           uTemp->setAsAction1(true);
           break;
-
         }
       }
     }
@@ -412,7 +410,7 @@ bool Terrain::UniteBAattaquer(Unite *uTemp,int i){
                 cases.at(j)= Case();
               }
 
-              //attaque untite avant
+              //attaque untite apres
               auto cible2= cases.at(j+1).get();
 
               isDead= uTemp->Attaquer(cible2);

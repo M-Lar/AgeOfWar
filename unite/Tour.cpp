@@ -4,9 +4,6 @@
 #include "Tour.hpp"
 
 
-/*Tour Tour::copy(Tour &u){
-  return Tour(u.isCampA, u.pos, u.pv);
-}*/
 
 std::string Tour::to_string(){
   return "T["+Unite::to_string()+"]";
@@ -30,9 +27,9 @@ void Tour::affiche(){
 }
 
 void Tour::print(int i){
-  //return"T";
+  int pv= getPv();
 
-  if(isCampA){
+  if(getIsCampA()){
     std::cout << colorCyan;
     if(i==3)      std::cout<< "|\\_/‾\\_/| ";
     else if(i==2) std::cout<< "|       | ";
@@ -53,9 +50,11 @@ void Tour::print(int i){
 
 }
 void Tour::print(int i, Unite *u){
+  int pv= getPv();
+
   if (u==nullptr) print(i);
   else{
-    if(isCampA){
+    if(getIsCampA()){
       std::cout << colorCyan;
       if(i==3) std::cout<< "|\\_/‾\\_/| ";
       else if(i==2) {std::cout<< "|  " ; u->print(i); std::cout<< colorCyan<< " | ";}
@@ -75,14 +74,3 @@ void Tour::print(int i, Unite *u){
     std::cout<< colorReset;
   }
 }
-/*
-void Tour::Action1(){
-  asAction1=Attaquer(portee);
-}
-void Tour::Action2(){}
-void Tour::Action3(){
-  if(asAction1){
-
-  }
-}
-*/

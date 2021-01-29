@@ -27,8 +27,8 @@ void Archer::affiche(){
 }
 
 void Archer::print(int i){
-  if(i==-1) std::cout<< colorGreen<< into_string(pv,3)+" ";
-  else if(isCampA) {
+  if(i==-1) std::cout<< colorGreen<< into_string(getPv(),3)+" ";
+  else if(getIsCampA()) {
     std::cout << colorCyan;
     if(i==2)      std::cout<< "O \\ ";
     else if(i==1) std::cout<< "|- |";
@@ -45,6 +45,6 @@ void Archer::print(int i){
 }
 
 int Archer::Attaquer(Unite* enemie){
-  if (!asAction1) return (Unite::Attaquer(enemie, att));
+  if (!getAsAction1()) return (Unite::Attaquer(enemie, att));
   return false;
 }

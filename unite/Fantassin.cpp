@@ -27,12 +27,9 @@ void Fantassin::affiche(){
 }
 
 void Fantassin::print(int i){
-  //std::cout<<"F";
-  //return "F";
 
-
-  if(i==-1) std::cout<< colorGreen<< into_string(pv,3)+" ";
-  else if(isCampA) {
+  if(i==-1) std::cout<< colorGreen<< into_string(getPv(),3)+" ";
+  else if(getIsCampA()) {
     std::cout << colorCyan;
     if(i==2)      std::cout<< (isSuper?"Ö":"O") <<"  /";
     else if(i==1) std::cout<< "|-/ ";
@@ -47,33 +44,13 @@ void Fantassin::print(int i){
   }
   std::cout<< colorReset;
 
-/*
-  if(i==-1) std::cout<< into_string(pv,3)+" ";
-  else if(isCampA) {
-      switch(i) {
-        case 2: std::cout<< "O  /"; break;
-        case 1: std::cout<< "|-/ "; break;
-        case 0: std::cout<< "|   "; break;
-        default: std::cout<< "    ";
-      }
-  } else {
-      switch(i) {
-        case 2: std::cout<< "\\  O"; break;
-        case 1: std::cout<< " \\-|"; break;
-        case 0: std::cout<< "   |"; break;
-        default: std::cout<< "    ";
-      }
-  }
-*/
 }
 
 int Fantassin::Attaquer(Unite* enemie){
-  if(isSuper || !asAction1){
+  if(isSuper || !getAsAction1()){
    int isDead= Unite::Attaquer(enemie, att);
    if(isDead && enemie->getInstance()=="Fantassin") isSuper=true;
    return isDead;
  }
  return false;
 }
-
-//bool Fantassin::getIsSuper(Unite* u){}

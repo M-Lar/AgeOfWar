@@ -1,7 +1,7 @@
 #include <iostream>
 #include <cstdlib>
 #include "Case.hpp"
-#include "allUnite.h"
+#include "../unite/allUnite.h"
 
 #include <vector>
 
@@ -10,12 +10,8 @@
 #define terrain
 class Terrain{
 private:
-  //Case *cases;
   std::vector<Case> cases;
-  /*
-  int taille;
-  int vieBg;
-  int vieBd;*/
+
   int taille;//= 12;
   Tour TourA= Tour(true,0);
   Tour TourB= Tour(false,taille-1, 100);
@@ -25,7 +21,7 @@ private:
 public:
   //Terrain(){ cases.resize(taille); }
   Terrain(int t=12, int pvTour=100, int argent=8);
-  ~Terrain();
+  ~Terrain(){}
 
   int getTaille(){return taille;}
   int getArgentA(){return argentA;}

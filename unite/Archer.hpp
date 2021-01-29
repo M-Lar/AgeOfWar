@@ -18,7 +18,6 @@ public:
   Archer(bool isCampA, int pos, int pv):  Unite(isCampA, pos, pv){};
   ~Archer(){};
 
-  //Archer copy(Archer &u);s
 
   std::string to_string();
 
@@ -29,7 +28,6 @@ public:
   void print(int i);
 
   std::string getInstance(){return "Archer";}
-  //<class U> getInstance2(){return <Archer>;}
   std::pair<int,int> getPortee(){return portee;}
   int getPrix(){return prix;};
 

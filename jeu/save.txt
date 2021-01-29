@@ -1,1 +1,1 @@
- taille:4, pvA:100, pvB:86, aA:19, aB:30, mTJ:100, nT:5, isTA:1, vsBot:0, ter:C[pv:12|pos:3|camp:0]F[pv:2|pos:1|camp:1], nbUC:2
+ taille:12, pvA:100, pvB:100, aA:10, aB:2, mTJ:100, nT:10, isTA:1, vsBot:0, ter:F[pv:10|pos:1|camp:1]A[pv:8|pos:2|camp:1]F[pv:10|pos:3|camp:1]A[pv:8|pos:4|camp:1]F[pv:10|pos:6|camp:1]F[pv:6|pos:7|camp:0]F[pv:10|pos:8|camp:0]A[pv:8|pos:9|camp:0]F[pv:10|pos:10|camp:0]A[pv:8|pos:11|camp:0], nbUC:10
