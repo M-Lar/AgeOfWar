@@ -87,6 +87,9 @@ void Terrain::reset(int t, int pvA, int pvB, int aA, int aB, std::pair<std::stri
 
 
     if(nomUnite=="F" || nomUnite=="f") add<Fantassin>(isCampA, std::make_pair(pv, pos));
+    else if(nomUnite=="S" || nomUnite=="s") {
+      cases[pos].set(new Fantassin(isCampA, pos, pv, true));
+    }
     else if(nomUnite=="A" || nomUnite=="a") add<Archer>(isCampA, std::make_pair(pv, pos));
     else if(nomUnite=="C" || nomUnite=="c") add<Catapulte>(isCampA, std::make_pair(pv, pos));
 

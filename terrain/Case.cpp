@@ -23,25 +23,8 @@ void Case::print(int i) const{
 
 std::string Case::contenueCase() const{
   if(contenue!=nullptr) {
-    std::cout << contenue->to_string() << '\n';
+    //std::cout << contenue->to_string() << '\n';
     return contenue->to_string();
-    /*if(contenue->getInstance()=="Fantassin") return 'f';
-    else if(contenue->getInstance()=="Archer") return 'a';
-    else if(contenue->getInstance()=="Catapulte") return 'c';*/
   }
   return "";
 }
-
-
-
-//void Case::tour(){
-  /*
-  contenue->Action1();
-  contenue->Action2();
-  contenue->Action3();
-  */
-  /*
-  if(contenue)
-  contenue->move();
-  */
-//};

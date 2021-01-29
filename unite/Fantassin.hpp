@@ -16,7 +16,8 @@ private:
 
 public:
   //Fantassin(bool isCampA, int pos): Unite(isCampA, pos, 10){};
-  Fantassin(bool isCampA, int pos, int pv= 10):  Unite(isCampA, pos, pv){};
+  Fantassin(bool isCampA, int pos, int pv= 10, bool isS=false):  Unite(isCampA, pos, pv){isSuper= isS;};
+  Fantassin(Unite* u, bool isS=false):  Unite(u->getIsCampA(), u->getPos(), u->getPv()){isSuper=isS;};
   ~Fantassin(){};
 
   std::string to_string();

@@ -52,13 +52,13 @@ Toute nouvelle unite doit implémenter :
 |     _     |
 |    | |    |
 
-  O  /	\  O
-  |-/		 \-|
-  |		     |
+O  /  \  O
+|-/    \-|
+|        |
 
-  O \		 / O
-  |- |	| -|
-  | /		 \ |
+ O \    / O
+ |- |  | -|
+ | /    \ |
 
 0\
   \
