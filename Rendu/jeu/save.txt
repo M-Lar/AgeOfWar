@@ -1,0 +1,1 @@
+ taille:12, pvA:100, pvB:100, aA:68, aB:60, mTJ:100, nT:10, isTA:1, vsBot:0, ter:A[pv:8|pos:6|camp:1]S[pv:2|pos:8|camp:1], nbUC:2
